@@ -1,5 +1,5 @@
 # ignoring photos made
-photobooth-[0-9][0-9][0-9].jpg
+photobooth-[0-9]+.jpg
 
 # ignoring tmp and print temporary files
 tmp.jpg
