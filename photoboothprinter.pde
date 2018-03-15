@@ -8,25 +8,6 @@ import java.util.Map;
 import javax.activation.MimetypesFileTypeMap;
 import static java.lang.Math.*;
 
-// IMPORTS FOR MARKOV CHAIN GENERATOR
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
-
-import io.vedder.ml.markov.consumer.TokenConsumer;
-import io.vedder.ml.markov.consumer.file.FileTokenConsumer;
-import io.vedder.ml.markov.generator.Generator;
-import io.vedder.ml.markov.generator.file.FileGenerator;
-import io.vedder.ml.markov.holder.MapTokenHolder;
-import io.vedder.ml.markov.holder.TokenHolder;
-import io.vedder.ml.markov.threading.JobManager;
-import io.vedder.ml.markov.tokenizer.file.FileTokenizer;
-import io.vedder.ml.markov.tokens.Token;
 
 Capture video;
 
@@ -45,12 +26,10 @@ int index(int x, int y) {
 
 HashMap<String, Integer> wantedFeatures;
 
-// MARKOV CHAIN PARAMETERS
-private static int lookback = 2;
-private static int mapInitialSize = 50000;
-private static int numSent = 1;
-private static List<String> filePaths = null;
-TokenHolder tokenHolder;
+//MARKOV CHAIN
+private static MarkovChainWrapper markov;
+private static String[] filePaths = null;
+
 
 //BERECHNUNG VIDEO*TEXT
 void setup() {
@@ -61,20 +40,15 @@ void setup() {
   //wantedFeatures.put("FACE_DETECTION", 3);
   wantedFeatures.put("IMAGE_PROPERTIES", 1);
   
-  filePaths = Arrays.asList(new String[] {sketchPath("some imagist poems_clean.txt")});
+  filePaths = new String[] {sketchPath("poetry\\some imagist poems_clean.txt"),
+                                          sketchPath("poetry\\african poetry source.txt"),
+                                          sketchPath("poetry\\1914 poems.txt"),
+                                          sketchPath("poetry\\drum taps.txt"),
+                                          sketchPath("poetry\\sword blades and poppy seeds.txt")
+                                        };
+                                         
   
-  //MARKOV CHAIN
-    tokenHolder = new MapTokenHolder(mapInitialSize);
-    
-    JobManager jm = new JobManager();
-
-    // Fills the TokenHolder with tokens
-    for (String filePath : filePaths) {
-      FileTokenizer fileTokenizer = new FileTokenizer(tokenHolder, lookback, filePath);
-      jm.addTokenizer(fileTokenizer);
-    }
-    
-    jm.runAll();
+  markov = new MarkovChainWrapper(filePaths);
   
   size(640, 430);
   String[] cameras = Capture.list();
@@ -91,66 +65,6 @@ void draw() {
   frameRate (30);
   tint(255, blaesse);
 
-  //DARSTELLUNG DITHERING
-  /* video.loadPixels();
-   for (int y = 0; y < video.height-1; y++) {
-   for (int x = 1; x < video.width-1; x++) {
-   color pix = video.pixels[index(x, y)];
-   float oldR = red(pix);
-   float oldG = green(pix);
-   float oldB = blue(pix);
-   int factor = 1;
-   int newR = round(factor * oldR / 255) * (255/factor);
-   int newG = round(factor * oldG / 255) * (255/factor);
-   int newB = round(factor * oldB / 255) * (255/factor);
-   video.pixels[index(x, y)] = color(newR, newG, newB);
-   
-   float errR = oldR - newR;
-   float errG = oldG - newG;
-   float errB = oldB - newB;
-   
-   int index = index(x+1, y  );
-   color c = video.pixels[index];
-   float r = red(c);
-   float g = green(c);
-   float b = blue(c);
-   r = r + errR * 7/16.0;
-   g = g + errG * 7/16.0;
-   b = b + errB * 7/16.0;
-   video.pixels[index] = color(r, g, b);
-   
-   index = index(x-1, y+1  );
-   c = video.pixels[index];
-   r = red(c);
-   g = green(c);
-   b = blue(c);
-   r = r + errR * 3/16.0;
-   g = g + errG * 3/16.0;
-   b = b + errB * 3/16.0;
-   video.pixels[index] = color(r, g, b);
-   
-   index = index(x, y+1);
-   c = video.pixels[index];
-   r = red(c);
-   g = green(c);
-   b = blue(c);
-   r = r + errR * 5/16.0;
-   g = g + errG * 5/16.0;
-   b = b + errB * 5/16.0;
-   video.pixels[index] = color(r, g, b);
-   
-   index = index(x+1, y+1);
-   c = video.pixels[index];
-   r = red(c);
-   g = green(c);
-   b = blue(c);
-   r = r + errR * 1/16.0;
-   g = g + errG * 1/16.0;
-   b = b + errB * 1/16.0;
-   video.pixels[index] = color(r, g, b);
-   }
-   }
-   video.updatePixels(); */
 
   //VIDEO READ
   if (video.available() == true) {
@@ -174,7 +88,9 @@ void mousePressed() {
 
 
     //ZUGRIFF CLOUD VISION API
+    
     try {
+      
       URL url;
 
       File file = new File(sketchPath("tmp.jpg"));
@@ -280,34 +196,15 @@ void mousePressed() {
       saveFrame("photobooth-###.jpg");
       //saveFrame("print.jpg");
       
+      String firstLabel = null;
+      if (labelObjects.size() > 0) {
+         firstLabel = labelObjects.getJSONObject(0).getString("description");
+      }
+
+      String poem = markov.getPoem(firstLabel);
       
-
-    // Uses the TokenHolder to generate Collections of tokens.
-    Generator g = new FileGenerator(tokenHolder, lookback);
-
-    // Takes Collections of tokens and consumes them
-    TokenConsumer tc = new FileTokenConsumer();
-
-    // Kicks off the tokenization process
-
-    Collection<Token>[] tokensCollections = new Collection[numSent];
-
-    // Creates Lists of tokens
-    for (int i = 0; i < numSent; i++) {
-      tokensCollections[i] = (g.generateTokenList());
-    }
-
-    // Creates lazy collections of tokens
-    //for (int i = 0; i < (numSent / 2 + numSent % 2); i++) {
-    //  tokensCollections.add(g.generateLazyTokenList());
-    //}
-
-    // Consumer consumes both types of collections
-    for (Collection<Token> tlist : tokensCollections) {
-      tc.consume(tlist);
-    }
-    
-      
+      println("firstLabel: " + firstLabel);
+      println(poem);
 
       //DRUCKEN
       /*try {
