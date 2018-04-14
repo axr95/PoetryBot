@@ -1,0 +1,330 @@
+A microphone, colloquially nicknamed mic or mike (/maɪk/),[1] is a transducer that converts sound into an electrical signal.
+Microphones are used in many applications such as telephones, hearing aids, public address systems for concert halls and public events, motion picture production, live and recorded audio engineering, sound recording, two-way radios, megaphones, radio and television broadcasting, and in computers for recording voice, speech recognition, VoIP, and for non-acoustic purposes such as ultrasonic sensors or knock sensors.
+Several different types of microphone are in use, which employ different methods to convert the air pressure variations of a sound wave to an electrical signal. The most common are the dynamic microphone, which uses a coil of wire suspended in a magnetic field; the condenser microphone, which uses the vibrating diaphragm as a capacitor plate, and the piezoelectric microphone, which uses a crystal of piezoelectric material. Microphones typically need to be connected to a preamplifier before the signal can be recorded or reproduced.
+
+
+In order to speak to larger groups of people, a need arose to increase the volume of the human voice. The earliest devices used to achieve this were acoustic megaphones. Some of the first examples, from fifth century BC Greece, were theater masks with horn-shaped mouth openings that acoustically amplified the voice of actors in amphitheatres.[2] In 1665, the English physicist Robert Hooke was the first to experiment with a medium other than air with the invention of the "lovers' telephone" made of stretched wire with a cup attached at each end.[3]
+German inventor Johann Philipp Reis designed an early sound transmitter that used a metallic strip attached to a vibrating membrane that would produce intermittent current. Better results were achieved with the "liquid transmitter" design in Scottish-American Alexander Graham Bell's telephone of 1876 – the diaphragm was attached to a conductive rod in an acid solution.[4] These systems, however, gave a very poor sound quality.
+The first microphone that enabled proper voice telephony was the (loose-contact) carbon microphone. This was independently developed by David Edward Hughes in England and Emile Berliner and Thomas Edison in the US. Although Edison was awarded the first patent (after a long legal dispute) in mid-1877, Hughes had demonstrated his working device in front of many witnesses some years earlier, and most historians credit him with its invention.[5][6][7][8] The carbon microphone is the direct prototype of today's microphones and was critical in the development of telephony, broadcasting and the recording industries.[9] Thomas Edison refined the carbon microphone into his carbon-button transmitter of 1886.[7][10] This microphone was employed at the first ever radio broadcast, a performance at the New York Metropolitan Opera House in 1910.[11][12]
+In 1916, E.C. Wente of Western Electric developed the next breakthrough with the first condenser microphone.[13] In 1923, the first practical moving coil microphone was built. "The Marconi Skykes" or "magnetophon", developed by Captain H. J. Round, was the standard for BBC studios in London.[14] This was improved in 1930 by Alan Blumlein and Herbert Holman who released the HB1A and was the best standard of the day.[15]
+Also in 1923, the ribbon microphone was introduced, another electromagnetic type, believed to have been developed by Harry F. Olson, who essentially reverse-engineered a ribbon speaker.[16] Over the years these microphones were developed by several companies, most notably RCA that made large advancements in pattern control, to give the microphone directionality. With television and film technology booming there was demand for high fidelity microphones and greater directionality. Electro-Voice responded with their Academy Award-winning shotgun microphone in 1963.
+During the second half of 20th century development advanced quickly with the Shure Brothers bringing out the SM58 and SM57.[17] The latest research developments include the use of fibre optics, lasers and interferometers.
+The sensitive transducer element of a microphone is called its element or capsule. Sound is first converted to mechanical motion by means of a diaphragm, the motion of which is then converted to an electrical signal. A complete microphone also includes a housing, some means of bringing the signal from the element to other equipment, and often an electronic circuit to adapt the output of the capsule to the equipment being driven. A wireless microphone contains a radio transmitter.
+Microphones are categorized by their transducer principle, such as condenser, dynamic, etc., and by their directional characteristics. Sometimes other characteristics such as diaphragm size, intended use or orientation of the principal sound input to the principal axis (end- or side-address) of the microphone are used to describe the microphone.
+
+The condenser microphone, invented at Western Electric in 1916 by E. C. Wente,[18] is also called a capacitor microphone or electrostatic microphone—capacitors were historically called condensers. Here, the diaphragm acts as one plate of a capacitor, and the vibrations produce changes in the distance between the plates. There are two types, depending on the method of extracting the audio signal from the transducer: DC-biased microphones, and radio frequency (RF) or high frequency (HF) condenser microphones. With a DC-biased microphone, the plates are biased with a fixed charge (Q). The voltage maintained across the capacitor plates changes with the vibrations in the air, according to the capacitance equation (C = Q⁄V), where Q = charge in coulombs, C = capacitance in farads and V = potential difference in volts. The capacitance of the plates is inversely proportional to the distance between them for a parallel-plate capacitor. The assembly of fixed and movable plates is called an "element" or "capsule".
+A nearly constant charge is maintained on the capacitor. As the capacitance changes, the charge across the capacitor does change very slightly, but at audible frequencies it is sensibly constant. The capacitance of the capsule (around 5 to 100 pF) and the value of the bias resistor (100 MΩ to tens of GΩ) form a filter that is high-pass for the audio signal, and low-pass for the bias voltage. Note that the time constant of an RC circuit equals the product of the resistance and capacitance.
+Within the time-frame of the capacitance change (as much as 50 ms at 20 Hz audio signal), the charge is practically constant and the voltage across the capacitor changes instantaneously to reflect the change in capacitance. The voltage across the capacitor varies above and below the bias voltage. The voltage difference between the bias and the capacitor is seen across the series resistor. The voltage across the resistor is amplified for performance or recording. In most cases, the electronics in the microphone itself contribute no voltage gain as the voltage differential is quite significant, up to several volts for high sound levels. Since this is a very high impedance circuit, only current gain is usually needed, with the voltage remaining constant.
+RF condenser microphones use a comparatively low RF voltage, generated by a low-noise oscillator. The signal from the oscillator may either be amplitude modulated by the capacitance changes produced by the sound waves moving the capsule diaphragm, or the capsule may be part of a resonant circuit that modulates the frequency of the oscillator signal. Demodulation yields a low-noise audio frequency signal with a very low source impedance. The absence of a high bias voltage permits the use of a diaphragm with looser tension, which may be used to achieve wider frequency response due to higher compliance. The RF biasing process results in a lower electrical impedance capsule, a useful by-product of which is that RF condenser microphones can be operated in damp weather conditions that could create problems in DC-biased microphones with contaminated insulating surfaces. The Sennheiser "MKH" series of microphones use the RF biasing technique.
+Condenser microphones span the range from telephone transmitters through inexpensive karaoke microphones to high-fidelity recording microphones. They generally produce a high-quality audio signal and are now the popular choice in laboratory and recording studio applications. The inherent suitability of this technology is due to the very small mass that must be moved by the incident sound wave, unlike other microphone types that require the sound wave to do more work. They require a power source, provided either via microphone inputs on equipment as phantom power or from a small battery. Power is necessary for establishing the capacitor plate voltage and is also needed to power the microphone electronics (impedance conversion in the case of electret and DC-polarized microphones, demodulation or detection in the case of RF/HF microphones). Condenser microphones are also available with two diaphragms that can be electrically connected to provide a range of polar patterns (see below), such as cardioid, omnidirectional, and figure-eight. It is also possible to vary the pattern continuously with some microphones, for example, the Røde NT2000 or CAD M179.
+A valve microphone is a condenser microphone that uses a vacuum tube (valve) amplifier.[19] They remain popular with enthusiasts of tube sound.
+An electret microphone is a type of capacitor microphone invented by Gerhard Sessler and Jim West at Bell laboratories in 1962.[20] The externally applied charge described above under condenser microphones is replaced by a permanent charge in an electret material. An electret is a ferroelectric material that has been permanently electrically charged or polarized. The name comes from electrostatic and magnet; a static charge is embedded in an electret by alignment of the static charges in the material, much the way a magnet is made by aligning the magnetic domains in a piece of iron.
+Due to their good performance and ease of manufacture, hence low cost, the vast majority of microphones made today are electret microphones; a semiconductor manufacturer[21] estimates annual production at over one billion units. Nearly all cell-phone, computer, PDA and headset microphones are electret types. They are used in many applications, from high-quality recording and lavalier use to built-in microphones in small sound recording devices and telephones. Though electret microphones were once considered low quality, the best ones can now rival traditional condenser microphones in every respect and can even offer the long-term stability and ultra-flat response needed for a measurement microphone. Unlike other capacitor microphones, they require no polarizing voltage, but often contain an integrated preamplifier that does require power (often incorrectly called polarizing power or bias). This preamplifier is frequently phantom powered in sound reinforcement and studio applications. Monophonic microphones designed for personal computer (PC) use, sometimes called multimedia microphones, use a 3.5 mm plug as usually used, without power, for stereo; the ring, instead of carrying the signal for a second channel, carries power via a resistor from (normally) a 5 V supply in the computer. Stereophonic microphones use the same connector; there is no obvious way to determine which standard is used by equipment and microphones.
+Only the best electret microphones rival good DC-polarized units in terms of noise level and quality; electret microphones lend themselves to inexpensive mass-production, while inherently expensive non-electret condenser microphones are made to higher quality.
+
+The dynamic microphone (also known as the moving-coil microphone) works via electromagnetic induction. They are robust, relatively inexpensive and resistant to moisture. This, coupled with their potentially high gain before feedback, makes them ideal for on-stage use.
+Dynamic microphones use the same dynamic principle as in a loudspeaker, only reversed. A small movable induction coil, positioned in the magnetic field of a permanent magnet, is attached to the diaphragm. When sound enters through the windscreen of the microphone, the sound wave moves the diaphragm. When the diaphragm vibrates, the coil moves in the magnetic field, producing a varying current in the coil through electromagnetic induction. A single dynamic membrane does not respond linearly to all audio frequencies. For this reason, some microphones utilize multiple membranes for the different parts of the audio spectrum and then combine the resulting signals. Combining the multiple signals correctly is difficult; designs that do this are rare, and tend to be expensive. On the other hand, there are several designs that are more specifically aimed towards isolated parts of the audio spectrum. The AKG D 112, for example, is designed for bass response rather than treble.[22] In audio engineering several kinds of microphones are often used at the same time to get the best results.
+Ribbon microphones use a thin, usually corrugated metal ribbon suspended in a magnetic field. The ribbon is electrically connected to the microphone's output, and its vibration within the magnetic field generates the electrical signal. Ribbon microphones are similar to moving coil microphones in the sense that both produce sound by means of magnetic induction. Basic ribbon microphones detect sound in a bi-directional (also called figure-eight, as in the diagram below) pattern because the ribbon is open on both sides. Also, because the ribbon is much less mass it responds to the air velocity rather than the sound pressure. Though the symmetrical front and rear pickup can be a nuisance in normal stereo recording, the high side rejection can be used to advantage by positioning a ribbon microphone horizontally, for example above cymbals, so that the rear lobe picks up sound only from the cymbals. Crossed figure 8, or Blumlein pair, stereo recording is gaining in popularity, and the figure-eight response of a ribbon microphone is ideal for that application.
+Other directional patterns are produced by enclosing one side of the ribbon in an acoustic trap or baffle, allowing sound to reach only one side. The classic RCA Type 77-DX microphone has several externally adjustable positions of the internal baffle, allowing the selection of several response patterns ranging from "figure-eight" to "unidirectional". Such older ribbon microphones, some of which still provide high-quality sound reproduction, were once valued for this reason, but a good low-frequency response could be obtained only when the ribbon was suspended very loosely, which made them relatively fragile. Modern ribbon materials, including new nanomaterials[23] have now been introduced that eliminate those concerns, and even improve the effective dynamic range of ribbon microphones at low frequencies. Protective wind screens can reduce the danger of damaging a vintage ribbon, and also reduce plosive artifacts in the recording. Properly designed wind screens produce negligible treble attenuation. In common with other classes of dynamic microphone, ribbon microphones don't require phantom power; in fact, this voltage can damage some older ribbon microphones. Some new modern ribbon microphone designs incorporate a preamplifier and, therefore, do require phantom power, and circuits of modern passive ribbon microphones, i.e., those without the aforementioned preamplifier, are specifically designed to resist damage to the ribbon and transformer by phantom power. Also there are new ribbon materials available that are immune to wind blasts and phantom power.
+The carbon microphone was the earliest type of microphone. The carbon button microphone (or sometimes just a button microphone), uses a capsule or button containing carbon granules pressed between two metal plates like the Berliner and Edison microphones. A voltage is applied across the metal plates, causing a small current to flow through the carbon. One of the plates, the diaphragm, vibrates in sympathy with incident sound waves, applying a varying pressure to the carbon. The changing pressure deforms the granules, causing the contact area between each pair of adjacent granules to change, and this causes the electrical resistance of the mass of granules to change. The changes in resistance cause a corresponding change in the current flowing through the microphone, producing the electrical signal. Carbon microphones were once commonly used in telephones; they have extremely low-quality sound reproduction and a very limited frequency response range, but are very robust devices. The Boudet microphone, which used relatively large carbon balls, was similar to the granule carbon button microphones.[24]
+Unlike other microphone types, the carbon microphone can also be used as a type of amplifier, using a small amount of sound energy to control a larger amount of electrical energy. Carbon microphones found use as early telephone repeaters, making long distance phone calls possible in the era before vacuum tubes. These repeaters worked by mechanically coupling a magnetic telephone receiver to a carbon microphone: the faint signal from the receiver was transferred to the microphone, where it modulated a stronger electric current, producing a stronger electrical signal to send down the line. One illustration of this amplifier effect was the oscillation caused by feedback, resulting in an audible squeal from the old "candlestick" telephone if its earphone was placed near the carbon microphone.
+
+A crystal microphone or piezo microphone[25] uses the phenomenon of piezoelectricity—the ability of some materials to produce a voltage when subjected to pressure—to convert vibrations into an electrical signal. An example of this is potassium sodium tartrate, which is a piezoelectric crystal that works as a transducer, both as a microphone and as a slimline loudspeaker component. Crystal microphones were once commonly supplied with vacuum tube (valve) equipment, such as domestic tape recorders. Their high output impedance matched the high input impedance (typically about 10 megohms) of the vacuum tube input stage well. They were difficult to match to early transistor equipment and were quickly supplanted by dynamic microphones for a time, and later small electret condenser devices. The high impedance of the crystal microphone made it very susceptible to handling noise, both from the microphone itself and from the connecting cable.
+Piezoelectric transducers are often used as contact microphones to amplify sound from acoustic musical instruments, to sense drum hits, for triggering electronic samples, and to record sound in challenging environments, such as underwater under high pressure. Saddle-mounted pickups on acoustic guitars are generally piezoelectric devices that contact the strings passing over the saddle. This type of microphone is different from magnetic coil pickups commonly visible on typical electric guitars, which use magnetic induction, rather than mechanical coupling, to pick up vibration.
+A fiber optic microphone converts acoustic waves into electrical signals by sensing changes in light intensity, instead of sensing changes in capacitance or magnetic fields as with conventional microphones. [26][27]
+During operation, light from a laser source travels through an optical fiber to illuminate the surface of a reflective diaphragm. Sound vibrations of the diaphragm modulate the intensity of light reflecting off the diaphragm in a specific direction. The modulated light is then transmitted over a second optical fiber to a photo detector, which transforms the intensity-modulated light into analog or digital audio for transmission or recording. Fiber optic microphones possess high dynamic and frequency range, similar to the best high fidelity conventional microphones.
+Fiber optic microphones do not react to or influence any electrical, magnetic, electrostatic or radioactive fields (this is called EMI/RFI immunity). The fiber optic microphone design is therefore ideal for use in areas where conventional microphones are ineffective or dangerous, such as inside industrial turbines or in magnetic resonance imaging (MRI) equipment environments.
+Fiber optic microphones are robust, resistant to environmental changes in heat and moisture, and can be produced for any directionality or impedance matching. The distance between the microphone's light source and its photodetector may be up to several kilometers without need for any preamplifier or another electrical device, making fiber optic microphones suitable for industrial and surveillance acoustic monitoring.
+Fiber optic microphones are used in very specific application areas such as for infrasound monitoring and noise-canceling. They have proven especially useful in medical applications, such as allowing radiologists, staff and patients within the powerful and noisy magnetic field to converse normally, inside the MRI suites as well as in remote control rooms.[28] Other uses include industrial equipment monitoring and audio calibration and measurement, high-fidelity recording and law enforcement.[29]
+Laser microphones are often portrayed in movies as spy gadgets, because they can be used to pick up sound at a distance from the microphone equipment. A laser beam is aimed at the surface of a window or other plane surface that is affected by sound. The vibrations of this surface change the angle at which the beam is reflected, and the motion of the laser spot from the returning beam is detected and converted to an audio signal.
+In a more robust and expensive implementation, the returned light is split and fed to an interferometer, which detects movement of the surface by changes in the optical path length of the reflected beam. The former implementation is a tabletop experiment; the latter requires an extremely stable laser and precise optics.
+A new type of laser microphone is a device that uses a laser beam and smoke or vapor to detect sound vibrations in free air. On 25 August 2009, U.S. patent 7,580,533 issued for a Particulate Flow Detection Microphone based on a laser-photocell pair with a moving stream of smoke or vapor in the laser beam's path. Sound pressure waves cause disturbances in the smoke that in turn cause variations in the amount of laser light reaching the photodetector. A prototype of the device was demonstrated at the 127th Audio Engineering Society convention in New York City from 9 through 12 October 2009.
+Early microphones did not produce intelligible speech, until Alexander Graham Bell made improvements including a variable-resistance microphone/transmitter. Bell's liquid transmitter consisted of a metal cup filled with water with a small amount of sulfuric acid added. A sound wave caused the diaphragm to move, forcing a needle to move up and down in the water. The electrical resistance between the wire and the cup was then inversely proportional to the size of the water meniscus around the submerged needle. Elisha Gray filed a caveat for a version using a brass rod instead of the needle. Other minor variations and improvements were made to the liquid microphone by Majoranna, Chambers, Vanni, Sykes, and Elisha Gray, and one version was patented by Reginald Fessenden in 1903. These were the first working microphones, but they were not practical for commercial application. The famous first phone conversation between Bell and Watson took place using a liquid microphone.
+The MEMS (MicroElectrical-Mechanical System) microphone is also called a microphone chip or silicon microphone. A pressure-sensitive diaphragm is etched directly into a silicon wafer by MEMS processing techniques, and is usually accompanied with integrated preamplifier. Most MEMS microphones are variants of the condenser microphone design. Digital MEMS microphones have built in analog-to-digital converter (ADC) circuits on the same CMOS chip making the chip a digital microphone and so more readily integrated with modern digital products. Major manufacturers producing MEMS silicon microphones are Wolfson Microelectronics (WM7xxx) now Cirrus Logic,[30] InvenSense (product line sold by Analog Devices [31]), Akustica (AKU200x), Infineon (SMM310 product), Knowles Electronics, Memstech (MSMx), NXP Semiconductors (division bought by Knowles [32]), Sonion MEMS, Vesper, AAC Acoustic Technologies,[33] and Omron.[34]
+More recently[when?], there has been increased interest and research into making piezoelectric MEMS microphones which are a significant architectural and material change from existing condenser style MEMS designs.[35]
+A loudspeaker, a transducer that turns an electrical signal into sound waves, is the functional opposite of a microphone. Since a conventional speaker is constructed much like a dynamic microphone (with a diaphragm, coil and magnet), speakers can actually work "in reverse" as microphones. The resulting signal typically offers reduced quality including limited high-end frequency response and poor sensitivity. In practical use, speakers are sometimes used as microphones in applications where high quality and sensitivity are not needed such as intercoms, walkie-talkies or video game voice chat peripherals, or when conventional microphones are in short supply.
+However, there is at least one practical application that exploits those weaknesses: the use of a medium-size woofer placed closely in front of a "kick drum" (bass drum) in a drum set to act as a microphone. A commercial product example is the Yamaha Subkick, a 6.5-inch (170 mm) woofer shock-mounted into a 10" drum shell used in front of kick drums. Since a relatively massive membrane is unable to transduce high frequencies while being capable of tolerating strong low-frequency transients, the speaker is often ideal for picking up the kick drum while reducing bleed from the nearby cymbals and snare drums. Less commonly, microphones themselves can be used as speakers, but due to their low power handling and small transducer sizes, a tweeter is the most practical application. One instance of such an application was the STC microphone-derived 4001 super-tweeter, which was successfully used in a number of high quality loudspeaker systems from the late 1960s to the mid-70s.
+The inner elements of a microphone are the primary source of differences in directivity. A pressure microphone uses a diaphragm between a fixed internal volume of air and the environment, and responds uniformly to pressure from all directions, so it is said to be omnidirectional. A pressure-gradient microphone uses a diaphragm that is at least partially open on both sides. The pressure difference between the two sides produces its directional characteristics. Other elements such as the external shape of the microphone and external devices such as interference tubes can also alter a microphone's directional response. A pure pressure-gradient microphone is equally sensitive to sounds arriving from front or back, but insensitive to sounds arriving from the side because sound arriving at the front and back at the same time creates no gradient between the two. The characteristic directional pattern of a pure pressure-gradient microphone is like a figure-8. Other polar patterns are derived by creating a capsule that combines these two effects in different ways. The cardioid, for instance, features a partially closed backside, so its response is a combination of pressure and pressure-gradient characteristics.[36]
+
+(Microphone facing top of page in diagram, parallel to page):
+A microphone's directionality or polar pattern indicates how sensitive it is to sounds arriving at different angles about its central axis. The polar patterns illustrated above represent the locus of points that produce the same signal level output in the microphone if a given sound pressure level (SPL) is generated from that point. How the physical body of the microphone is oriented relative to the diagrams depends on the microphone design. For large-membrane microphones such as in the Oktava (pictured above), the upward direction in the polar diagram is usually perpendicular to the microphone body, commonly known as "side fire" or "side address". For small diaphragm microphones such as the Shure (also pictured above), it usually extends from the axis of the microphone commonly known as "end fire" or "top/end address".
+Some microphone designs combine several principles in creating the desired polar pattern. This ranges from shielding (meaning diffraction/dissipation/absorption) by the housing itself to electronically combining dual membranes.
+An omnidirectional (or nondirectional) microphone's response is generally considered to be a perfect sphere in three dimensions. In the real world, this is not the case. As with directional microphones, the polar pattern for an "omnidirectional" microphone is a function of frequency. The body of the microphone is not infinitely small and, as a consequence, it tends to get in its own way with respect to sounds arriving from the rear, causing a slight flattening of the polar response. This flattening increases as the diameter of the microphone (assuming it's cylindrical) reaches the wavelength of the frequency in question. Therefore, the smallest diameter microphone gives the best omnidirectional characteristics at high frequencies.
+The wavelength of sound at 10 kHz is 1.4" (3.5 cm). The smallest measuring microphones are often 1/4" (6 mm) in diameter, which practically eliminates directionality even up to the highest frequencies. Omnidirectional microphones, unlike cardioids, do not employ resonant cavities as delays, and so can be considered the "purest" microphones in terms of low coloration; they add very little to the original sound. Being pressure-sensitive they can also have a very flat low-frequency response down to 20 Hz or below. Pressure-sensitive microphones also respond much less to wind noise and plosives than directional (velocity sensitive) microphones.
+An example of a nondirectional microphone is the round black eight ball.[37]
+A unidirectional microphone is primarily sensitive to sounds from only one direction. The diagram above illustrates a number of these patterns. The microphone faces upwards in each diagram. The sound intensity for a particular frequency is plotted for angles radially from 0 to 360°. (Professional diagrams show these scales and include multiple plots at different frequencies. The diagrams given here provide only an overview of typical pattern shapes, and their names.)
+
+The most common unidirectional microphone is a cardioid microphone, so named because the sensitivity pattern is "heart-shaped", i.e. a cardioid. The cardioid family of microphones are commonly used as vocal or speech microphones, since they are good at rejecting sounds from other directions. In three dimensions, the cardioid is shaped like an apple centred around the microphone which is the "stem" of the apple. The cardioid response reduces pickup from the side and rear, helping to avoid feedback from the monitors. Since these directional transducer microphones achieve their patterns by sensing pressure gradient, putting them very close to the sound source (at distances of a few centimeters) results in a bass boost due to the increased gradient. This is known as the proximity effect.[38] The SM58 has been the most commonly used microphone for live vocals for more than 50 years[39] demonstrating the importance and popularity of cardioid mics.
+A cardioid microphone is effectively a superposition of an omnidirectional and a figure-8 microphone; for sound waves coming from the back, the negative signal from the figure-8 cancels the positive signal from the omnidirectional element, whereas for sound waves coming from the front, the two add to each other. A hyper-cardioid microphone is similar, but with a slightly larger figure-8 contribution leading to a tighter area of front sensitivity and a smaller lobe of rear sensitivity. A super-cardioid microphone is similar to a hyper-cardioid, except there is more front pickup and less rear pickup. While any pattern between omni and figure 8 is possible by adjusting their mix, common definitions state that a hypercardioid is produced by combining them at a 3:1 ratio, producing nulls at 109.5°, while supercardioid is produced with about a 5:3 ratio, with nulls at 126.9°. The sub-cardioid microphone has no null points. It is produced with about 7:3 ratio with 3-10 dB level between the front and back pickup.[40][41]
+"Figure 8" or bi-directional microphones receive sound equally from both the front and back of the element. Most ribbon microphones are of this pattern. In principle they do not respond to sound pressure at all, only to the change in pressure between front and back; since sound arriving from the side reaches front and back equally there is no difference in pressure and therefore no sensitivity to sound from that direction. In more mathematical terms, while omnidirectional microphones are scalar transducers responding to pressure from any direction, bi-directional microphones are vector transducers responding to the gradient along an axis normal to the plane of the diaphragm. This also has the effect of inverting the output polarity for sounds arriving from the back side.
+
+Shotgun microphones are the most highly directional of simple first-order unidirectional types. At low frequencies they have the classic polar response of a hypercardioid but at medium and higher frequencies an interference tube gives them an increased forward response. This is achieved by a process of cancellation of off-axis waves entering the longitudinal array of slots. A consequence of this technique is the presence of some rear lobes that vary in level and angle with frequency, and can cause some coloration effects. Due to the narrowness of their forward sensitivity, shotgun microphones are commonly used on television and film sets, in stadiums, and for field recording of wildlife.
+Several approaches have been developed for effectively using a microphone in less-than-ideal acoustic spaces, which often suffer from excessive reflections from one or more of the surfaces (boundaries) that make up the space. If the microphone is placed in, or very close to, one of these boundaries, the reflections from that surface have the same timing as the direct sound, thus giving the microphone a hemispherical polar pattern and improved intelligibility. Initially this was done by placing an ordinary microphone adjacent to the surface, sometimes in a block of acoustically transparent foam. Sound engineers Ed Long and Ron Wickersham developed the concept of placing the diaphragm parallel to and facing the boundary.[42] While the patent has expired, "Pressure Zone Microphone" and "PZM" are still active trademarks of Crown International, and the generic term "boundary microphone" is preferred. While a boundary microphone was initially implemented using an omnidirectional element, it is also possible to mount a directional microphone close enough to the surface to gain some of the benefits of this technique while retaining the directional properties of the element. Crown's trademark on this approach is "Phase Coherent Cardioid" or "PCC," but there are other makers who employ this technique as well.
+A lavalier microphone is made for hands-free operation. These small microphones are worn on the body. Originally, they were held in place with a lanyard worn around the neck, but more often they are fastened to clothing with a clip, pin, tape or magnet. The lavalier cord may be hidden by clothes and either run to an RF transmitter in a pocket or clipped to a belt (for mobile use), or run directly to the mixer (for stationary applications).
+A wireless microphone transmits the audio as a radio or optical signal rather than via a cable. It usually sends its signal using a small FM radio transmitter to a nearby receiver connected to the sound system, but it can also use infrared waves if the transmitter and receiver are within sight of each other.
+A contact microphone picks up vibrations directly from a solid surface or object, as opposed to sound vibrations carried through air. One use for this is to detect sounds of a very low level, such as those from small objects or insects. The microphone commonly consists of a magnetic (moving coil) transducer, contact plate and contact pin. The contact plate is placed directly on the vibrating part of a musical instrument or other surface, and the contact pin transfers vibrations to the coil. Contact microphones have been used to pick up the sound of a snail's heartbeat and the footsteps of ants. A portable version of this microphone has recently been developed. A throat microphone is a variant of the contact microphone that picks up speech directly from a person's throat, which it is strapped to. This lets the device be used in areas with ambient sounds that would otherwise make the speaker inaudible.
+A parabolic microphone uses a parabolic reflector to collect and focus sound waves onto a microphone receiver, in much the same way that a parabolic antenna (e.g. satellite dish) does with radio waves. Typical uses of this microphone, which has unusually focused front sensitivity and can pick up sounds from many meters away, include nature recording, outdoor sporting events, eavesdropping, law enforcement, and even espionage. Parabolic microphones are not typically used for standard recording applications, because they tend to have poor low-frequency response as a side effect of their design.
+A stereo microphone integrates two microphones in one unit to produce a stereophonic signal. A stereo microphone is often used for broadcast applications or field recording where it would be impractical to configure two separate condenser microphones in a classic X-Y configuration (see microphone practice) for stereophonic recording. Some such microphones have an adjustable angle of coverage between the two channels.
+A noise-canceling microphone is a highly directional design intended for noisy environments. One such use is in aircraft cockpits where they are normally installed as boom microphones on headsets. Another use is in live event support on loud concert stages for vocalists involved with live performances. Many noise-canceling microphones combine signals received from two diaphragms that are in opposite electrical polarity or are processed electronically. In dual diaphragm designs, the main diaphragm is mounted closest to the intended source and the second is positioned farther away from the source so that it can pick up environmental sounds to be subtracted from the main diaphragm's signal. After the two signals have been combined, sounds other than the intended source are greatly reduced, substantially increasing intelligibility. Other noise-canceling designs use one diaphragm that is affected by ports open to the sides and rear of the microphone, with the sum being a 16 dB rejection of sounds that are farther away. One noise-canceling headset design using a single diaphragm has been used prominently by vocal artists such as Garth Brooks and Janet Jackson.[43] A few noise-canceling microphones are throat microphones.
+Various standard techniques are used with microphones used in sound reinforcement at live performances, or for recording in a studio or on a motion picture set. By suitable arrangement of one or more microphones, desirable features of the sound to be collected can be kept, while rejecting unwanted sounds.
+Microphones containing active circuitry, such as most condenser microphones, require power to operate the active components. The first of these used vacuum-tube circuits with a separate power supply unit, using a multi-pin cable and connector. With the advent of solid-state amplification, the power requirements were greatly reduced and it became practical to use the same cable conductors and connector for audio and power. During the 1960s several powering methods were developed, mainly in Europe. The two dominant methods were initially defined in German DIN 45595 as de:Tonaderspeisung or T-power and DIN 45596 for phantom power. Since the 1980s, phantom power has become much more common, because the same input may be used for both powered and unpowered microphones. In consumer electronics such as DSLRs and camcorders, "plug-in power" is more common, for microphones using a 3.5 mm phone plug connector. Phantom, T-power and plug-in power are described in international standard IEC 61938.[44]
+The most common connectors used by microphones are:
+Some microphones use other connectors, such as a 5-pin XLR, or mini XLR for connection to portable equipment. Some lavalier (or "lapel", from the days of attaching the microphone to the news reporters suit lapel) microphones use a proprietary connector for connection to a wireless transmitter, such as a radio pack. Since 2005, professional-quality microphones with USB connections have begun to appear, designed for direct recording into computer-based software.
+Microphones have an electrical characteristic called impedance, measured in ohms (Ω), that depends on the design. In passive microphones, this value describes the electrical resistance of the magnet coil (or similar mechanism). In active microphones, this value describes the output resistance of the amplifier circuitry. Typically, the rated impedance is stated.[45] Low impedance is considered under 600 Ω. Medium impedance is considered between 600 Ω and 10 kΩ. High impedance is above 10 kΩ. Owing to their built-in amplifier, condenser microphones typically have an output impedance between 50 and 200 Ω.[46]
+The output of a given microphone delivers the same power whether it is low or high impedance[citation needed]. If a microphone is made in high and low impedance versions, the high impedance version has a higher output voltage for a given sound pressure input, and is suitable for use with vacuum-tube guitar amplifiers, for instance, which have a high input impedance and require a relatively high signal input voltage to overcome the tubes' inherent noise. Most professional microphones are low impedance, about 200 Ω or lower. Professional vacuum-tube sound equipment incorporates a transformer that steps up the impedance of the microphone circuit to the high impedance and voltage needed to drive the input tube. External matching transformers are also available that can be used in-line between a low impedance microphone and a high impedance input.
+Low-impedance microphones are preferred over high impedance for two reasons: one is that using a high-impedance microphone with a long cable results in high frequency signal loss due to cable capacitance, which forms a low-pass filter with the microphone output impedance[citation needed]. The other is that long high-impedance cables tend to pick up more hum (and possibly radio-frequency interference (RFI) as well). Nothing is damaged if the impedance between microphone and other equipment is mismatched; the worst that happens is a reduction in signal or change in frequency response.
+Some microphones are designed not to have their impedance matched by the load they are connected to.[47] Doing so can alter their frequency response and cause distortion, especially at high sound pressure levels. Certain ribbon and dynamic microphones are exceptions, due to the designers' assumption of a certain load impedance being part of the internal electro-acoustical damping circuit of the microphone.[48][dubious – discuss]
+The AES42 standard, published by the Audio Engineering Society, defines a digital interface for microphones. Microphones conforming to this standard directly output a digital audio stream through an XLR or XLD male connector, rather than producing an analog output. Digital microphones may be used either with new equipment with appropriate input connections that conform to the AES42 standard, or else via a suitable interface box. Studio-quality microphones that operate in accordance with the AES42 standard are now available from a number of microphone manufacturers.
+Because of differences in their construction, microphones have their own characteristic responses to sound. This difference in response produces non-uniform phase and frequency responses. In addition, microphones are not uniformly sensitive to sound pressure, and can accept differing levels without distorting. Although for scientific applications microphones with a more uniform response are desirable, this is often not the case for music recording, as the non-uniform response of a microphone can produce a desirable coloration of the sound. There is an international standard for microphone specifications,[45] but few manufacturers adhere to it. As a result, comparison of published data from different manufacturers is difficult because different measurement techniques are used. The Microphone Data Website has collated the technical specifications complete with pictures, response curves and technical data from the microphone manufacturers for every currently listed microphone, and even a few obsolete models, and shows the data for them all in one common format for ease of comparison.[3]. Caution should be used in drawing any solid conclusions from this or any other published data, however, unless it is known that the manufacturer has supplied specifications in accordance with IEC 60268-4.
+A frequency response diagram plots the microphone sensitivity in decibels over a range of frequencies (typically 20 Hz to 20 kHz), generally for perfectly on-axis sound (sound arriving at 0° to the capsule). Frequency response may be less informatively stated textually like so: "30 Hz–16 kHz ±3 dB". This is interpreted as meaning a nearly flat, linear, plot between the stated frequencies, with variations in amplitude of no more than plus or minus 3 dB. However, one cannot determine from this information how smooth the variations are, nor in what parts of the spectrum they occur. Note that commonly made statements such as "20 Hz–20 kHz" are meaningless without a decibel measure of tolerance. Directional microphones' frequency response varies greatly with distance from the sound source, and with the geometry of the sound source. IEC 60268-4 specifies that frequency response should be measured in plane progressive wave conditions (very far away from the source) but this is seldom practical. Close talking microphones may be measured with different sound sources and distances, but there is no standard and therefore no way to compare data from different models unless the measurement technique is described.
+The self-noise or equivalent input noise level is the sound level that creates the same output voltage as the microphone does in the absence of sound. This represents the lowest point of the microphone's dynamic range, and is particularly important should you wish to record sounds that are quiet. The measure is often stated in dB(A), which is the equivalent loudness of the noise on a decibel scale frequency-weighted for how the ear hears, for example: "15 dBA SPL" (SPL means sound pressure level relative to 20 micropascals). The lower the number the better. Some microphone manufacturers state the noise level using ITU-R 468 noise weighting, which more accurately represents the way we hear noise, but gives a figure some 11–14 dB higher. A quiet microphone typically measures 20 dBA SPL or 32 dB SPL 468-weighted. Very quiet microphones have existed for years for special applications, such the Brüel & Kjaer 4179, with a noise level around 0 dB SPL. Recently some microphones with low noise specifications have been introduced in the studio/entertainment market, such as models from Neumann and Røde that advertise noise levels between 5–7 dBA. Typically this is achieved by altering the frequency response of the capsule and electronics to result in lower noise within the A-weighting curve while broadband noise may be increased.
+The maximum SPL the microphone can accept is measured for particular values of total harmonic distortion (THD), typically 0.5%. This amount of distortion is generally inaudible,[citation needed] so one can safely use the microphone at this SPL without harming the recording. Example: "142 dB SPL peak (at 0.5% THD)". The higher the value, the better, although microphones with a very high maximum SPL also have a higher self-noise.
+The clipping level is an important indicator of maximum usable level, as the 1% THD figure usually quoted under max SPL is really a very mild level of distortion, quite inaudible especially on brief high peaks. Clipping is much more audible. For some microphones the clipping level may be much higher than the max SPL.
+The dynamic range of a microphone is the difference in SPL between the noise floor and the maximum SPL. If stated on its own, for example "120 dB", it conveys significantly less information than having the self-noise and maximum SPL figures individually.
+Sensitivity indicates how well the microphone converts acoustic pressure to output voltage. A high sensitivity microphone creates more voltage and so needs less amplification at the mixer or recording device. This is a practical concern but is not directly an indication of the microphone's quality, and in fact the term sensitivity is something of a misnomer, "transduction gain" being perhaps more meaningful, (or just "output level") because true sensitivity is generally set by the noise floor, and too much "sensitivity" in terms of output level compromises the clipping level. There are two common measures. The (preferred) international standard is made in millivolts per pascal at 1 kHz. A higher value indicates greater sensitivity. The older American method is referred to a 1 V/Pa standard and measured in plain decibels, resulting in a negative value. Again, a higher value indicates greater sensitivity, so −60 dB is more sensitive than −70 dB.
+Some microphones are intended for testing speakers, measuring noise levels and otherwise quantifying an acoustic experience. These are calibrated transducers and are usually supplied with a calibration certificate that states absolute sensitivity against frequency. The quality of measurement microphones is often referred to using the designations "Class 1," "Type 2" etc., which are references not to microphone specifications but to sound level meters.[49] A more comprehensive standard[50] for the description of measurement microphone performance was recently adopted.
+Measurement microphones are generally scalar sensors of pressure; they exhibit an omnidirectional response, limited only by the scattering profile of their physical dimensions. Sound intensity or sound power measurements require pressure-gradient measurements, which are typically made using arrays of at least two microphones, or with hot-wire anemometers.
+To take a scientific measurement with a microphone, its precise sensitivity must be known (in volts per pascal). Since this may change over the lifetime of the device, it is necessary to regularly calibrate measurement microphones. This service is offered by some microphone manufacturers and by independent certified testing labs. All microphone calibration is ultimately traceable to primary standards at a national measurement institute such as NPL in the UK, PTB in Germany and NIST in the United States, which most commonly calibrate using the reciprocity primary standard. Measurement microphones calibrated using this method can then be used to calibrate other microphones using comparison calibration techniques.
+Depending on the application, measurement microphones must be tested periodically (every year or several months, typically) and after any potentially damaging event, such as being dropped (most such microphones come in foam-padded cases to reduce this risk) or exposed to sounds beyond the acceptable level.
+A microphone array is any number of microphones operating in tandem. There are many applications:
+Typically, an array is made up of omnidirectional microphones distributed about the perimeter of a space, linked to a computer that records and interprets the results into a coherent form.
+
+Windscreens (or windshields – the terms are interchangeable) provide a method of reducing the effect of wind on microphones. While pop-screens give protection from unidirectional blasts, foam “hats” shield wind into the grille from all directions, and blimps / zeppelins / baskets entirely enclose the microphone and protect its body as well. The latter is important because, given the extreme low frequency content of wind noise, vibration induced in the housing of the microphone can contribute substantially to the noise output.
+The shielding material used – wire gauze, fabric or foam – is designed to have a significant acoustic impedance. The relatively low particle-velocity air pressure changes that constitute sound waves can pass through with minimal attenuation, but higher particle-velocity wind is impeded to a far greater extent. Increasing the thickness of the material improves wind attenuation but also begins to compromise high frequency audio content. This limits the practical size of simple foam screens. While foams and wire meshes can be partly or wholly self-supporting, soft fabrics and gauzes require stretching on frames, or laminating with coarser structural elements.
+Since all wind noise is generated at the first surface the air hits, the greater the spacing between shield periphery and microphone capsule, the greater the noise attenuation. For an approximately spherical shield, attenuation increases by (approximately) the cube of that distance. Thus larger shields are always much more efficient than smaller ones.[51] With full basket windshields there is an additional pressure chamber effect, first explained by Joerg Wuttke,[52] which, for two-port (pressure gradient) microphones, allows the shield/microphone combination to act as a high-pass acoustic filter.
+Since turbulence at a surface is the source of wind noise, reducing gross turbulence can add to noise reduction. Both aerodynamically smooth surfaces, and ones that prevent powerful vortices being generated, have been used successfully. Historically, artificial fur has proved very useful for this purpose since the fibres produce micro-turbulence and absorb energy silently. If not matted by wind and rain, the fur fibres are very transparent acoustically, but the woven or knitted backing can give significant attenuation. As a material it suffers from being difficult to manufacture with consistency, and to keep in pristine condition on location. Thus there is an interest (DPA 5100, Rycote Cyclone) to move away from its use.[53]
+In the studio and on stage, pop-screens and foam shields can be useful for reasons of hygiene, and protecting microphones from spittle and sweat. They can also be useful coloured idents. On location the basket shield can contain a suspension system to isolate the microphone from shock and handling noise.
+Stating the efficiency of wind noise reduction is an inexact science, since the effect varies enormously with frequency, and hence with the bandwidth of the microphone and audio channel. At very low frequencies (10–100 Hz) where massive wind energy exists, reductions are important to avoid overloading of the audio chain – particularly the early stages. This can produce the typical “wumping” sound associated with wind, which is often syllabic muting of the audio due to LF peak limiting. At higher frequencies – 200 Hz to ~3 kHz – the aural sensitivity curve allows us to hear the effect of wind as an addition to the normal noise floor, even though it has a far lower energy content. Simple shields may allow the wind noise to be 10 dB less apparent; better ones can achieve nearer to a 50 dB reduction. However the acoustic transparency, particularly at HF, should also be indicated, since a very high level of wind attenuation could be associated with very muffled audio.
+Various microphone covers
+Two recordings being made—a blimp is being used on the left. An open-cell foam windscreen is being used on the right.
+"Dead cat" and a "dead kitten" windscreens. The dead kitten covers a stereo microphone for a DSLR camera. The difference in name is due to the size of the fur.
+Guitar Center: Shop for Gear
+Open in the Guitar Center app
+Open
+GC CATALOG The latest gear, deals, artist interviews and more
+Guitar Center Mobile App
+Copyright © Guitar Center, Inc. - All Rights Reserved. - Terms of Use | Your Privacy Rights | Purchase Terms & Conditions | California Transparency In Supply Chains Act
+Our product catalog varies by country due to manufacturer restrictions. If you change the Ship-To country, some or all of the items in your cart may not ship to the new destination.
+There's a problem loading this menu right now.
+Learn more about Amazon Prime.
+These lists, updated hourly, contain bestselling items. Here you can discover the best Recording Microphones & Accessories in Amazon Best Sellers, and find the top 100 most popular Amazon Recording Microphones & Accessories.
+
+
+Bring superior sound to your home theater.
+Speakers with voice assistants
+SNES, Sega Genesis, Atari
+Online or in-store, we'll help you create the ultimate home entertainment experience.
+Premium appliance brands and expert service available inside select Best Buy stores.
+Shop a wider selection, talk to a camera expert and try before you buy at select Best Buy stores.
+Great deals happening right now.
+This week's best deals, all in one place.
+A great deal, today only.
+Deals designed especially for you.
+Clearance, open-box, refurbished and pre-owned.
+Student Deals & Back to School
+Sign In to see your rewards, exclusive offers and more. Don't have an account? Create one
+Create a BestBuy.com account to get these benefits and more:
+
+
+Helpful features to look for: -Noise canceling blocks out ambient sounds for clear audio transmission. -Stereo uses left and right channels to capture a wide, realistic sound that accurately records acoustic guitar or a choir. -Cardioid delivers rich sound by recording directly in front of the microphone, which is ideal for podcasts, game streaming, vocal performances, voice-overs and instruments. -Omnidirectional is best for recording ambience at live performances or with larger groups, since it picks up sound quality from all around the microphone. -Bidirectional is suitable for a duet or two-person interview since it records from the front and rear of the microphone.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Prices and offers are subject to change. © 2018 Best Buy. All rights reserved. BEST BUY, the BEST BUY logo, the tag design, MY BEST BUY, and BESTBUY.COM are trademarks of Best Buy and its affiliated companies.
+Or call us at (800) 222-4700
+Sweetwater's Sales Engineers are regarded as the most experienced and knowledgeable professionals in the music industry, with extensive music backgrounds and intense training on the latest products and technologies. They are available to offer you personalized product advice any time you need it.
+Thank you for your request. A Sweetwater Sales Engineer will get back to you shortly. You can also call us toll free at (800) 222-4700, Mon-Thu 9-9, Fri 9-8, and Sat 9-7 Eastern.
+Exclusive deals, delivered straight to your inbox.
+Now is the perfect time to get the gear you want with simple, interest-free financing.
+Call your Sales Engineer.
+Sweetwater Sound, 5501 U.S. Hwy 30 W, Fort Wayne, IN 46818 Get Directions | Phone Hours | Store Hours
+© 2018 Sweetwater - All rights reserved. Please read our Terms of Use, Privacy Policy, and Phone Recording Policy. Press Releases.
+
+Enjoy App-EXCLUSIVE Deals
+Register on GearBest: Earn 50 points
+Your shopping cart is empty.
+Please Sign in>>
+Your shopping cart is empty.
+
+Computers & Networking
+Computer Peripherals
+Microphone
+Sort by: Recommend Hot New Votes Trending $ Low to High $ High to Low
+
+Yanmai Microphone Omnidirectional Dynamic Condenser Sound MIC
+
+Superlux E205U USB Recording Microphone Headphone Jack + Volume Control
+
+BM-800 Professional Studio Condenser Sound Recording Microphone + Metal Shock Mount Kit for Recording
+
+Yanmai Desktop Microphone Dynamic Condenser Sound MIC
+
+HuaShun BM100FX Condenser Microphone for Radio Broadcasting / Voice-Over Sound Studio R...
+
+BM-700 Condenser Sound Recording Microphone and Metal Shock Mount for Radio Broadcasting Studio Voice Recording
+
+FIFINE K058 USB Stereo Microphone for PC Laptop Adjustable Tripod Mic
+
+Clip-On Lavalier Microphone Condenser Microphone for IPhone IPad Android Smartphones Perfect for Interview
+
+BM-700 Condenser Sound Recording Microphone and Plastic Shock Mount for Radio Broadcasting Studio Voice Recording
+
+ZEEPIN BM - 800 Condenser Microphone for Recording Cardioid Polar Pattern Studio Broadcasting
+
+YALI MK - F200FL 3.5mm Audio Wired Condenser Microphone with Tripod 3.5mm Audio USB Dual Cable
+
+Y - 200 Audio Condenser Mic Shock Mount Set Professional Sound Recording Microphone Holder with POP Filter
+
+SF-920 Condenser Microphone Special for Chatting and Singing over Internet -Black
+
+MIC - 01 Stereo Microphone for SLR / Digital Camera DV
+
+Retro Notebook Computer Microphone Yanchor Singing Voice
+
+NB - 35 Microphone Stand Suspension Boom Scissor Arm
+
+PC - 03 Desktop Microphone Tripod Stand
+
+A907 Professional 2 - CH 3.5mm / 6.5mm Computer Microphone Audio Signal Amplifier for Karaoke Recording Hosting Reading
+
+Superlux E205 Studio Condenser Microphone
+
+LEIHAO BM - 8000 Uni-directional Condenser Microphone
+
+WM308 2 in 1 Wired Wireless Handheld Dynamic Microphone
+
+WEISRE U - 3316 Dual Channel Transmitter Microphone Set 720 - 770MHz Karaoke Professional UHF Wireless Mic Handheld Combination
+
+WEISRE U - 8030 UHF Wireless Microphone Set Professional Dual Channel Automatic Infrared on Frequency with Receiver
+
+FIFINE K031 U Wireless USB Computer Recording Microphone Lapel Clip Mic Voice Amplifier
+
+Excelvan K38 Dual Channel Transmitter Microphone BT 3.0 Professional Wireless Handheld Karaoke Mic 3 in 1
+
+Portable Mini USB 2.0 Microphone Mic for Laptop / Desktop PC
+
+XY - MKF03 Home Professional Clip Microphone Mini Recording Microphone
+
+Mini Desktop USB Microphone
+
+Yanmai Q8 Professional Cardioid Microphone for Recording
+
+Y - 700 Condenser Microphone Support Uni-directional Polar Pattern for Broadca...
+
+LEIHAO BM - 800 Condenser Sound Recording Microphone with Metal Shock Mount
+
+FIFINE K669 USB Wired Microphone with Recording Function
+
+WEISRE U - 400 Professional VHF Wireless Microphone 220 - 270MHz Wireless Handheld 4-channel Transmitter Mic
+
+WEISRE M - 380 Wired Capacitive Voice Chatting Microphone
+
+PC - 05 Mini Microphone Stand Holder
+
+Yanmai SF-922B USB Condenser Sound Microphone
+Prev 1 234NextGo To : 1234
+$ 21.72
+$ 50.83
+$ 4.21
+$ 22.51
+$ 3.37
+$ 45.47
+$ 75.15
+$ 23.85
+$ 60.22
+$ 102.47
+$ 61.83
+$ 65.59
+$ 22.70
+$ 2.31
+$ 53.37
+$ 76.76
+$ 14.43
+$ 25.04
+$ 6.25
+$ 1.94
+$ 13.10
+$ 67.73
+$ 56.09
+$ 56.09
+$ 14.27
+$ 14.27
+$ 69.52
+$ 20.54
+$ 4.22
+$ 11.65
+$ 30.17
+$ 57.45
+$ 41.05
+$ 4.60
+$ 3.53
+$ 39.89
+$ 32.16
+$ 28.65
+$ 30.24
+$ 33.13
+$ 3.40
+$ 8.67
+$ 9.25
+$ 7.93
+$ 5.35
+$ 9.58
+$ 37.81
+$ 18.15
+$ 36.12
+$ 50.38
+See personalized recommendations
+New customer? Start here
+Follow us On Social Networks
+App Download
+SUBSCRIBE
+Download our cool Free App!
+Mobile Site
+Enjoy App-EXCLUSIVE Deals
+
+
+micro- +‎ -phone
+microphone (plural microphones)
+microphone (third-person singular simple present microphones, present participle microphoning, simple past and past participle microphoned)
+micro- +‎ -phone.
+microphone m (plural microphones)
+
+Log Into Your Account
+You have until Feb 1, 2018 to return or exchange items bought after Nov 1, 2017. All other standard return policy conditions apply.
+Close
+How to Pair a Microphone with a Sound Source
+Audio-Technica Unveils the New Flagship AT5047 Condenser Microphone
+Chris Zane (Passion Pit, Holy Ghost!, Nelly Furtado) Interview Part 3: Talking Gear & Consoles
+Mic Shootout 3: Dynamic Microphones
+Unveiled: Shure KSM8 Microphones
+Mic Shootout 1: Classic Large Diaphragm Condensers
+Shop Microphones for all purposes at B&H. Improve your sound in the studio, on the stage, or on the street with thousands of microphones from top brands.
+English
+US Dollar
+Speed up future orders, see order history, create wish lists, and more. Create a B&H Account
+Prices, specifications, and images are subject to change without notice. Not responsible for typographical or illustrative errors. Manufacturer rebates, terms, conditions, and expiration dates are subject to manufacturers printed forms NYC DCA Lic.: Elec. Store #0906712 Elec. & Home App. Serv. Deal. #0907905; Sec. Hd. Deal. Gen. #0907906

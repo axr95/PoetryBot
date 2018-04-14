@@ -1,0 +1,294 @@
+A photograph or photo is an image created by light falling on a light-sensitive surface, usually photographic film or an electronic medium such as a CCD or a CMOS chip. Most photographs are created using a camera, which uses a lens to focus the scene's visible wavelengths of light into a reproduction of what the human eye would see. The process and practice of creating photographs is called photography. The word "photograph" was coined in 1839 by Sir John Herschel and is based on the Greek φῶς (phos), meaning "light", and γραφή (graphê), meaning "drawing, writing", together meaning "drawing with light".[1] Many jurisdictions have laws prohibiting certain types of photographs which may include photos of government buildings[2], copyrighted content[3], private property, and the depiction of an uninformed or child's genitalia or other erogenous zones.[4]
+
+
+The first permanent photograph, a contact-exposed copy of an engraving, was made in 1822 using the bitumen-based "heliography" process developed by Nicéphore Niépce. The first photographs of a real-world scene, made using a camera obscura, followed a few years later, but Niépce's process was not sensitive enough to be practical for that application: a camera exposure lasting for hours or days was required.[5] In 1829 Niépce entered into a partnership with Louis Daguerre and the two collaborated to work out a similar but more sensitive and otherwise improved process.
+After Niépce's death in 1833, Daguerre concentrated on silver halide-based alternatives. He exposed a silver-plated copper sheet to iodine vapor, creating a layer of light-sensitive silver iodide; exposed it in the camera for a few minutes; developed the resulting invisible latent image to visibility with mercury fumes; then bathed the plate in a hot salt solution to remove the remaining silver iodide, making the results light-fast. He named this first practical process for making photographs with a camera the daguerreotype, after himself. Its existence was announced to the world on 7 January 1839 but working details were not made public until 19 August. Other inventors soon made improvements which reduced the required exposure time from a few minutes to a few seconds, making portrait photography truly practical and widely popular.
+The daguerreotype had shortcomings, notably the fragility of the mirror-like image surface and the particular viewing conditions required to see the image properly. Each was a unique opaque positive that could only be duplicated by copying it with a camera. Inventors set about working out improved processes that would be more practical. By the end of the 1850s the daguerreotype had been replaced by the less expensive and more easily viewed ambrotype and tintype, which made use of the recently introduced collodion process. Glass plate collodion negatives used to make prints on albumen paper soon became the preferred photographic method and held that position for many years, even after the introduction of the more convenient gelatin process in 1871. Refinements of the gelatin process have remained the primary black-and-white photographic process to this day, differing primarily in the sensitivity of the emulsion and the support material used, which was originally glass, then a variety of flexible plastic films, along with various types of paper for the final prints.
+Color photography is almost as old as black-and-white, with early experiments including John Herschel's Anthotype prints in 1842, the pioneering work of Louis Ducos du Hauron in the 1860s, and the Lippmann process unveiled in 1891, but for many years color photography remained little more than a laboratory curiosity. It first became a widespread commercial reality with the introduction of Autochrome plates in 1907, but the plates were very expensive and not suitable for casual snapshot-taking with hand-held cameras. The mid-1930s saw the introduction of Kodachrome and Agfacolor Neu, the first easy-to-use color films of the modern multi-layer chromogenic type. These early processes produced transparencies for use in slide projectors and viewing devices, but color prints became increasingly popular after the introduction of chromogenic color print paper in the 1940s. The needs of the motion picture industry generated a number of special processes and systems, perhaps the best-known being the now-obsolete three-strip Technicolor process.
+The production of certain types of photograph has been forbidden under modern laws, such as those of highly classified regions,[6] copyrighted works[7] and children's genitalia.[8] These laws vary greatly between jurisdictions.
+Non-digital photographs are produced with a two-step chemical process. In the two-step process the light-sensitive film captures a negative image (colors and lights/darks are inverted). To produce a positive image, the negative is most commonly transferred ('printed') onto photographic paper. Printing the negative onto transparent film stock is used to manufacture motion picture films.
+Alternatively, the film is processed to invert the negative image, yielding positive transparencies. Such positive images are usually mounted in frames, called slides. Before recent advances in digital photography, transparencies were widely used by professionals because of their sharpness and accuracy of color rendition. Most photographs published in magazines were taken on color transparency film.
+Originally, all photographs were monochromatic or hand-painted in color. Although methods for developing color photos were available as early as 1861, they did not become widely available until the 1940s or 1950s, and even so, until the 1960s most photographs were taken in black and white. Since then, color photography has dominated popular photography, although black and white is still used, being easier to develop than color.
+Panoramic format images can be taken with cameras like the Hasselblad Xpan on standard film. Since the 1990s, panoramic photos have been available on the Advanced Photo System (APS) film. APS was developed by several of the major film manufacturers to provide a film with different formats and computerized options available, though APS panoramas were created using a mask in panorama-capable cameras, far less desirable than a true panoramic camera, which achieves its effect through a wider film format. APS has become less popular and has been discontinued.
+The advent of the microcomputer and digital photography has led to the rise of digital prints. These prints are created from stored graphic formats such as JPEG, TIFF, and RAW. The types of printers used include inkjet printers, dye-sublimation printer, laser printers, and thermal printers. Inkjet prints are sometimes given the coined name "Giclée".
+The Web has been a popular medium for storing and sharing photos ever since the first photograph was published on the web by Tim Berners-Lee in 1992 (an image of the CERN house band Les Horribles Cernettes). Today popular sites such as Flickr, Picasa, PhotoBucket and 500px are used by millions of people to share their pictures.
+Ideal photograph storage involves placing each photo in an individual folder constructed from buffered, or acid-free paper.[10] Buffered paper folders are especially recommended in cases when a photograph was previously mounted onto poor quality material or using an adhesive that will lead to even more acid creation.[11] Store photographs measuring 8x10 inches or smaller vertically along the longer edge of the photo in the buffered paper folder, within a larger archival box, and label each folder with relevant information to identify it. The rigid nature of the folder protects the photo from slumping or creasing, as long as the box is not packed too tightly or under filled. Folder larger photos or brittle photos stacked flat within archival boxes with other materials of comparable size.[12]
+The most stable of plastics used in photo preservation, polyester, does not generate any harmful chemical elements, but nor does it have any capability to absorb acids generated by the photograph itself. Polyester sleeves and encapsulation have been praised for their ability to protect the photograph from humidity and environmental pollution, slowing the reaction between the item and the atmosphere. This is true, however the polyester just as frequently traps these elements next to the material it is intended to protect. This is especially risky in a storage environment that experiences drastic fluctuations in humidity or temperature, leading to ferrotyping, or sticking of the photograph to the plastic.[10] Photographs sleeved or encapsulated in polyester cannot be stored vertically in boxes because they will slide down next to each other within the box, bending and folding, nor can the archivist write directly onto the polyester to identify the photograph. Therefore, it is necessary to either stack polyester protected photographs horizontally within a box, or bind them in a three ring binder. Stacking the photos horizontally within a flat box will greatly reduce ease of access, and binders leave three sides of the photo exposed to the effects of light[13] and do not support the photograph evenly on both sides, leading to slumping and bending within the binder. The plastic used for enclosures has been manufactured to be as frictionless as possible to prevent scratching photos during insertion to the sleeves. Unfortunately, the slippery nature of the enclosure generates a build-up of static electricity, which attracts dust and lint particles. The static can attract the dust to the inside of the sleeve, as well, where it can scratch the photograph.[10] Likewise, these components that aid in insertion of the photo, referred to as slip agents, can break down and transfer from the plastic to the photograph, where they deposit as an oily film, attracting further lint and dust. At this time, there is no test to evaluate the long-term effects of these components on photographs. In addition, the plastic sleeves can develop kinks or creases in the surface, which will scratch away at the emulsion during handling.[13]
+It is best to leave photographs lying flat on the table when viewing them. Do not pick it up from a corner, or even from two sides and hold it at eye level. Every time the photograph bends, even a little, this can break down the emulsion.[14] The very nature of enclosing a photograph in plastic encourages users to pick it up; users tend to handle plastic enclosed photographs less gently than non-enclosed photographs, simply because they feel the plastic enclosure makes the photo impervious to all mishandling. As long as a photo is in its folder, there is no need to touch it; simply remove the folder from the box, lay it flat on the table, and open the folder. If for some reason the researcher or archivist does need to handle the actual photo, perhaps to examine the verso for writing, he or she can use gloves if there appears to be a risk from oils or dirt on the hands.
+Because daguerreotypes were rendered on a mirrored surface, many spiritualists also became practitioners of the new art form. Spiritualists would claim that the human image on the mirrored surface was akin to looking into one's soul. The spiritualists also believed that it would open their souls and let demons in. Among Muslims, it is makruh (offensive) to perform salah (worship) in a place decorated with photographs.[15]
+2018
+2017
+2016
+2015
+2014
+2013
+2012
+2011
+2010
+2009
+2008
+2007
+2006
+2005
+MIYAKO YOSHINAGA GALLERY / MAYUMI LAKE
+STEPHEN BULGER GALLERY / SUNIL GUPTA
+SMITHSONIAN AMERICAN ART MUSEUM / DIANE ARBUS
+KEITH DE LELLIS GALLERY / HAROLD FEINSTEIN
+CHRYSLER MUSEUM OF ART / HAROLD EDGERTON
+WALTHER COLLECTION PROJECT SPACE / MISTAKEN IDENTITIES: IMAGES OF GENDER AND TRANSFORMATION
+YOSSI MILO GALLERY / SANLé SORY
+BENRUBI GALLERY / JACQUELINE HASSINK
+ATELIER 811 GALLERY / RON GALELLA
+AXIS GALLERY / NICK SHEPARD
+GALLERY 16 / ALICE SHAW
+ROBERT MANN GALLERY / MARY MATTINGLY
+GEORGE EASTMAN MUSEUM / DAVID LEVINTHAL
+ART INSTITUTE OF CHICAGO / NEVER A LOVELY SO REAL: PHOTOGRAPHY AND FILM IN CHICAGO, 1950–1980
+ART INSTITUTE OF CHICAGO / VOLTA PHOTO: STARRING SANLé SORY AND THE PEOPLE OF BOBO-DIOULASSO IN THE SMALL BUT MUSICALLY MIGHTY COUNTRY OF BURKINA FASO
+Fairs
+Photo Basel
+photo basel
+Ackermannshof, Basel, Switzerland
+June 12 - June 17
+Festivals
+KyotoGraphie
+KyotoGraphie
+670-10 Shokokujimonzen-cho, Kamigyo-ku, Kyoto, 602-0898, Japan
+April 14 - May 13
+Swann Auctions: Photographs & Photobooks
+Swann Auction Galleries
+104 E 25th St New York, NY
+April 19
+Eyes on Main Street Festival
+Eyes on Main Street
+Wilson, NC,
+April 21 - July 29
+PGH Photo Fair
+PGH Photo Fair
+4400 Forbes Ave Pittsburgh, PA
+April 28 - April 29
+SELF PUBLISH RIGA 2018
+ISSP
+Berga Bazārs, Marijas iela 13 k.3 Riga LV-1050 Latvia
+May 10 - June 3
+
+
+
+photo- +‎ -graph.
+photograph (plural photographs)
+photograph (third-person singular simple present photographs, present participle photographing, simple past and past participle photographed)
+
+While such policies are most typically expressed in natural language, sometimes related information (e.g. indicating a funder) can be expressed using schema.org terminology.
+Schema Version 3.3
+[Verse 1] Loving can hurt, loving can hurt sometimes But it's the only thing that I know When it gets hard, you know it can get hard sometimes It's the only thing that makes us feel alive [Pre-Chorus] We keep this love in a photograph We made these memories for ourselves Where our eyes are never closing Our hearts were never broken And time's forever frozen, still [Chorus 1] So you can keep me Inside the pocket of your ripped jeans Holding me close until our eyes meet You won't ever be alone, wait for me to come home [Verse 2] Loving can heal, loving can mend your soul And it's the only thing that I know I swear it will get easier, remember that with every piece of ya And it's the only thing to take with us when we die [Pre-Chorus] We keep this love in a photograph We made these memories for ourselves Where our eyes are never closing Our hearts were never broken And time's forever frozen, still [Chorus 2] So you can keep me Inside the pocket of your ripped jeans Holding me close until our eyes meet You won't ever be alone And if you hurt me, that's okay baby Only words bleed inside these pages You just hold me And I won’t ever let you go Wait for me to come home Wait for me to come home Wait for me to come home Wait for me to come home [Bridge] Oh you can fit me Inside the necklace you got when you were sixteen Next to your heartbeat where I should be Keep it deep within your soul And if you hurt me, that's okay baby Only words bleed inside these pages You just hold me And I won’t ever let you go [Outro] When I'm away, I will remember how you kissed me Under the lamppost back on Sixth street Hearing you whisper through the phone Wait for me to come home
+“Photograph” is the 5th radio single from x. Ed said about it that “it will be the one that will change my career path”, and hopes it will sell the album “even if the rest of the album is shit”.
+The song talks about trying to preserve their love in a picture so that the romance’s beauty will remain with them forever.
+
+Tourism & Visit
+Business
+Employment
+Study & Exchange
+Immigrate
+Other Visa Categories
+U.S. Visa: Reciprocity and Civil Documents by Country
+Visa Wizard
+Visa Denials
+Fraud Warning
+What the Visa Expiration Date Means
+Automatic Revalidation
+Countries with Limited or No U.S. Visa Services
+Lost and Stolen Passports, Visas, and Arrival/Departure Records (Form I-94)
+A-Z Index
+Glossary
+Directory of Visa Categories
+Straight Facts on U.S. Visas
+Customer Service Statement
+Photo Requirements
+Photo Examples
+Digital Image Requirements
+Photo Frequently Asked Questions
+Photo Composition Template
+Forms
+Online Immigrant Visa Forms
+DS-260 Immigrant Visa Electronic Application - Frequently Asked Questions (FAQs)
+DS-160: Online Nonimmigrant Visa Application
+DS-160: Frequently Asked Questions
+Administrative Processing Information
+Visa Appointment Wait Times
+Nonimmigrants in the United States–Applying for Visas in Canada or Mexico
+Frequently Asked Questions
+Visa Applicants - State Sponsors of Terrorism Countries
+What is a U.S. Visa?
+About Visas - The Basics
+"Let's Talk Numbers"
+Rights and Protections for Foreign-Citizen Fiancé(e)s and Spouses of U.S. Citizens and Spouses of Lawful Permanent Residents
+Your Rights and Protections
+Ineligibilities and Waivers: Laws
+Rights and Protections for Temporary Workers
+Advisory Opinions
+Fees
+Fees for Visa Services
+Treaty Countries
+Fees and Reciprocity Tables
+Reciprocity: What's New?
+Temporary Reciprocity Schedule
+Presidential Proclamations
+Visa Issuing Posts
+Country Acronyms
+Safety & Security of U.S. Borders: Biometrics
+National Visa Center Customer Service Pledge
+Americans Traveling Abroad
+The United States and China Agree to Extending Visas for Short-term Business Travelers, Tourists, and Students
+Special Visa Processing Procedures Pursuant to Section 306
+Capitalizing on Visa Demand to Spur Economic Growth in the United States
+Congressional Testimony
+Cuban Family Reunification Parole (CRFP) Program Appointments
+List of U.S. Embassies and Consulates
+List of U.S. Embassies and Consulates New
+List of U.S. Embassies and Consulates - K1-K3 Visas
+U.S. Government Fact Sheet on Female Genital Mutilation or Cutting (FGM/C)
+Skill List by Country
+Albania
+Algeria
+Argentina
+Armenia
+Bahrain
+Bangladesh
+Belize
+Benin
+Bolivia
+Brazil
+Burkina Faso
+Burma
+Cambodia
+Cabo Verde (formerly Cape Verde)
+Cameroon
+Chile
+China
+Colombia
+Democratic Republic of the Congo
+Costa Rica
+Djibouti
+Dominican Republic
+Ecuador
+El Salvador
+Eritrea
+Ethiopia
+Fiji
+Gabon
+Georgia
+Ghana
+Guatemala
+Guyana
+Haiti
+Honduras
+India
+Indonesia
+Jamaica
+Kazakhstan
+Kenya
+Kosovo
+Laos
+Lebanon
+Liberia
+
+
+
+
+
+Your photo is a vital part of your visa application. To learn more, review the information below on how to provide a suitable photo. Digital images are required for some visa categories, while photos are required for other visa categories. The acceptance of your digital image or photo is at the discretion of the U.S. embassy or consulate where you apply.
+We recommend you use a professional visa photo service to ensure your photo meets all the requirements.
+
+
+Review the Photo Examples to see examples of acceptable and unacceptable photos. Photos copied or digitally scanned from driver’s licenses or other official documents are not acceptable. In addition, snapshots, magazine photos, low quality vending machine or mobile phone photos, and full-length photographs are not acceptable.
+Please review the additional photo requirements for:
+Additional Information
+
+
+Applicants using Form DS-160 or Form DS-1648
+If you are applying for a nonimmigrant visa by filling out the DS-160 or DS-1648 online form, the form will instruct you to upload your digital image as part of completing the online visa application form. Review the Digital Image Requirements, which also provide additional requirements if you are scanning an existing photo.
+Some embassies and consulates require visa applicants to bring one (1) photo, which meets requirements, to the interview. Review the embassy or consulate instructions where you will apply to learn more.
+
+
+Applicants using Form DS-260
+If you are applying for an immigrant visa, using Form DS-260, you must provide two (2) identical photos at your immigrant visa interview. Your photos must be:
+
+
+Diversity Visa Program Entrants
+If you are entering the Diversity Visa (DV) Program online, you must upload your digital image as part of your entry. Your digital image must be:
+Do you want to scan an existing photo? In addition to the digital image requirements, your existing photo must be:
+
+
+Each DV applicant will need to bring two (2) identical photos to the interview. Your photos must be:
+
+
+While we recommend you use a professional visa photo service to ensure your photo meets all the requirements, you may take the photo yourself. Photos must not be digitally enhanced or altered to change your appearance in any way. Please review the following technical requirements and references for guidance on taking your own photo.
+
+
+Use the Department of State’s free photo tool to:
+This tool requires Adobe Flash Player 10 or later.
+
+
+When taking a photo of your baby or toddler, no other person should be in the photo, and your child should be looking at the camera with his or her eyes open.
+Tip 1:
+Lay your baby on his or her back on a plain white or off-white sheet. This will ensure your baby's head is supported and provide a plain background for the photo. Make certain there are no shadows on your baby's face, especially if you take a picture from above with the baby lying down.
+Tip 2:
+Cover a car seat with a plain white or off-white sheet and take a picture of your child in the car seat. This will also ensure your baby’s head is supported
+
+
+If your photo(s) or digital image does not reflect your current appearance, even if it is not older than 6 months, the U.S. embassy or consulate will request that you provide a new photo with your application.
+Applicants will be requested to obtain a new photo if they have:
+Generally, if you can still be identified from the photo in your visa application, you will not need to submit a new photo. For example, growing a beard or coloring your hair would not generally be considered a significant change of appearance.
+If the appearance of your child under the age of 16 has changed due to the normal aging process, he or she will generally not have to provide a new photo. However, the acceptance of your photo or digital image is at the discretion of the U.S. embassy or consulate where you apply.
+
+Crop your photo to the right size using our Photo Tool.
+Visa Wizard
+Visa Denials
+Fraud Warning
+What the Visa Expiration Date Means
+Countries with Limited or No U.S. Visa Services
+Lost and Stolen Passports, Visas, and Arrival/Departure Records (Form I-94)
+A-Z Index
+Glossary
+Directory of Visa Categories
+Straight Facts on U.S. Visas
+Customer Service Statement
+Photo Requirements
+Forms
+Administrative Processing Information
+Visa Appointment Wait Times
+Nonimmigrants in the United States–Applying for Visas in Canada or Mexico
+Frequently Asked Questions
+"Let's Talk Numbers"
+Rights and Protections for Foreign-Citizen Fiancé(e)s and Spouses of U.S. Citizens and Spouses of Lawful Permanent Residents
+Your Rights and Protections
+Ineligibilities and Waivers: Laws
+Rights and Protections for Temporary Workers
+Advisory Opinions
+Fees
+Safety & Security of U.S. Borders: Biometrics
+National Visa Center Customer Service Pledge
+Americans Traveling Abroad
+The United States and China Agree to Extending Visas for Short-term Business Travelers, Tourists, and Students
+Special Visa Processing Procedures Pursuant to Section 306
+Capitalizing on Visa Demand to Spur Economic Growth in the United States
+Congressional Testimony
+Cuban Family Reunification Parole (CRFP) Program Appointments
+List of U.S. Embassies and Consulates
+List of U.S. Embassies and Consulates New
+List of U.S. Embassies and Consulates - K1-K3 Visas
+U.S. Government Fact Sheet on Female Genital Mutilation or Cutting (FGM/C)
+Skill List by Country
+You are about to leave travel.state.gov for an external website that is not maintained by the U.S. Department of State.
+Links to external websites are provided as a convenience and should not be construed as an endorsement by the U.S. Department of State of the views or products contained therein. If you wish to remain on travel.state.gov, click the "cancel" message.
+You are about to visit:
+
+Cancel GO
+L-R: Lisette Poole, Flore-Aël Surun, Alicia Vera, Rachel Woolf, Susana Raab
+APPLICATIONS OPEN APRIL 1, 2018 DUE MAY 15, 2018
+These $5,000 grants will support photography projects — either new or in-progress — from visual journalists working in a documentary capacity. Five grants are available, one of which will be earmarked for a non-binary or transgender photographer. Applicants are encouraged to submit a story, rather than singles, as part of the grant application. The images need not be related to the project proposal. Multimedia projects are welcome. APPLY HERE >>
+Women Photograph has partnered with Getty Images to award a $10,000 grant in support of an ongoing documentary project from a professional photojournalist who has demonstrated a long-term commitment to their story. Applicants should submit portfolios of 20-25 images indicating that a substantial amount of work has already been completed, and that the photographer has a clear vision of what further work is needed to complete the project. Additional consideration will be given to applicants who evince a personal connection to – and engagement with – the communities they cover. APPLY HERE >>
+FAQ: These grants are open to women and non-binary documentary photographers of any nationality. There is no fee to apply. Applications must be submitted in English. You may only apply to one of the two grant programs. There are no restrictions on camera equipment used for either grant. For all grants, half of the funding will be disbursed at the beginning of the project, and half upon completion. Grantees will retain full ownership of all work completed. Women Photograph, Getty Images, and Nikon may all ask for the use of promotional images to be used explicitly in conjunction with promoting the photographer, the work, and the grants.
+SPONSORS:
+JUDGES: Women Photograph + Nikon Grant Brent Lewis, The Undefeated Tara Pixley, Independent Verónica Sanchis, FotoFeminas Bernadette Tuazon, CNN Women Photograph + Getty Images Grant Mallory Benedict, National Geographic Sandy Ciric, Getty Images Shaminder Dulai, NBC Left Field Sandra Stevenson, The New York Times Ariel Zambelich, The Intercept
+All photographs © the photographer.

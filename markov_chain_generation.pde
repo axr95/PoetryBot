@@ -30,6 +30,9 @@ class MarkovChainWrapper {
   private static final int mapInitialSize = 50000;
   private static final int numSent = 1;
   
+  private List<String> punctuation = Arrays.asList(",", ";", ":", ".", "?", "!", "-");
+
+  
   public MarkovChainWrapper() {
     tokenHolder = new MapTokenHolder(mapInitialSize);
   }
@@ -58,20 +61,27 @@ class MarkovChainWrapper {
   }
  
   public String getPoem(String start) {
-    
-    final Token DELIMIT_TOKEN = DelimitToken.getInstance();
-    StringBuilder sb = new StringBuilder();
-    sb.append(start);
-    
-    LookbackContainer lbc = new LookbackContainer(Integer.MAX_VALUE, new StringToken(start));
-    Token t = null;
-    while ((t = tokenHolder.getNext(lbc)) != DELIMIT_TOKEN && t != null) {
-      sb.append(' ');
-      sb.append(t.toString());
-      lbc.addToken(t);
+    try {
+      final Token DELIMIT_TOKEN = DelimitToken.getInstance();
+      StringBuilder sb = new StringBuilder();
+      sb.append(start);
+      LookbackContainer lbc = new LookbackContainer(Integer.MAX_VALUE, DELIMIT_TOKEN);
+      if (start != null) {
+        lbc.addToken(new StringToken(start));
+      }
+      
+      Token t = null;
+      while ((t = tokenHolder.getNext(lbc)) != DELIMIT_TOKEN && t != null) {
+        if (!punctuation.contains(t.toString())) {
+          sb.append(' ');
+        }
+        sb.append(t.toString());
+        lbc.addToken(t);
+      }
+      return sb.toString();
+    } catch (Exception e) {
+      return "No poem for this word :(";
     }
-    sb.append(DELIMIT_TOKEN);
-    return sb.toString();
   }
   
   
