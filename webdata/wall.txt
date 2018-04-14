@@ -1,0 +1,608 @@
+A wall is a structure that defines an area, carries a load, or provides shelter or security. There are many kinds of walls:
+
+
+Wall comes from Latin vallum meaning "...an earthen wall or rampart set with palisades, a row or line of stakes, a wall, a rampart, fortification..." while the Latin word murus means a defensive stone wall.[1] English uses the same word to mean an external wall and the internal sides of a room, but this is not universal. Many languages distinguish between the two. In German, some of this distinction can be seen between Wand and Mauer, in Spanish between pared and muro.
+The word wall originally referred to defensive walls and ramparts.
+The purposes of the walls in buildings are to support roofs, floors and ceilings; to enclose a space as part of the building envelope along with a roof to give buildings form; and to provide shelter and security. In addition, the wall may house various types of utilities such as electrical wiring or plumbing. Wall construction falls into two basic categories: framed walls or mass-walls. In framed walls the load is transferred to the foundation through posts, columns or studs. Framed walls most often have three or more separate components: the structural elements (such as 2×4 studs in a house wall), insulation, and finish elements or surfaces (such as drywall or panelling). Mass-walls are of a solid material including masonry, concrete including slipform stonemasonry, log building, cordwood construction, adobe, rammed earth, cob, earthbag construction, bottles, tin cans, straw-bale construction, and ice.
+There are three basic methods walls control water intrusion: moisture storage, drained cladding, or face-sealed cladding.[2] Moisture storage is typical of stone and brick mass-wall buildings where moisture is absorbed and released by the walls of the structure itself. Drained cladding also known as screened walls[3] acknowledges moisture will penetrate the cladding so a moisture barrier such as housewrap or felt paper inside the cladding provides a second line of defense and sometimes a drainage plane or air gap allows a path for the moisture to drain down through and exit the wall. Sometimes ventilation is provided in addition to the drainage plane such as in rainscreen construction. Face-sealed also called barrier wall or perfect barrier[3] cladding relies on maintaining a leak-free surface of the cladding. Examples of face sealed cladding are the early exterior insulation finishing systems, structural glazing, metal clad panels, and corrugated metal.
+Building walls frequently become works of art, externally and internally, such as when featuring mosaic work or when murals are painted on them; or as design foci when they exhibit textures or painted finishes for effect.
+In architecture and civil engineering, curtain wall refers to a building facade that is not load-bearing but provides decoration, finish, front, face, or historical preservation.
+Precast walls are walls which have been preassembled in a factory, and then shipped to where it is needed, ready to install. It is faster to install compared to brick and other walls, and may have a lower cost compared to other types of wall. [5]
+Mullion walls are a structural system that carries the load of the floor slab on prefabricated panels around the perimeter.
+A tall, deep-base exterior security wall which deters intrusion by climbing and tunneling. Also known as a Murno Gladst Fence[6]
+A partition wall is a usually thin wall that is used to separate or divide a room, primarily a pre-existing one. Partition walls are usually not load-bearing, and can be constructed out of many materials, including steel panels, bricks, cloth, plastic, plasterboard, wood, blocks of clay, terra-cotta, concrete, and glass.
+Some partition walls are made of sheet glass. Glass partition walls are a series of individual toughened glass panels mounted in wood or metal framing. They may be suspended from or slide along a robust aluminium ceiling track.[7] The system does not require the use of a floor guide, which allows easy operation and an uninterrupted threshold.
+A timber partition consists of a wooden framework, supported on the floor or by side walls. Metal lath and plaster, properly laid, forms a reinforced partition wall. Partition walls constructed from fibre cement backer board are popular as bases for tiling in kitchens or in wet areas like bathrooms. Galvanized sheet fixed to wooden or steel members are mostly adopted in works of temporary character. Plain or reinforced partition walls may also be constructed from concrete, including pre-cast concrete blocks. Metal framed partitioning is also available. This partition consists of track (used primarily at the base and head of the partition) and studs (vertical sections fixed into the track typically spaced at 24", 16", or at 12").
+Internal wall partitions, also known as office partitioning, are usually made of plasterboard (drywall) or varieties of glass. Toughened glass is a common option, as low-iron glass (better known as opti-white glass) increases light and solar heat transmission.
+Wall partitions are constructed using beads and tracking that is either hung from the ceiling or fixed into the ground.[8] The panels are inserted into the tracking and fixed. Some wall partition variations specify their fire resistance and acoustic performance rating.
+Movable partitions are walls that open to join two or more rooms into one large floor area. These include:
+Party walls are walls that separate buildings or units within a building. They provide fire resistance and sound resistance between occupants in a building. The minimum fire resistance and sound resistance required for the party wall is determined by a building code and may be modified to suit a variety of situations. Ownership of such walls can become a legal issue. It is not a load-bearing wall and may be owned by different people.
+An infill wall is the supported wall that closes the perimeter of a building constructed with a three-dimensional framework structure.
+Fire walls resist spread of fire within or sometimes between structures to provide passive fire protection. A delay in the spread of fire gives occupants more time to escape and fire fighters more time to extinguish the fire. Such walls have no windows, and are made of non-combustible material such as concrete, cement block, brick, or fire rated drywall—and have wall penetrations sealed with special materials. A doorway in a firewall must have a rated fire door. Fire walls provide varying resistance to the spread of fire, some intended to last one to four hours. Firewalls, generally, can also act as smoke barriers when constructed vertically from slab to roof deck and horizontally from an exterior wall to exterior wall subdividing a building into sections. When constructed in this manner the fire wall can also be referred to as an Area Separation Wall.
+Shear walls resist lateral forces such as in an earthquake or severe wind. There are different kinds of shear walls such as the steel plate shear wall.
+Knee walls are short walls that either support rafters or add height in the top floor rooms of houses. In a 1 1⁄2-story house, the knee wall supports the half story.
+Cavity walls are walls made with a space between two "skins" to inhibit heat transfer.
+Pony wall (or dwarf wall) is a general term for short walls, such as:
+A trombe wall in passive solar building design acts as a heat sink.
+On a ship, a wall that separates major compartments is called a bulkhead. A thinner wall between cabins is called a partition.
+Boundary walls include privacy walls, boundary-marking walls on property, and town walls. These intergrade into fences. The conventional differentiation is that a fence is of minimal thickness and often open in nature, while a wall is usually more than a nominal thickness and is completely closed, or opaque. More to the point, an exterior structure of wood or wire is generally called a fence—but one of masonry is a wall. A common term for both is barrier, which is convenient for structures that are partly wall and partly fence—for example the Berlin Wall. Another kind of wall-fence ambiguity is the ha-ha—which is set below ground level to protect a view, yet acts as a barrier (to cattle, for example).
+Before the invention of artillery, many of the world's cities and towns, particularly in Europe and Asia, had defensive or protective walls (also called town walls or city walls). In fact, the English word "wall" derives from Latin vallum—a type of fortification wall. These walls are no longer relevant for defense, so such cities have grown beyond their walls, and many fortification walls, or portions of them, have been torn down—for example in Rome, Italy and Beijing, China. Examples of protective walls on a much larger scale include the Great Wall of China and Hadrian's Wall.
+Some walls formally mark the border between one population and another. A border wall is constructed to limit the movement of people across a certain line or border. These structures vary in placement with regard to international borders and topography. The most famous example of border barrier in history is probably the Great Wall of China, a series of walls that separated the Empire of China from nomadic powers to the north. The most prominent recent example is the Berlin Wall, which surrounded the enclave of West Berlin and separated it from East Germany for most of the Cold War era.
+In areas of rocky soils around the world, farmers have often pulled large quantities of stone out of their fields to make farming easier and have stacked those stones to make walls that either mark the field boundary, or the property boundary, or both.
+Retaining walls resist movement of earth, stone, or water. They may be part of a building or external. The ground surface or water on one side of a retaining wall is typically higher than on the other side. A dike is a retaining wall, as is a levee, a load-bearing foundation wall, and a sea wall.
+Special laws often govern walls that neighbouring properties share. Typically, one neighbour cannot alter the common wall if it is likely to affect the building or property on the other side. A wall may also separate apartment or hotel rooms from each other. Each wall has two sides and breaking a wall on one side will break the wall on the other side.
+Portable walls, such as room dividers or portable partitions divide a larger open space into smaller rooms. Portable walls can be static, such as cubicle walls, or can be wall panels mounted on casters to provide an easy way to reconfigure assembly space. They are often found inside schools, churches, convention centers, hotels, and corporate facilities.
+A temporary wall is constructed for easy removal or demolition. A typical temporary wall can be constructed with 1⁄2" (6 mm) to 5⁄8" (16 mm) sheet rock (plasterboard), metal 2 × 3s (approx. 5 × 7 cm), or 2 × 4s, or taped, plastered and compounded. Most installation companies use lattice (strips of wood) to cover the joints of the temporary wall with the ceiling. These are sometime known as pressurized walls or temporary pressurized walls.
+Walls are often seen in popular culture, representing barriers preventing progress or entry. For example, the progressive/psychedelic rock band Pink Floyd used a metaphorical wall to represent the isolation felt by the protagonist of their 1979 concept album The Wall. American poet laureate Robert Frost describes a pointless rock wall as a metaphor for the myopia of the culture-bound in his poem "Mending Wall", published in 1914. In a real-life example, the Berlin Wall, constructed by the Soviet Union to divide Berlin into NATO and Warsaw Pact zones of occupation, became a worldwide symbol of oppression and isolation.
+In some cases, a wall may refer to an individual's debilitating mental or physical condition, seen as an impassable barrier.
+Another common usage is as a communal surface to write upon. For instance the social networking site Facebook previously used an electronic "wall" to log the scrawls of friends until it was replaced by the "timeline" feature.
+BROWSER UPDATE To gain access to the full experience, please upgrade your browser: Chrome | Safari | Firefox | Internet Explorer
+Note: If you are running Internet Explorer 10 and above, make sure it is not in compatibility mode.
+April 14, 2018
+U.S., British and French forces targeted sites associated with Syria’s chemical-weapons capabilities, a reprisal for an attack last week that killed at least 43 civilians and injured hundreds more. 2191
+A Syrian soldier films the damage after a research center was attacked by U.S., British and French military strikes to punish President Bashar al-Assad for a suspected chemical attack against civilians. Hassan Ammar/Associated Press
+In carrying out airstrikes in Syria, the U.S. and its allies were trying to maintain a careful balance: preventing the use of chemical weapons, without crossing Moscow’s red lines against toppling President Bashar al-Assad or targeting Russian forces. 91
+The Syrian government’s allies strongly condemned the overnight airstrikes on Assad regime targets, with Iran’s supreme leader branding as “criminals” President Donald Trump, U.K. Prime Minister Theresa May and French President Emmanuel Macron.
+President Donald Trump’s personal lawyer negotiated a deal in late 2017 to pay $1.6 million to a former Playboy model who said she was impregnated by a top Republican fundraiser. 2243
+Having escaped to the U.S. after the 2014 mass kidnapping, a group of Nigerian students found themselves paraded in front of TV cameras and charity events. The truth of what happened became twisted as they fell in thrall to a human-rights lawyer who stands accused of pocketing some of the funds they raised.
+The board of WPP is weighing contingency plans in the event Chief Executive Martin Sorrell leaves, as the advertising giant’s longtime leader deals with an allegation of misconduct.
+The uproar over how Facebook Inc. allowed a Cambridge University researcher to improperly harvest data on 87 million users has prompted a public clash between the social network and the 800-year-old institution.
+President Trump’s ordered review of the Postal Service’s finances will likely show that Amazon.com isn’t the only one getting a good deal on package deliveries: FedEx and UPS get comparable rates on so-called last-mile parcel delivery. 96
+U.S. companies are scrambling to figure out how to sell more natural gas abroad. Tellurian Chief Executive Meg Gentle thinks she has a unique answer, but it is expected to cost $24 billion.
+Chinese conglomerates including Fosun International Ltd. and Gansu Gangtai Holding are investing at premium prices in old European luxury brands like Lanvin—and often end up with a turnaround on their hands.
+For decades, parents worried videogames would transform their children into zombies spending countless hours alone. But online multiplayer videogames allow teens and tweens to socialize while playing. “It’s better to hear him communicating than just dead silence,” one mother said.
+The Swedish Academy, the body responsible for awarding the Nobel Prize in Literature, is in crisis over its handling of a sexual-assault scandal.
+Lower taxes, a boost in lending income and a flurry of trading activity sparked by market volatility propelled profits higher at three of the U.S.’s biggest banks in the first quarter.
+London Stock Exchange appointed a 20-year veteran of Goldman Sachs as its new chief executive, filling a crucial leadership gap following the abrupt departure of former CEO Xavier Rolet.
+Stocks have been on a roller coaster since trade tensions between the U.S. and China began to escalate. But other markets have barely moved, suggesting more to the recent stock gyrations than trade bluster.
+Rocketing demand and prices for lithium, coupled with China’s stranglehold on supply, are reviving interest in mining Europe’s reserves of the coveted metal some call white petroleum.
+The Justice Department’s internal watchdog concluded that former FBI Deputy Director Andrew McCabe misled investigators who were probing his role in providing information in October 2016 to a reporter for The Wall Street Journal. 353
+House Speaker Paul Ryan endorsed Majority Leader Kevin McCarthy to succeed him as leader of the House Republicans when he retires.
+Michigan State University interim president John Engler offered a woman $250,000 to settle her sexual-abuse lawsuit against the university and former MSU doctor Larry Nassar, without her lawyer present, the woman told the school’s board of trustees Friday.
+The Trump administration is expanding the use of civil-rights laws to defend health-industry workers who object to medical procedures on religious grounds. 281
+Fifty years after her execution for criticizing Mao, Lin Zhao continues to rally democracy activists and to worry Chinese authorities.
+The imprisonment of ex-President Luiz Inácio Lula da Silva for corruption while many top Brazilian politicians remain in office despite graft charges against them is stoking fresh calls to end immunity for lawmakers.
+Russian lawmakers laid out a wide range of potential measures in response to Washington’s latest round of sanctions, threatening to up the ante between the two countries.
+Pick your favorite from our three options.
+Trump Announces U.S. Strike on Syria
+Mark Zuckerberg's Testimony Before Congress: The Highlights
+Saving for Retirement: How Auto-IRA Plans May Secure the Future
+iPhone X & iPhone 8: First Look Video
+Facebook: No 'Wild Changes' in User Behavior Amid Data Furor
+Trump Lawyer Cohen Struck Settlement for GOP Fundraiser
+U.S., Allies Launch Airstrikes on Syria
+Look Out, Meghan Markle! The IRS Is Watching
+More Men Are Wearing Makeup Than You Think—Here’s Why
+Star Analyst Who Predicted Bank Collapse Is Ducking the Spotlight
+Saving for College: Also, answering a reader’s question on whether you can use 529 plans to pay off student loans.
+WSJ Editor in Chief Gerard Baker on Trump’s trade-pressure escalation and Tesla’s feud with the National Transportation Safety Board.
+Get analysis of Washington’s top political and national-security stories in our daily newsletter.
+WSJ Membership
+Customer Service
+Tools & Features
+Ads
+More
+Create an Account - Increase your productivity, customize your experience, and engage in information you care about.
+2018 UDrive. UText. UPay. - Distracted Driving Crackdown- April 1, 2018 - April 21, 2018
+2018 Presentation of Gratitude to Committeewoman Conte
+2018 Township Committee
+
+
+
+
+
+
+Table Reservations
+
+By Robert Farley
+Posted on April 13, 2018
+Q: Has President Donald Trump started building the wall between United States and Mexico?
+A: Congress approved $1.6 billion to replace existing barriers and add some fencing in new areas. The new barriers are not concrete and not like any of Trump’s wall prototypes.
+Has Trump started building the wall between USA & Mexico?
+Since the omnibus spending bill for fiscal year 2018 passed in late March, President Donald Trump has repeatedly claimed his long-promised wall is now under construction.
+“We’ve already started building it,” Trump said in West Virginia on April 5. “We have a billion-six. We’ve started building it and fixing miles and miles of wall that’s already up — and fence. And we’re going to have our wall.”
+“We’ve started building the wall,” he proclaimed in remarks with Baltic leaders on April 3.
+“We started building our wall,” he said in Ohio on March 30. “I’m so proud of it. We started. We started. We have $1.6 billion, and we’ve already started. … We have $1.6 billion toward the wall, and we’ve done the planning.”
+By contrast, Republican Rep. Jim Jordan, founder of the House Freedom Caucus, said of the omnibus bill, “The one thing we don’t fund is the one issue we all campaigned on — a border security wall — and that is not in the legislation.”
+And here’s House Democratic Leader Nancy Pelosi’s version of what the bill does: “Democrats won explicit language restricting border construction to the same see-through fencing that was already authorized under current law.”
+Those seemingly conflicting statements may lead to some confusion. One of our readers asked, “Has Trump started building the wall between USA & Mexico?”
+The short answer is that the omnibus bill funds some new fencing, though far less than Trump had hoped it would. The new barriers are also not the kind of solid, concrete wall Trump once described during the campaign. Nor is it anything like any of the prototypes Trump visited in mid-March.
+Trump and others in his administration are calling what is going up “the wall.” The omnibus describes it as “fencing.” Some may say that’s a matter of semantics, and indeed many officials and journalists use the terms interchangeably. But Trump has often insisted there is a difference between a fence and wall, and that he’d be building a wall.
+Finally, Trump officials say the omnibus will fund about 100 miles of “new” wall, but most of that is replacing existing border fencing deemed inadequate or dilapidated.
+Let’s take a deeper look at what the bill does and does not fund for barriers along the border with Mexico. And then let’s dig deeper into what Trump promised.
+On March 23, Trump signed the $1.3 trillion omnibus spending bill (also known as the Consolidated Appropriations Act, 2018), though he said there “are a lot of things that I’m unhappy about in this bill.”
+Although Trump had asked for $25 billion for wall construction, the bipartisan spending bill provides what Trump called only an “initial down payment” of $1.6 billion in funding. But even that sum comes with significant strings attached.
+Here’s what that $1.6 billion is for (see Section 230, starting on page 673):
+The bill further states that the money can only be used to build “operationally effective designs deployed as of the date of the Consolidated Appropriations Act, 2017, [May 5, 2017] such as currently deployed steel bollard designs, that prioritize agent safety.”
+Readers may recall Trump on March 13 toured eight wall prototypes — which you can see here — that he had put out to bid early in his presidency. The language in the omnibus bill precludes funding for any of those designs.
+In a March 30 briefing, Customs and Border Protection Acting Deputy Commissioner Ronald D. Vitiello said the spending bill will fund about 100 miles of “border wall system,” though he added that “does not fully fund our needs in the most critical locations.”
+According to Vitiello, the construction near San Diego will include 14 miles of “new border wall,” replacing “old, dilapidated [Vietnam War-era helicopter] landing mats in favor of a steel bollard wall” and replacing 14 miles of secondary barriers.
+In Calexico, California, the federal government will replace two miles of pedestrian barrier with “a new 30-foot border wall,” he said. In Santa Teresa, New Mexico, the government will build 20 miles of border wall, he said. According to the Washington Examiner, the new barriers in Santa Teresa will replace “three-foot-tall posts and a taller mesh fence.”
+Vitiello said the government will build four miles of new border wall in El Paso, Texas, and 35 new gates along a 55-mile stretch of existing border wall in the Rio Grande Valley.
+Finally, Vitiello said, the Department of Homeland Security will replace 47 miles of “dilapidated border fencing with new border wall system in various locations along the southwest border.” Also in the Rio Grande Valley, he said, it plans to build 25 miles of new levee wall in Hidalgo County, and eight miles of “new border wall system” in Starr County, Texas. All of that is made possible by funding in the 2018 spending bill, he said.
+By our count, that comes to less than 40 miles of new barrier where there wasn’t any before.
+Although most of the new barrier will replace old or ineffective fencing, Vitiello said, “I would say that it’s all new because there’s a different design going in. It’s replacing stuff that is unsuitable, the dilapidated wall, this old landing mat fence. It doesn’t serve our needs anymore.”
+The president would ultimately like to have 1,000 miles of barrier, Vitiello said, and there is currently 654 miles of fencing. So the funding bill leaves the president well short of his goal.
+On March 28, Trump tweeted photos from a briefing “on the start of our Southern Border WALL!”
+Great briefing this afternoon on the start of our Southern Border WALL! pic.twitter.com/pmCNoxxlkH
+— Donald J. Trump (@realDonaldTrump) March 28, 2018
+
+The pictures show steel bollards, which look like a comb, and provide a barrier that border patrol agents can see through — a feature that Trump has repeatedly said over the last nine months is critical for enforcement purposes.
+That raises the question, though: Is the barrier funded through the omnibus a wall or a fence? At one time, that distinction was important to Trump.
+According to Vocabulary.com, “The difference between a fence and a wall is that you can almost always see through a fence, at least to some degree, while a wall is solid.”
+If that’s the case, then what is going up is fence. But, to be fair, many politicians, media figures and even border experts often use the terms wall and fence interchangeably.
+And so has Trump — at times.
+Prior to announcing his presidential candidacy, for example, Trump said in an interview with CBN News in May 2015, “I would build a wall like nobody can build a wall.” But later he added, “Nobody can build a fence like me … I build great buildings all over the world.”
+By the time Trump announced his candidacy for president on June 16, 2015, he had settled on the nomenclature: wall.
+Trump, June 16: I would build a great wall, and nobody builds walls better than me, believe me, and I’ll build them very inexpensively, I will build a great, great wall on our southern border. And I will have Mexico pay for that wall. Mark my words.
+Two days later, in an interview on Fox News, Sean Hannity said, “You said you — you would build a fence — nobody could build a better fence than Donald Trump.”
+Trump corrected him. “A wall,” Trump said.
+In August of that year, Trump again stressed that he was proposing a wall, not a fence, as he made very clear in a tweet attacking Republican primary opponent Jeb Bush, who criticized Trump’s plan for a border “fence.” “It’s not a fence, Jeb,” he wrote. “It’s a WALL, and there’s a BIG difference!”
+Jeb Bush just talked about my border proposal to build a "fence." It's not a fence, Jeb, it's a WALL, and there's a BIG difference!
+— Donald J. Trump (@realDonaldTrump) August 25, 2015
+
+So Trump saw a difference between fences and walls. But he did not explain exactly what those differences were.
+We could find only one instance where he described the details of the wall as a solid structure, as he described laying down “precast planks.” It came during a campaign speech in August 2015 in New Hampshire. It’s height? Trump pointed to the ceiling of the auditorium and said, “Higher.”
+Trump, Aug. 19, 2015: I will build the greatest wall that you’ve ever seen. … I already know what it should look like. … Did you ever see precast plank for parking garages? OK, as an example. … So you take precast plank. It comes 30 feet long, 40 feet long, 50 feet long. You see the highways where they can span 50, 60 feet, even longer than that, right? And you do a beautiful, nice precast plank with beautiful everything. … You put that plank up and you dig your footings. And you put that plank up — there’s no ladder going over that. If they ever go up there, they’re in trouble, because here’s no way to get down. Maybe a rope.
+In a “60 Minutes” interview shortly after his election, Trump continued to distinguish between walls and fences, and allowed that fences might be appropriate in places.
+Lesley Stahl, Nov. 13, 2016: So let’s go through very quickly some of the promises you made and tell us if you’re going to do what you said or you’re going to change it in any way. Are you really going to build a wall?
+Trump: Yes.
+Stahl: They’re talking about a fence in the Republican Congress, would you accept a fence?
+Trump: For certain areas I would, but certain areas, a wall is more appropriate. I’m very good at this, it’s called construction.
+Stahl: So part wall, part fence?
+Trump: Yeah, it could be – it could be some fencing.
+On March 17, 2017, Customs and Border Protection issued two requests for proposals “to acquire multiple conceptual wall designs with the intent to construct multiple prototypes.” One RFP was for a “solid concrete border wall,” and the second RFP was for “other border wall.” For the “other border wall,” the RPF says: “Prototypes constructed in response to this solicitation must offer designs that are alternatives to reinforced solid concrete walls (i.e. no solid concrete external faces).”
+That summer, Trump began talking about the need to be able to see through the wall.
+Speaking with reporters on Air Force One on July 14, 2017, Trump said, “One of the things with the wall is you need transparency. … You have to be able to see through it. In other words, if you can’t see through that wall — so it could be a steel wall with openings, but you have to have openings because you have to see what’s on the other side of the wall.”
+In an interview on Fox News in November, Trump said the wall would be drawn from one of the prototypes, and he again stressed the need to be able to see through the wall. “You know, you think we’re going to build a nice, simple concrete wall, but it’s not that simple.”
+The eight companies were ultimately chosen to build prototypes 18 to 30 feet tall. Half were made primarily of reinforced concrete; the other four were made out of “other materials.” After viewing them in March, Trump said, “some work very well; some don’t work so well. When we build, we want to build the right thing.”
+Again, the funding in the omnibus appropriations bill precludes construction of the prototype designs. The bill funds about 100 miles of border barrier in various places, according to Customs and Border Protection. That’s far less than what Trump said he intends to ultimately build. And much of that is replacement for existing fencing that is dilapidated or inadequate. The spending bill funds nearly $1.6 billion worth of what it refers to as “fencing.” Trump now calls that “wall.” But he didn’t always think those were the same thing.
+Whitehouse.gov. Transcript: “Remarks by President Trump at a Roundtable Discussion on Tax Reform.” 05 Apr 2018.
+Whitehouse.gov. Transcript: “Remarks by President Trump and Heads of the Baltic States in Joint Press Conference.” 03 Apr 2018.
+Whitehouse.gov. Transcript: “Remarks by President Trump on the Infrastructure Initiative.” 30 Mar 2018.
+Fox News. Interview with Rep, Jim Jordan. 22 Mar 2018.
+House Democratic Leader website. Pelosi Statement on Introduction of Omnibus Spending Bill. 22 Mar 2018.
+House of Representatives website. Consolidated Appropriations Act, 2018.
+Whitehouse.gov. Transcript: “Remarks by President Trump at Signing of H.R. 1625.” 23 Mar 2018.
+Congress.gov. H.R.244 – Consolidated Appropriations Act, 2017.
+Whitehouse.gov. Transcript: “Remarks by President Trump After Review of Border Wall Prototypes | San Diego, CA.” 13 Mar 2018.
+Mark, Michelle. “Trump is visiting the 8 prototypes for his border wall — see what they look like.” Business Insider. 13 Mar 2018.
+YouTube.com. “Customs and Border Protection (CBP) Acting Deputy Commissioner Ronald Vitiello updates reporters on the construction of a wall along the U.S, border.” 30 Mar 2018.
+Giaritelli, Anna. “Border Patrol breaks ground on Trump’s wall: ‘This project is underway.’” Washington Examiner. 09 Apr 2018.
+Brody, David. The Brody File: “Exclusive: Donald Trump on Southern Border: ‘Nobody can build a fence like me.’” CBN News. 20 May 2015.
+Time Magazine. “Here’s Donald Trump’s Presidential Announcement Speech.” 16 Jun 2015.
+Fox News. “Exclusive: Donald Trump on what made him run for president on ‘Hannity.'” 18 Jun 2015.
+Real Clear Politics. “Trump on Border: Maybe They’ll Call It “The Trump Wall.” 19 Aug 2015.
+CBS News. ’60 Minutes’ Interview: “President-elect Trump speaks to a divided country.” 13 Nov 2016.
+U.S. Customs and Border Protection. “CBP Requests Proposals for Border Wall Prototypes.” 17 Mar 2017.
+Federal Business Opportunities website. “Solid Concrete Border Wall RFP.” 01 Apr 2017.
+Federal Business Opportunities website. “Other Border Wall RFP.” 01 Apr 2017.
+Kopan, Tal. “Trump on border wall: ‘You have to be able to see through it.‘” CNN. 14 Jul 2017.
+Real Clear Politics. “Trump Full Interview With Fox News’ Ingraham: Dossier, Justice Department, Immigration, DNC Primary & Sanders.” 02 Nov 2017.
+U.S. Customs and Border Protection. “CBP Awards Contracts for Border Wall Prototypes.” 31 Aug 2017.
+U.S. Customs and Border Protection. “CBP Awards Contracts for “Other Materials” Border Wall Prototypes.” 07 Sep 2017.
+Q: Has President Donald Trump started building the wall between United States and Mexico?
+A: Congress approved $1.6 billion to replace existing barriers and add some fencing in new areas. The new barriers are not concrete and not like any of Trump’s wall prototypes.
+
+Battles are infamously difficult to film. Actors have to learn and repeatedly execute insanely complex choreography; hundreds of extras have to be managed; and horses don’t care about your schedule. So, battles take a long time: the greatest ones yet, the Battle of the Bastards and the Loot Train ambush, each swallowed about a month of precious production time. If you understand that’s a lot, you’ll be properly impressed when you learn that the battle shoot we have been following since late January has now wrapped after 55 consecutive nights! Beware: known spoilers are discussed below!
+
+The largest battle sequence ever in Game of Thrones has finally come to a close, after months of night shoots at the Moneyglass set in Toome and the Magheramorne green screen set. The multi-purpose Magheramorne set may yet be used for other scenes, but this latest battle of Winterfell is over—though we won’t get to see for another year.
+As we’ve seen in previous years, when such an ardous shoot is over the producers celebrate the occasion in some way, and we know this time was no different, as much of the crew went on social media to share a thank you note by “the producer types.” Jonathan Quinlan, assistant director in 20 episodes, was one of these crew members:
+Thank you note by the producers. Photo: Jonathan Quinlan’s Instagram (now removed)
+The funny, heartfelt note cites “the cold, the snow, the rain, the mud, the sheep shit of Toome”, in reference to the Winterfell set in Moneyglass, Toome; as well as “the winds of Magheramorne.” In the caption below the photo, Quinlan helpfully added: “Says it all. 55 consecutive nights. 11 weeks. 3 locations. You’ll never again see anything like it.”
+These two and a half months of shooting more than double the previous record for a Game of Thrones battle shoot—which likely already was a TV record, as well. Unless the upcoming King’s Landing shoot dethrones it, which seems unlikely, this battle of Winterfell will be the biggest, most expensive action scene we’ve ever seen on TV. Of course, shooting time doesn’t necessarily translate to screen time, so this may or may not be the longest battle in the show, but it will certainly be the most elaborate.
+As for the “3 locations” Quinlan makes reference to, aside from the obvious Moneyglass and Magheramorne (specified by the producers’ note and reported on by us for months), the mystery location could be Saintfield, in which we know they filmed but little else.
+So that’s it! No more furtive photos in the dark for us to obsess over. Coming up next: the Dragonpit, the King’s Landing battle, and who knows what else! Stay tuned.
+Have you already read all the books and/or don't care about spoilers? You can reveal/hide all the spoilers in the comments with the click of the buttons below.
+How do you put spoilers in your comment? Place the spoiler remarks inside this short code:
+Remove the extra spaces between the word spoiler and the brackets, and the front slash and brackets before publishing your comment.
+Where are the spoilers tho?
+PortQuote Reply
+I am completely in awe of all of the people who have made Game of Thrones. It is and always will be one of my most favorite shows. It will be epic and bittersweet for this last season. I am going to miss it when it’s over. Everyone is so talented that has worked on it. Gratitde to all who have worked so hard to entertain us over these years.
+Penny DouglasQuote Reply
+Port,
+I understand the confusion: they are old spoilers, but spoilers nonetheless. Some people are extremely sensitive to spoilers, and I’m learning to accomodate to them. The mere mention of battles taking place in Winterfell and King’s Landing is a spoiler for some people, and we have to respect that.
+To avoid any confusion, I changed “spoilers below the cut” to “known spoilers are discussed below.” Hopefully that clears things up.
+Luka NietoQuote Reply
+55 days is bonkers!! I can’t imagine what they’ve come up with. I’m thinking something with the tension of Hardhome and BotB but multiple time larger!!
+ClobQuote Reply
+Well, if all of this filming has been dedicated to one battle sequence or perhaps a sequence of battles, then it may suggest (much to some people’s chagrin, I’m sure) that the Night King will be defeated in The North.
+If they’re never going to repeat this sort of shoot again and, given that the King’s Landing battles/scenes don’t yet appear to be set in the midst of a deep winter, does that point towards the King’s Landing conquest/destruction being pre or post War for the Dawn?
+Ramsay’s 20th Good ManQuote Reply
+Wow, that’s impressive shooting time.
+Will it be screentime long? Maybe it’s so elaborate, so complex, with added cgi elements, that shooting it took 55 days, but it’ll end up only 15-25 minutes screentime?
+I personally am not big on battles. Yes, they happen, but most of big battles in S1, S2 and S3 took place off screen and it didn’t bother me. I loved Blackwater (S2E9) and the battle for the Wall in S4 (especially that 360 degree single shot!), and Hardhome, BoB and Loot train have been impressive… but… Well, big battle scenes aren’t why I watch this show. I don’t mind them, just as long as there’s time for character moments.
+Still, a huge hat tip to everybody involved in the gruelling work to produce the S8 battles for us. We’ll love them.
+talvikorppiQuote Reply
+talvikorppi: Maybe it’s so elaborate, so complex, with added cgi elements, that shooting it took 55 days, but it’ll end up only 15-25 minutes screentime?
+Probably.
+Luka NietoQuote Reply
+With the green screen we could be looking at the battle for Winterfell and also the battle (Finale) at KL. If winter has come and Dannys vision is correct there should be snow at KL as well.
+Colin ArmfieldQuote Reply
+
+Curious as to why there was no post for them, they’re pretty spread around (I didn’t even originally come across them on Freefolk).
+MOD EDIT: You must properly tag any spoiler (or reference to spoilers) outside the purview of the article in which the comment is made.
+HouseMartellBitchesQuote Reply
+”When tens of millions of people around the world watch this episode A YEAR FROM NOW…”
+So, the premier is most likely end of February or early March.
+rhardQuote Reply
+I can’t wait to see it. I know it’s highly unlikely but what if we a battle that was same time length as the battle of Hogwarts or two towers from LOTR. That would be insane.
+Bianca FunkQuote Reply
+HouseMartellBitches,
+I’m not sure about those photos and those so called spoilers he leaked were already posted by several people writing fan-fiction, unless they guessed right but I don’t buy it. Essentially someone got on set while the crew was on March break and filmed a bunch of prosthetics arranged in piles. We know there is going to be fighting and we know people will die – it’s GOT and it’s the final season so I don’t think there is much in the way of ‘spoilers’ there. I also doubt he was involved in Production – he’d have broken his NDA and his job would be lost and his reputation toast. I think that site is being trolled big time. I trust this site more than I would Freefolk as this point for GOT news.
+kathyQuote Reply
+Boy, being part of a night shoot would be amazing. I love the dark and even the cold, a little sheep shit is fine. 😂
+PigeonQuote Reply
+I bet it will make loot train and botb look like middle school dramas.
+HelloThereQuote Reply
+So excited to see these scenes. I hope it takes up most of an episode. 🙂
+TrishaQuote Reply
+Can’t wait to watch and understand what happens up there.
+That is a lot of time to dedicate to a battle so it must be very significant plot and character wise.
+House MontyQuote Reply
+This fight will go down in history as the most awesome GoT action sequence. There’s no way it can’t. Having it at night already sets a really grave tone that I can’t help but to look forward to.
+EdwardQuote Reply
+HouseMartellBitches: Freefolk has pictures from the battle, with corpses and house sigils (very interesting, some would say, spoilery mix).They are great pics, reveal a lot, and are clearly from a guy involved in production, who had actual MAJOR spoilers relating to the battle, that clearly come from being firsthand on filming.
+Curious as to why there was no post for them, they’re pretty spread around (I didn’t even originally come across them on Freefolk).
+I’m a little bit surprised there was no post too actually. I’m sure there’s a good reason for it. But I (very rarely) visit WiC 2.0, if you will, and I found them there. Ever since WotW was founded, I migrated over like 99.9% of the way. I think this was the first time I spent that 0.01% on WiC and stumbled upon something the good folk here hadn’t already reported!
+Quinton O’ConnorQuote Reply
+I just hope the battle scene isn’t so frenetic that it becomes a blur. I prefer when there are action breaks to focus on a character’s mindset in the moment.
+LadyGoodmanQuote Reply
+We knew that the second Long Night was coming, and there’s a good reason why these big action sequences need to be shot after dark. But it still makes me a little nervous that the end product will prove inadequately lit for the viewer with anything less than a gigantic TV screen with easily accessible brightness control. There have been a fair few nighttime scenes – and even just indoor scenes in somber places – in previous seasons that were way too murky for my screen.
+FirannionQuote Reply
+I hope it’s not all “explosions connected by dead bodies.” I want some story and characters as well.
+Colin ArmfieldQuote Reply
+Given how long it is, I’m almost certain there will be plenty of personal interactions. I know certain people here such as Firannion are really worried the little moments will be lost in the chaos but we’ve never had a massive battle with this many important nonfighters together.
+I’m pretty sure we are in for something truly special, something which will dwarf every single large scene in the show.
+BeardedOnionQuote Reply
+11 weeks sounds insane!! I am sure is going to look great!! Congratulations to everyone involved for your hard work!!
+H.StarkQuote Reply
+Once season 8 finally arrives, I need a t-shirt that says “I survived the Long Night between season 7 and 8”.
+Enharmony1625Quote Reply
+HouseMartellBitches,
+How can I say this politely….
+Can you cover your alleged “Freefolk” spoilers with spoiler coding, or not bring it here at all? As far as I’m concerned, that place is an enabler and disseminater of stolen, fabricated and illegal material. Can’t we confine the Comments section of this WoW article to the contents of the article, so the Comments don’t become contaminated with threads about extraneous, unauthorized pollutants?
+Most us don’t want to be ambushed by supposed “spoilers” from other places. “It drains the fun right out of it.” – Polliver
+Please!!! 🚱🚱🚱🚱🔞🚱🚱❌
+Ten BearsQuote Reply
+Ten Bears,
+I do wonder why some people come on open forums and social media just to bitch about spoilers. If you don’t want to see anything stay off the computer. It’s not difficult to understand.
+Colin ArmfieldQuote Reply
+talvikorppi,
+“…Well, big battle scenes aren’t why I watch this show. I don’t mind them, just as long as there’s time for character moments.” ———————–
+Precisely. As much as I appreciate big battle scenes on a technical level, I don’t think there are any that I’ve rewatched more than once.
+For S8, I’d trade a half hour big-budget battle for a well-written 30-minute, quiet scene of Sansa and Arya reuniting with the repentant Sandor and quaffing ale together. The big fella deserves one happy memory before his big showdown….
+Ten BearsQuote Reply
+Colin Armfield,
+Nope. This is not an “open forum” to spew anything and everything. It is not “social media” where it’s a free-for-all for fake news, slurs and personal invectives. Check out the moderation policies.
+There’s a reason discussions here are consistently dignified and intelligent.
+“If you don’t want to see anything stay off the computer” is not the solution and not the problem.
+If for some reason you feel compelled to inject “spoilers” from other sources, would it be that much of an inconvenience for you to use spoiler coding? As an act of kindness?
+Thank you in advance for your anticipated courtesies.
+Ten BearsQuote Reply
+I still believe the big battle episode(s) and aftermath will be performed as an opera. Wagner, eat your heart out. (Djawadi, therein lies the challenge…Götterdämmerung!) 🙂
+Hodors BastardQuote Reply
+I don’t consider this a spoiler but do we all assume this big battle is episode 3 or episode 5 given Miguel is directing those two, common consensus seems to be number 3 right?
+Jon SnowedQuote Reply
+While I totally agree with the sentiment that the character interpersonal moments make GOT as addictive and watchable as it is, I do have to admit, I am a sucker for the beautiful (and very engaging) way they shoot their battle scenes. I am very excited to see what this 11 week shoot has been crafting. And also very scared for our favourites!!
+CheQuote Reply
+Jon Snowed,
+I would say…it’s hard to tell at this point. “The Watchers on the Wall” (S4e9) was a fabulous non-stop battle that wasn’t “climactic” – in the sense that the defenders merely held off the invaders and lived to fight another day. It was still glorious – except for the romantic casualty. 🏹😢
+Ten BearsQuote Reply
+Thanks you to the unsung heroes of this great show! 55 nights of shooting? And we have to wait a whole year to see the results, it will be worth it. Shout out to the hard working costumers, make-up and hair people, weapon makers, set dresser…..all those behind the scenes tech people the make the magic happen.
+thorne garnetQuote Reply
+Allow me to get a bit emotional for a second (those who are too jaded to tolerate a bit of sentimentality, look away):
+I, too, love the small character moments, but the grandeur and quality of the battle scenes always remind me of how lucky I am as a viewer. The people involved in this show are fucking incredible. I, for one, couldn’t be happier with the quality of the adaptation of a series of books I loved. There have been a couple of missteps, but they’re minor quibbles when compared to the overall product. The casting is uniformly perfect, and the dedication of all involved, from said cast and the extras, to the writers, stunt team, crew, producers – fuck, c’mon. We have to give them the credit they deserve.
+Also, it should be recognised that the battle sequences in Game of Thrones aren’t mindless action scenes. They’re impactful because they do take the time to slow down and focus on the character moments. Here are but a few: Grenn reciting NW oath as he faced his death; Jon holding Ygritte in his arms while the fighting went on around him; Jaime’s heroic charge toward Drogon.
+There’s no better example than the Battle of the Bastards. It was a unique moment in television mostly because of the acutely painful realism of the fighting itself, and because of the emotional beats hit with respect to Jon – none of which relied on CGI. Jon’s desperate race out to save Rickon? No CGI. Jon standing to face the cavalry? No CGI (and I’m tearing up just thinking about it even now). The crush, where Jon almost died, and fought his way out through the bodies? No GCI.
+All of those moments had way more impact than the arrival of the Vale, which was all GCI, and had been telegraphed (and for me, it wasn’t triumphant as perhaps the writers hoped, but tainted with wrongness because of the deceptive way it came about). So I have confidence that this battle will be no different. And it’s for Winterfell. It could be anything other than emotional. I’m anticipating it with excitement and fear both.
+iridiumQuote Reply
+I hope the showrunners will issue some behind-the-scenes material, so we could understand this truly heroic shooting better and preferably, before the show airs. I remember how we speculated about the BOB behind the scenes materials and wouldn’t mind repeating that, though after the show will do for me as well.
+IngaQuote Reply
+Jon Snowed: I don’t consider this a spoiler but do we all assume this big battle is episode 3 or episode 5 given Miguel is directing those two, common consensus seems to be number 3 right?
+This will be in episode three, yeah, that’s what we think.
+Luka NietoQuote Reply
+iridium,
+“There have been a couple of missteps, but they’re minor quibbles when compared to the overall product.” ————- Amen to that.
+Ten BearsQuote Reply
+Ten Bears,
+Very much agreed. I was accidentally spoiled all over the place last year, and it greatly diminished my enjoyment of the season (in part because of the bitching associated with some of the information). WotW is a relatively safe place because spoilers are well labelled, and because it doesn’t tolerate uncensored spoiler chat in the comments.
+As an aside, I hope there aren’t any major script leaks this year. It was a massive insult to everyone involved in the show, and I hope that guy was found and fired. But not before getting a punch to the nuts courtesy of the Mountain.
+iridiumQuote Reply
+Ten Bears:
+Sansa, Arya and Sandor scenes have so much potential. I hope they have at least one big scene like you just mentioned.
+BeardedOnionQuote Reply
+Colin Armfield: Ten Bears,
+I do wonder why some people come on open forums and social media just to bitch about spoilers. If you don’t want to see anything stay off the computer. It’s not difficult to understand.
+This is a moderated community, not an open forum or social media. There are clearly established rules you gotta follow. One of them is to cover spoilers not discussed in the article with proper spoiler tags; another is to not discuss script leaks at all (thankfully, there have been none for season eight.)
+Luka NietoQuote Reply
+Didn’t read all the comments so I don’t know if anyone addressed this yet, but I’m kind of disheartened over the “they won’t care how tired you were or how tough it was to do your job…” part. I know myself and many others thoroughly enjoy the amount of work that goes into our favourite, and award-winning, scenes. My favourite featurettes are usually about the stunt coordinators and the amount of work that goes into scenes like BoB, the Loot Train attack, Battle at Blackwater Bay, and the battle at Castle Black. Anyways, can’t wait to watch what the crew has been working so hard on!
+Dark SisterQuote Reply
+What I think will happen: I think this will be episode 3, why it will be the biggest battle is I think the way it will be told. What I think will happen is the following in episode 3: – We open the episode with some character moments, tension will run high emotionally (maybe an argument with Dany or Sansa). – Then somebody will attack winterfell, this will be done by some humans: Unsatisfied Northerners because of Dany (would be amazing if this is the case and we have couple of minutes before a big argument that for instance Sansa explain to Jon working with Dany will lead to northerners deserting him) or maybe Cercei will attack them. – Jaime will save the day at winterfel defeating the attackers and swears fealty to the starks and Dany. We get the feeling this is going to be all okay. Then there will be 3 blasted. – The Night King is at their door. Big sequence with them. – And maybe even something after that scene (like beyond the wall)
+kevin1989Quote Reply
+Che,
+Interpersonal, “high thread count”™ emotional moments incorporated within pulse-pounding action scenes are when GoT is at its best.
+Exhibit A: The last segment of “The Door.” I felt like my heart was inside a Cuisinart riding on a rollercoaster. That back and forth between idyllic past WF and future 3ER cave, with Meera’s pleading voice echoing from the future, followed by the desperate chase through the cave tunnel, and the final alternating young Hodor/future Hodor…. That was some incredible work by director Jack Bender, the special effects dept., the actors, and countless other crew members. I’m sure it took days or weeks to put together that ~ 15 minutes of on-screen craziness. To top it off, was the reveal that the lovable simpleton sidekick character was really a tragic, heroic figure. I usually loathe “unhappy” endings because most of the time they involve cheap deaths or deaths for shock value. This was one of the rare exceptions: going out as a hero, or for the sake of the greater good.
+I’ll stop. Sorry. I got carried away.
+™ Thronetender term
+Ten BearsQuote Reply
+iridium:
+Am not jaded enough and definitely agree with everything in your post! The battle sequences are incredible TV in and of themselves, but what has me re-watching them time and time again is the human aspect.
+Blackwater back in season two was the first big battle sequence in GoT – and when I think of that, I think of Davos’s grief at the loss of his son, the Hound’s fear of fire, and Pod’s loyalty towards Tyrion. I think of Tyrion’s determination to fight regardless of his physical prowess. I think of his speech to rally the men; a speech a king should’ve given.
+You make soooooo many good points on Watchers on the Wall and Battle of the Bastards. In my opinion, one of the reasons the latter made such good TV was the decision to follow Jon and show the battle through the perspective of one key character. It was as much about Jon’s emotional and physical journey through that battle as anything else.
+Watchers on the Wall is definitely the main part of the final chapter of Jon and Ygritte’s story, but it is also important in Sam and Gilly’s. Their story is told beautifully in that episode.
+When I contemplate season eight, one hope I have for the major battle sequences is that they continue this human element. That they continue to be about not violence for the sake of violence, but of the cost of war both physically and emotionally.
+Alba StarkQuote Reply
+iridium,
+Damn. I just got “a bit emotional” too.
+Ten BearsQuote Reply
+Ten Bears: Che,
+Interpersonal, “high thread count”™ emotional moments incorporated within pulse-pounding action scenes are when GoT is at its best.
+Exhibit A: The last segment of “The Door.” I felt like my heart was inside a Cuisinart riding on a rollercoaster. That back and forth between idyllic past WF and future 3ER cave, with Meera’s pleading voice echoing from the future,followed by the desperate chase through the cave tunnel, and the final alternating young Hodor/future Hodor…. That was some incredible work by director Jack Bender, the special effects dept., the actors, and countless other crew members. I’m sure it took days or weeks to put together that ~ 15 minutes of on-screen craziness. To top it off, was the reveal that the lovable simpleton sidekick character was really a tragic, heroic figure. I usually loathe “unhappy” endings because most of the time they involve cheap deaths or deaths for shock value. This was one of the rare exceptions: going out as a hero, or for the sake of the greater good.
+I’ll stop. Sorry. I got carried away.
+™ Thronetender term
+You are so right. That sequence in the door is the most moving piece of television/film I have ever watched. I usually watch with my husband, but that one I watched alone and was therefore able to unashamedly weep. And weep I did! Nothing but GOT could wring the tears out of you while simultaneously pulling off an action heavy sequence at the same time. That example was spot on.
+CheQuote Reply
+iridium: I, too, love the small character moments, but the grandeur and quality of the battle scenes always remind me of how lucky I am as a viewer. The people involved in this show are fucking incredible. I, for one, couldn’t be happier with the quality of the adaptation of a series of books I loved. There have been a couple of missteps, but they’re minor quibbles when compared to the overall product. The casting is uniformly perfect, and the dedication of all involved, from said cast and the extras, to the writers, stunt team, crew, producers – fuck, c’mon. We have to give them the credit they deserve.
+So true! When you consider the sheer complexity of the story, and adapting something like that to the screen, there are so many ways this could have gone horribly wrong. And for the few missteps there have been along the way, we have so many classic and memorable moments to be thankful for!
+Enharmony1625Quote Reply
+Ten Bears,
+Jack Bender was always good with emotional sequences. Look at lost. It’s a shame we don’t hear enough of him.
+kevin1989Quote Reply
+Alba Stark,
+And we haven’t even discussed the crown jewel, “Hardhome.”
+Ten BearsQuote Reply
+Ten Bears,
+Ah, I see as BoB as GoT’s greatest battle sequence to date, but I do agree that Hardome was amazing. For me, that was all about the suspense and horror. With the scrabbling horde of dead and the unearthly ice monsters, it was like a nightmare come to life. The only respite we get from the relentless terror is when Jon is on his knees and coughing up blood, the Night’s King observing from him above.
+It’s only afterwards when Jon, Tormund, Edd and the rest are on the boat that we get a sense of their overwhelming sadness as they watch the massacre of the remaining free folk. And then it’s back to abject fear again when the Night’s King locks eyes with Jon and shows the terrifying extent of his power – and how sincerely fucked Westeros is. That battle, though seemingly inconsequential in terms of the stakes as opposed to say, Blackwater, was just as much as a game changer plot wise. Another remarkable piece of television.
+iridiumQuote Reply
+Port,
+I said the same thing, where are the spoilers??
+The ShabQuote Reply
+iridium,
+(Celebration of “Hardhome” – my perspective)
+The highlights for me were the “character moments” immediately preceding, during, and after the zombie swarm, especially:
+• King Crow’s speech to the Wildling chieftains • Ex-enemy Tormund now Jon’s ally and BFF • The f*cking Thenn who walked out saying the NW is and akways be “the enemy”, winding up fighting side by side with Jon, and giving his life, in the failed attempt to recover the dragonglass. • Edd: “F*ck the glass!!! We’re going to die here!!” Me to TV: “Listen to Edd!!! Run!!! Aaccckkk!” • Karsi, Karsi, Karsi. You made me love you in fifteen minutes…and then you were gone …and then you sat up at the end as a blue-eyed zombie 💔 • Tormund shines: “He needs us. And we need him.” Explaining Jon’s arrow to Mance was mercy, in defiance of “southern king.” • “He’s prettier than my daughters, but he knows how to lead”, etc. • Karsi re: ancestors. “but f*ck em. They’re dead.” 😄 • Wun Wun to staring Edd: “the f*ck you lookin’ at?” • Karsi and the weird wight kids. • That moment when the dogs start barking and mist forms on mountain… • Jon w/ Longclaw shocks WW; with VS sword stroke WW disintegrates into pixie dust • Showboat NK at the very end raising his arms…and all the dead sit up. • Jon’s anguished look back as his boat rows away • Did I mention Karsi? • Tormund’s “response” to Lord of Bones insult • Wun Wun bursting through roof, flinging off wights and swatting them with log • The “courage to make peace” theme
+And the other parts of the episode – before those last twenty minutes – were excellent too. (Tyrion-Dany conversations, etc.)
+I’d have to watch it again. It’s been a while. I just remember that it wasn’t (just) the “horror show” aspect that made it memorable.
+Ten BearsQuote Reply
+Ten Bears,
+Hot damn, what a recap! All I can say is I second this to a tee.
+Quinton O’ConnorQuote Reply
+Firannion,
+What helps me is to turn out all the lights in the room when I’m watching the show. I struggle with it too.
+Tara RQuote Reply
+Firannion,
+“…There have been a fair few nighttime scenes – and even just indoor scenes in somber places – in previous seasons that were way too murky for my screen.” ———-
+It wasn’t until I rewatched S6e10 on a wide screen high def TV that I could make out Lothar’s finger in Walder Frey’s slice of pie. 🍰 (I’m assuming it was Lothar’s because Black Walder especially wasn’t easy to carve. 😃)
+Ten BearsQuote Reply
+If Bran and Bronn battle Brienne at the Blackwater before the Blackfish belittles Baelish behind Bobby Baratheon’s back but Brandon the Builder besieges Bolton in Braavos how many Boltons would a Bolton bolt if a Bolton could chuck wood?
+Asking for a friend named Benjen
+Catspaw AssassinQuote Reply
+talvikorppi,
+I concur that complex characters who have interesting arcs and interactions with others are integral to any show. Imo one reason that GoT is one of the–if not THE best series in TV history is for that very reason. The battles are epic because we’re invested in what happens to the characters we’ve grown with.
+Chris MedinaQuote Reply
+Catspaw Assassin,
+Wait… is this a trick question about Theon?
+Ten BearsQuote Reply
+Pigeon,
+I love it, but I’m not very well sighted, and have a bugger of a time seeing episodes which are dark from snow and smoke. Kills me. If I lighten my screen up a whole lot, I’ll see things but it does lose something. But GOT has been such a great series absolutely the best, I love the books, the fan sites, anything ASOIAF that I can wrap my eyes around. This last season is going to ruin me. Mentally and physically.
+HezrQuote Reply
+Ten Bears:
+(Celebration of “Hardhome” – my perspective)
+The highlights for me were the “character moments” immediately preceding, during, and after the zombie swarm, especially:
+• King Crow’s speech to the Wildling chieftains • Ex-enemy Tormund now Jon’s ally and BFF • The f*cking Thenn who walked out saying the NW is and akways be “the enemy”, winding up fighting side by side with Jon, and giving his life, in the failed attempt to recover the dragonglass.• Edd: “F*ck the glass!!! We’re going to die here!!”Me to TV: “Listen to Edd!!! Run!!! Aaccckkk!” • Karsi, Karsi, Karsi. You made me love you in fifteen minutes…and then you were gone …and then you sat up at the end as a blue-eyed zombie • Tormund shines: “He needs us. And we need him.”Explaining Jon’s arrow to Mance was mercy, in defiance of “southern king.” • “He’s prettier than my daughters, but he knows how to lead”, etc. • Karsi re: ancestors. “but f*ck em. They’re dead.” • Wun Wun to staring Edd: “the f*ck you lookin’ at?” • Karsi and the weird wight kids. • That moment when the dogs start barking and mist forms on mountain… • Jon w/ Longclaw shocks WW; with VS sword stroke WW disintegrates into pixie dust • Showboat NK at the very end raising his arms…and all the dead sit up. • Jon’s anguished look back as his boat rows away • Did I mention Karsi? • Tormund’s “response” to Lord of Bones insult • Wun Wun bursting through roof, flinging off wights and swatting them with log • The “courage to make peace” theme
+And the other parts of the episode – before those last twenty minutes – were excellent too. (Tyrion-Dany conversations, etc.)
+I’d have to watch it again. It’s been a while. I just remember that it wasn’t (just) the “horror show” aspect that made it memorable.
+All of this! I love Hardhome, it is one of my faves, and to me it encapsulates the entire series (battle for power, but, yeah, there is an army of dead people coming for everyone) and it shows the human side of conflict. There are those – like Loboda – who are uncertain about Jon and his motives, but who fight with him when the true threat comes.
+And you are correct – it is the character moments that make it. The action bits are nothing without them.
+Alba StarkQuote Reply
+Catspaw Assassin: If Bran and Bronn battle Brienne at the Blackwater before the Blackfish belittles Baelish behind Bobby Baratheon’s back but Brandon the Builder besieges Bolton in Braavos how many Boltons would a Bolton bolt if a Bolton could chuck wood?
+Asking for a friend named Benjen
+Twenty good men.
+Quinton O’ConnorQuote Reply
+Hezr: Pigeon,
+I love it, but I’m not very well sighted, and have a bugger of a time seeing episodes which are dark from snow and smoke. Kills me. If I lighten my screen up a whole lot, I’ll see things but it does lose something. But GOT has been such a great series absolutely the best, I love the books, the fan sites, anything ASOIAF that I can wrap my eyes around. This last season is going to ruin me. Mentally and physically.
+I have a bit of a hard time with the lighting or lack thereof as well. It seems a shame that they put so much into scenes when a lot of us have trouble with being able to see what’s going on. Especially if there’s a lot of action, there’s no way I have a clue who is doing what. 😜
+PigeonQuote Reply
+GoT wins best location for a period series 😀
+https://www.hollywoodreporter.com/lists/location-managers-guild-awards-nominees-2018-1079654/item/outstanding-locations-a-period-tv-series-1079740
+H.StarkQuote Reply
+Chris Medina: I concur that complex characters who have interesting arcs and interactions with others are integral to any show.
+I seem to remember my literature professors saying that this is what creates “story” in any medium!
+WimseyQuote Reply
+Firannion: ut it still makes me a little nervous that the end product will prove inadequately lit for the viewer with anything less than a gigantic TV screen with easily accessible brightness control.
+For good or for ill, it seems that most major TV series now work on the assumption that people will be watching shows this way. So, they are produced like movies. As a result, I find that most TV shows (just like most movies) are best viewed in dark rooms.
+WimseyQuote Reply
+Hodors Bastard: I still believe the big battle episode(s) and aftermath will be performed as an opera. Wagner, eat your heart out. (Djawadi, therein lies the challenge…Götterdämmerung!)
+Hmmm: will we get the great moments or the awful half-hours? 😀
+Seriously, though: we really do need the musical episode at some point. I want to see Sophie Turner sing “I’m so pretty…” while mincing about the ramparts of Winterfell as the Night King rides down….
+WimseyQuote Reply
+Just watch: the spinoff will be operatic as heck. The Musical Doom of Valyria.
+Quinton O’ConnorQuote Reply
+H.Stark: GoT wins best location for a period series😀
+https://www.hollywoodreporter.com/lists/location-managers-guild-awards-nominees-2018-1079654/item/outstanding-locations-a-period-tv-series-1079740
+Nice! Imagine making one’s living being a location scout. Sounds like immense fun, but challenging in terms of logistics. When I’m hiking I not infrequently pass through spots that seem to belong in some sort of movie (usually fantasy genre), but then I have to consider how costly it would be to get cast, crew and equipment that far from a road. And maybe that’s partly why such sites manage to retain their magical look and feel. (I suppose I have this topic on my mind this week because the rail trail bridge that figures prominently in ‘A Quiet Place’ is a place that I have visited many, many times.)
+I’m pleased to see that ‘Baby Driver’ also won one of these location awards. Some small compensation for getting skunked at the Oscars, where I thought it would waltz off with all the awards for editing, sound editing and sound mixing.
+FirannionQuote Reply
+Firannion,
+It probably is better for all concerned if they just film those areas in which you hike and then use green screens to put the actors there.
+WimseyQuote Reply
+Quinton O’Connor: Just watch: the spinoff will be operatic as heck. The Musical Doom of Valyria.
+With the closing finale of “Under Pressure,” I should think.
+Of course, I would have ended last season with Tormund wandering across the wreckage of the Wall with a mandolin singing “All alone or in twos….”
+WimseyQuote Reply
+Quinton O’Connor: Just watch: the spinoff will be operatic as heck. The Musical Doom of Valyria.
+I’d prefer operetta: all the funny GoT characters, as rendered by Gilbert & Sullivan. Has no one done this yet?
+FirannionQuote Reply
+Penny Douglas: I am completely in awe of all of the people who have made Game of Thrones. It is and always will be one of my most favorite shows. It will be epic and bittersweet for this last season. I am going to miss it when it’s over. Everyone is so talented that has worked on it. Gratitde to all who have worked so hard to entertain us over these years.
+This! Perfectly stated.
+JaredQuote Reply
+Thank you, Luka, for putting the picture of the card back on there. At the time I scanned the article yesterday, there was a notice that the picture had been removed by Instagram. Actually seeing it makes all the difference. I hope the “producer types” filmed during the 55 grueling days – I’d love to see how the scenes were achieved. Those behind the scenes snippets of how the show is created are some of my favorite things. I love the before and after shots of the CGI and love love watching the crews at work putting the battle scenes together and taking them apart.
+I don’t think we’ll have to worry about having a lot of “character to character” moments. As I watched the wights cross over the Wall, I was impressed by the sheer numbers of them. They are a swarm – I kind of envision Winterfell being beset from all sides by the advancing Army of the Dead, with different characters teamed up in defense of their place on the ramparts, or outside the gates of Winterfell, much like when the Wildings were besieging Castle Black from both the Wall side and the front gates.
+There were so many memorable character interactions then: Sam and Pyp teaming up to shoot arrows, until Ygritte got Pyp; The action in the courtyard, with Janos Slynt lurking about the edges until he took refuge in the storage room with Gilly; Alliser Thorne’s semi apology/explanation to Jon for the his decision not to block the tunnel, then Thorne’s badass performance in the courtyard. He might have been a pr**k, but he was no coward. And Ten Bears pointed out in that excellent recap of Hardhome so many of the highlights. The only thing I’d add is when Jon and Tormund landed on the shores: Tormund “Do you trust me, Jon Snow?” Jon: “Does that make me a fool?”
+Whatever, at Winterfell, I think we are in for some monumentally memorable interactions between characters, and more than a few tears. After all, almost every character remaining is beloved and/or redeemed somehow, except for Cersei, and it’s going to be a torment to lose any of them. (Damn, I might even shed a tear or two when Cersei bites the dust.) I think Grey Worm will have Unsullied at the front gate, maybe being aided by men from the Golden Company or even Beric or Jorah, while Jorah keeps a watchful eye on Dany flying overhead. Maybe Arya and Sansa will have a spot at another point, and surely Jon and Tormund will be on the ramparts flinging wights off and filling them with flaming arrows.
+However it unfolds, all portents are of a masterpiece season in the making. I might even be so bold as to contradict the “producer types” and say that, yes, we will know how hard the cast and crew worked, and be ever grateful to them for it.
+ThronetenderQuote Reply
+Firannion: I’d prefer operetta: all the funny GoT characters, as rendered by Gilbert & Sullivan. Has no one done this yet?
+You know what we need? Someone to recut the Sansa/Arya/LF scenes from S7 to Prokofiev’s Peter and the Wolf. Any video editors here in the comments? Get on that post-haste! 🙂
+Enharmony1625Quote Reply
+This is incredible. I’m assuming the previous record was for BoB.
+JPMQuote Reply
+Full list of 150 alive characters from GoT season 1 – 7:
+All credited starring cast in the opening sequence: 1. Peter Dinklage as Tyrion Lannister 2. Nikolaj Coster-Waldau as Jaime Lannister 3. Lena Headey as Cersei Lannister 4. Jerome Flynn as Bronn 5. Kit Harington as Jon Snow 6. Liam Cunningham as Davos Seaworth 7. Sophie Turner as Sansa Stark 8. Isaac Hempstead-Wright as Brandon Stark 9. Maisie Williams as Arya Stark 10. Gwendoline Christie as Brienne of Tarth 11. John Bradley as Samwell Tarly 12. Hannah Murray as Gilly 13. Kristofer Hivju as Tormund Giantsbane 14. Joe Dempsie as Gendry 15. Rory McCann as Sandor Clegane 16. Emilia Clarke as Daenerys Targaryen 17. Nathalie Emmanuel as Missandei 18. Iain Glen as Jorah Mormont 19. Conleth Hill as Varys 20. Alfie Allen as Theon Greyjoy 21. Carice van Houten as Melisandre 22. Tom Wlaschiha as Jaqen H’ghar 23. Michiel Huisman as Daario Naharis 24. (Indira Varma as Ellaria Sand)
+Animals 25. Drogon (Dragon) 26. Rhaegal (Dragon) 27. Ghost (Direwolf) 28. Nymeria (Direwolf) 29. Ser Pounce (Cat)
+Selected guest starring cast: 30. Mark Gatiss as Tycho Nestoris 31. Anton Lesser as Qyburn 32. Hafþór Júlíus Björnsson as Gregor Clegane 33. Pilou Asbæk as Euron Greyjoy 34. Gemma Whelan as Yara Greyjoy 35. Jacob Anderson as Grey Worm 36. Ben Crompton as Eddison Tollett 37. William & James Wilson as Baby Sam 38. Richard Dormer as Beric Dondarrion 39. Daniel Portman as Podrick Payne 40. Tim McInnerny as Robett Glover 41. Bella Ramsey as Lyanna Mormont 42. Harry Grasby as Ned Umber 43. Megan Parkinson as Alys Karstark 44. Richard Rycroft as Maester Wolkan 45. Rupert Vansittart as Yohn Royce 46. Lino Facioli as Robin Arryn 47. Ellie Kendrick as Meera Reed 48. Jim Broadbent as Archmaester Ebrose 49. Tobias Menzies as Lord Edmure Tully 50. Vladimir Furdik as the Night King
+Season 1 51. Roger Allam as Illyrio Mopatis 52. Wilko Johnson as Ilyn Payne 53. Ben Hawkey as Hot Pie 54. (Miltos Yerolemou as Syrio Forel) 55. Emun Elliott as Marillion 56. Mark Lewis Jones as Shagga and the Hill tribes 57. Andrew Wilde as Tobho Mott 58. Robert Sterne as Royal Steward 59. Ciaran Birmingham as Mord 60. Susie Kelly as Masha Heddle
+Season 2 61. Lucian Msamati as Salladhor Saan 62. Sara Dylan as Bernadette 63. Laura Pradelska as Quaithe 64. Steven Cole as Kovarro 65. Robert Boroje as Malakho 66. Sarita Piotrowski as Jhiqui 67. Patrick Fitzsymons as Reginald Lannister 68. Roy Dotrice as Hallyne 69. Antonia Christophers as Mhaegen 70. Sahara Knite as Armeca 71. Maisie Dee as Daisy 72. Josephine Gillan as Marei
+Season 3 73. Alexandra Dowling as Roslin Tully 74. Roslin and Edmure Tully’s baby 75. Will Tudor as Olyvar 76. Philip McGinley as Anguy 77. Paul Bentley as the High Septon 78. Pixie Le Knot as Kayla 79. Elisa Lasowski as Mirelle 80. Kylie Harris as Genna 81. Will O’Connell as Todder
+Season 4 82. Paola Dionisotti as Anya Waynwood 83. Alisdair Simpson as Donnel Waynwood 84. Richard Doubleday as Vance Corbray 85. Dez McMahon as Endrew Tarth 86. Gary Oliver as Ternesio Terys 87. Deirdre Monaghan as Morag 88. Craster’s wifes (Mothers of the White Walkers) 89. Gordon Mahn as Imry Florent
+Season 5 90. Enzo Cilenti as Yezzan zo Qaggaz 91. Elizabeth Cadwallader as Lollys Stokeworth 92. J. J. Murphy as Denys Mallister 93. Adewale Akinnuoye-Agbaje as Malko 94. Meena Rayann as Vala 95. (Hannah Waddingham as Septa Unella) 96. Murray McArthur as Dim Dalba 97. Ali Lyons as Johnna 98. Karla Lyons as Willa
+Season 6 99. Ania Bukstein as Kinvara 100. Gerald Lepkowski as Zanrush 101. Michael Feast as Aeron Greyjoy 102. Lucy Hayes as Kitty Frey 103. Staz Nair as Qhono 104. Souad Faress as High Priestess of the Dosh Khaleen 105. Hannah John-Kamen as Ornella 106. Sean Blowers as Wyman Manderly 107. Tom Varey as Cley Cerwyn 108. Samantha Spiro as Melessa Tarly 109. Rebecca Benson as Talla Tarly 110. Richard E. Grant as Izembaro 111. Leigh Gill as Bobono 112. Eline Powell as Bianca 113. Rob Callender as Clarenzo 114. Kevin Eldon as Camello 115. Nathanael Saleh as Arthur 116. Annette Hannah as Frances
+Season 7 117. Brendan Cowell as Harrag 118. Danny Kirrane as Henk 119. Joseph Quinn as Koner
+Presumed current Queensguard: 120. Ser Boros Blount 121. Ser Preston Greenfield 122. Ser Arys Oakheart 123. Ser Balon Swann 124. Ser Osmund Kettleblack
+Mentioned and seen Lords throughout Westeros who may be still alive: 125. Gerry O’Brien as Jonos Bracken 126. Vinnie McCabe as Leo Lefford 127. Damon and Addam Marbrand 128. Harys Swyft 129. Maro Drobnic as Desmond Crakehall 130. Eldrick Sarsfield 131. Gyles Rosby 132. Paxter Redwyne 133. Jason Mallister 134. Lady Dustin
+Oberyn Martell’s remaining daughters: 135. Obella Sand 136. Dorea Sand 137. Loreza Sand 138. Sarella Sand
+Unknown faith and characters from flashbacks: 139. Howland Reed 140. Lyanna Stark’s midwife 141. Maggy the Frog 142. Melara Hetherspoon 143. Selwyn Tarth 144. Marya Seaworth 145. (Alerie Tyrell) 146. Dorna Lannister 147. Cotter Pyke 148. Jaremy Rykker 149. Hobb 150. Tysha
+OleQuote Reply
+Holy moly. Can’t wait to see it.
+Massive cups of tea to all involved!
+IsabelleQuote Reply
+Ole,
+Holy cow! Great list! I wonder how many will make it out alive…
+Ten BearsQuote Reply
+Ole,
+Some of the characters on your list should probably be considered dead at this point, such as Ellaria Sand, Syrio Forel, and Septa Unella, but I don’t know how technical you’re trying to get. They should probably be separated from your alive list and moved to a “presumed dead” list, but ymmv.
+Mr DerpQuote Reply
+*Edit* I see they’re in parenthesis, so I assume that’s your version of saying they may or may not be alive.
+Mr DerpQuote Reply
+Ole,
+Great list! The only thing is a bunch of them are book-only characters that won’t be in the show, so it is a bit odd to use this full list when thinking of remaining characters in the show. And the flip side of that (as I’m sure you know), some characters in the books are dead but aren’t dead in the show and vise versa.
+That being said, it would be nearly impossible to make a list like this for book characters, but I believe the show-only character list would be much smaller. I see that the list is exactly 150 people long, so I’m guessing you just wanted to blend the show and books together to get to that number. But still, really cool list!
+JaehaerysQuote Reply
+Your email address will not be published. Required fields are marked *
+Comment
+Name *
+Email *
+Website
+
+
+Notify me of follow-up comments by email.
+Notify me of new posts by email.
+
+Enter your email address to subscribe to WotW and receive notifications of new posts by email.
+Email Address
+
+
+
+Which character is most likely to survive Game of Thrones?
+
+View Results
+Advertisement
+By SUI-LEE WEE and ELSIE CHENAPRIL 13, 2018
+BEIJING — Deng Yufeng wanted to create art that prods people to question their lack of data privacy. What better way, he reasoned, than to buy the personal information of more than 300,000 Chinese people off the internet and display it in a public exhibition?
+The police did not appreciate the irony.
+Last week, the authorities in the Chinese city of Wuhan shut down Mr. Deng’s exhibition in a local museum after two days and told him that he was being investigated on suspicion of amassing the information through illegal means.
+Mr. Deng’s project coincides with a growing debate about the lack of data privacy in China, where people are starting to push back against tech companies and their use of information. Online brokers regularly, and illegally, buy and sell personal information online. Chinese people are often bombarded with calls and text messages offering bank loans or home purchases that seem too personalized to be random.
+Mr. Deng, a 32-year-old artist based in Beijing, said he hoped to get Chinese people to question that everyday scenario.
+Advertisement
+“When these nuisance text messages become a daily routine, we develop a habit of ignoring and avoiding these text messages in a numb state,” he said in a telephone interview. “This is actually the mental state of most people here: a state of helplessness.”
+Advertisement
+Last month, Robin Li, the chief executive of the search giant Baidu, set off a firestorm when he said that Chinese people were willing to trade privacy for convenience, safety and efficiency. In December, the software developer Qihoo 360 angered many internet users when a blogger discovered that the company was taking surveillance footage from restaurants and gyms in Beijing and broadcasting it without permission onto its platform.
+The rising public anger is taking place amid a similar debate in the United States, over Facebook. But Beijing officials keep the volume lower because personal data is broadly available to another powerful constituency: the Chinese government. Tech companies cooperate with the police in handing over information, with few questions asked. Citizens are resigned to the fact that they are tracked by the government, and there is little pushback about the increased state of surveillance.
+So six months ago, Mr. Deng started buying people’s information, using the Chinese messaging app QQ to reach sellers. He said that the data was easy to find and that he paid a total of $800 for people’s names, genders, phone numbers, online shopping records, travel itineraries, license plate numbers — at a cost at just over a tenth of a penny per person.
+He said he knew he was breaking the law. He wanted to prove a point.
+“Artists are not merely aesthetic creators,” Mr. Deng said. “In the very complicated state of our world today, we should also bear social responsibility.”
+At his exhibition, called “346,000 Wuhan Citizens’ Secrets,” he printed the pieces of personal data on sheets of paper using a special liquid solution. The sheets were hung in neat rows and columns on a wall. Museumgoers could only see the data under a special light source, and key identifying details were redacted.
+
+Please verify you're not a robot by clicking the box.
+Invalid email address. Please re-enter.
+You must select a newsletter to subscribe to.
+View all New York Times newsletters.
+According to Mr. Deng, plainclothes police officers took him away on April 6, two days after his exhibition opened. They told him that he was being investigated for the buying of citizens’ information online and was barred from leaving Wuhan. When reached for comment, a Wuhan-based police officer from the station investigating the case said she did not know anything about it and hung up.
+Under Chinese criminal law, Mr. Deng faces up to seven years in jail. But Raymond Wang, a lawyer who specializes in data security, said he believed it was unlikely that Mr. Deng would be sentenced because there were no “damaging consequences.”
+Whether Mr. Deng’s exhibit will catch the attention of China’s leaders isn’t clear. But Legal Daily, an official, government-run publication, said Mr. Deng’s project showed how the existing laws on the protection of personal information were weak and enforcement was poor.
+Advertisement
+“The organizer’s purpose was to call for the protection of personal privacy, and he himself violated the law to purchase personal information,” the newspaper wrote in an opinion piece. “Due to the complexity of the plot, it will make for a lively legal lesson.”
+The privacy project is just one of Mr. Deng’s many works of art touching on social issues. He has gone undercover to investigate the kidnappings of children, a major problem in China. He has also worked on a project on how people buy fake identification cards and guns.
+Mr. Deng pointed out that the lack of data privacy was also a global problem.
+With the help of volunteers, Mr. Deng sent about 10,000 text messages to the people whose information he used in the exhibition, inviting them to come.
+One of them was not amused, according to Mr. Deng, responding back: “You’re sick.”
+Follow Sui-Lee Wee on Twitter: @suilee.
+A version of this article appears in print on April 14, 2018, on Page B2 of the New York edition with the headline: 346,000 People’s Data, Displayed on a Wall. Order Reprints| Today's Paper|Subscribe
+We’re interested in your feedback on this page. Tell us what you think.
+Go to Home Page »
+
+
+
+Redesigned in Spring 2016, the new Wall Connector is hardwired directly into your electrical system, and is designed for 208-240 volt power supplies.
+The 8.5’ length Wall Connector is recommended for easy cable management when installed directly adjacent to a parking spot. For Model S or Model X equipped with the standard on-board charger (48A), install the Wall Connector with a 60 amp circuit breaker for optimal charging. For vehicles with a High Amperage charger upgrade (72A) install Wall Connector with a 90 amp circuit breaker. For power sharing with more than one Tesla, install with as much power as possible, up to 100 amps.
+The 24’ length Wall Connector is recommended for maximum flexibility in parking locations
+Features:
+Includes:
+Learn more about charging speeds with our Home Charging Calculator support page.
+Wall Connector Installation Manual One page overview
+Buying for your hotel or other destination property? Contact Tesla Destination Charging for help with attracting Tesla owners to your business.
+Note: Prior to purchasing this item, we recommend consulting with an electrician to ensure your home is able to accomodate the installation.
+Tesla © 2018 Privacy & Legal Careers Forums Locations Shop FAQ Sign Out ▾
+Movies, TV & Showtimes
+American Beauty (1999) #64 on IMDb Top Rated Movies »
+Celebs, Events & Photos
+Leonardo DiCaprio » #84 on STARmeter
+News & Community
+Watchlist
+
+Find industry contacts & talent representation
+Manage your photos, credits, & more
+Showcase yourself on IMDb & Amazon
+Sign in with Facebook Other Sign in options
+Some parts of this page won't work property. Please reload or try later.
+Olivia Cooke shares her Watchlist, featuring Hereditary, The Strangers: Prey at Night, and more.
+Watch now
+Related lists from IMDb editors
+Related lists from IMDb users
+Title: WALL·E (2008)
+Want to share IMDb's rating on your own site? Use the HTML below.
+You must be a registered user to use the IMDb rating plugin.
+Seventy-eight year old Carl Fredricksen travels to Paradise Falls in his home equipped with balloons, inadvertently taking a young stowaway.
+A cowboy doll is profoundly threatened and jealous when a new spaceman figure supplants him as top toy in a boy's room.
+After his son is captured in the Great Barrier Reef and taken to Sydney, a timid clownfish sets out on a journey to bring him home.
+The toys are mistakenly delivered to a day-care center instead of the attic right before Andy leaves for college, and it's up to Woody to convince the other toys that they weren't abandoned and to return home.
+In order to power the city, monsters have to scare children so that they scream. However, the children are toxic to the monsters, and after a child gets through, 2 monsters realize things may not be what they think.
+A Lion cub crown prince is tricked by a treacherous uncle into thinking he caused his father's death and flees into exile in despair, only to learn in adulthood his identity and his responsibilities.
+A hapless young Viking who aspires to hunt dragons becomes the unlikely friend of a young dragon himself, and learns there may be more to the creatures than he assumed.
+After young Riley is uprooted from her Midwest life and moved to San Francisco, her emotions - Joy, Fear, Anger, Disgust and Sadness - conflict on how best to navigate a new city, house, and school.
+When Woody is stolen by a toy collector, Buzz and his friends vow to rescue him, but Woody finds the idea of immortality in a museum tempting.
+A family of undercover superheroes, while trying to live the quiet suburban life, are forced into action to save the world.
+A rat who can cook makes an unusual alliance with a young kitchen worker at a famous restaurant.
+After his swamp is filled with magical creatures, Shrek agrees to rescue Princess Fiona for a villainous lord in order to get his land back.
+In a distant, but not so unrealistic, future where mankind has abandoned earth because it has become covered with trash from products sold by the powerful multi-national Buy N Large corporation, WALL-E, a garbage collecting robot has been left to clean up the mess. Mesmerized with trinkets of Earth's history and show tunes, WALL-E is alone on Earth except for a sprightly pet cockroach. One day, EVE, a sleek (and dangerous) reconnaissance robot, is sent to Earth to find proof that life is once again sustainable. WALL-E falls in love with EVE. WALL-E rescues EVE from a dust storm and shows her a living plant he found amongst the rubble. Consistent with her "directive", EVE takes the plant and automatically enters a deactivated state except for a blinking green beacon. WALL-E, doesn't understand what has happened to his new friend, but, true to his love, he protects her from wind, rain, and lightning, even as she is unresponsive. One day a massive ship comes to reclaim EVE, but WALL-E, ...
+I just returned from an advanced benefit screening of WALL*E, and I want to be careful not to spill too much regarding the movie. I had the added privilege of watching the film at Pixar, which in and of itself, was amazing. This picture is not a cartoon; it is a film. In fact, it even has the LOOK of film. One of my complaints of more recent 3-D/CG animated films (not from Pixar) is that they all seem to look the same... clean lines, crisp colors, and very "virtual", for lack of a better term. WALL*E transcends the typical look of CG animation, and has a true to life "grit." The creators at Pixar are true artists, and are indeed masters of their craft. Not only are they masters of the technology, they are masters of telling a story. WALL*E is no exception. The best way to describe the film is as a science fiction, comedy, dramatic love story. WALL*E, as a character, has dimension, personality, and heart... pretty impressive given that he is essentially a trash compactor. It is true that there is little dialogue in this feature, but I personally did not feel it detracted from the story at all. WALL*E is very much a different Pixar film from it's previous features. I will be curious to see how it is received by others, but in my opinion, I think Pixar has stayed true to itself, demonstrating a commitment to telling great stories and pushing the edge of technology to leave your jaw dropping! My most sincere compliments to Andrew Stanton, Jim Morris, John Lasseter, Ben Burtt, and all the creative forces at Pixar. Can't wait to see what the future brings...
+Find showtimes, watch trailers, browse photos, track your Watchlist and rate your favorite movies and TV shows on your phone or tablet!
+President Trump, who repeatedly insisted during the 2016 campaign that Mexico would pay for a wall along the southern border, is privately pushing the U.S. military to fund construction of his signature project.
+Trump has told advisers that he was spurned in a large spending bill last week when lawmakers appropriated only $1.6 billion for the border wall. He has suggested to Defense Secretary Jim Mattis and congressional leaders that the Pentagon could fund the sprawling project, citing a “national security” risk.
+After floating the notion to several advisers last week, Trump told House Speaker Paul D. Ryan (R-Wis.) that the military should pay for the wall, according to three people familiar with the meeting last Wednesday in the White House residence. Ryan offered little reaction to the idea, these people said, but senior Capitol Hill officials later said it was an unlikely prospect.
+The president’s pursuit of defense dollars to finance the U.S.-Mexico border wall underscores his determination to fulfill a campaign promise and build the barrier despite resistance in the Republican-led Congress. The administration’s last-minute negotiations with lawmakers to secure billions more for the wall failed, and Trump grudgingly signed the spending bill Friday after a short-lived veto threat.
+Four days later, Trump continued to express regret over signing the $1.3 trillion package, which funded the government and averted a shutdown, saying it was a mistake and he should have followed his instincts.
+In another interaction with senior aides last week, Trump noted that the Defense Department was getting so much money as part of the spending bill that the Pentagon could surely afford the border wall, two White House officials said. The Pentagon received about $700 billion in the spending package, which Trump repeatedly lauded as “historic.”
+Meanwhile, the $1.6 billion in the bill for some fencing and levees on the border not only fell far short of the $25 billion that Trump was seeking, but it also came with tight restrictions on how the money could be spent.
+The individuals and officials spoke on the condition of anonymity to talk freely about private discussions.
+[Trump signs massive spending bill, but not before a little drama]
+White House press secretary Sarah Huckabee Sanders deflected a question Tuesday about money dedicated to the military being used to fund construction of the wall.
+“I can’t get into the specifics of that at this point, but I can tell you that the continuation of building the wall is ongoing, and we’re going to continue moving forward in that process,” Sanders told reporters.
+“Build WALL through M!” Trump recently wrote on Twitter. He retweeted those words Tuesday, noting that “our Military is again rich.” Two advisers said “M” stood for “military.”
+The president has suggested to Mattis that his department, instead of the Department of Homeland Security, could fund the construction, two Trump advisers said. But the military is not likely to fund the wall, according to White House and Defense Department officials.
+The Pentagon has plenty of money, but reprogramming it for a wall would require votes in Congress that the president does not seem to have. Taking money from the 2018 budget for the wall would require an act of Congress, a senior Pentagon official said.
+To find the money in the 2019 defense budget, Trump would have to submit a budget amendment that would require 60 votes in the Senate, the official said.
+Democrats in Congress would probably chafe at military spending going to the construction of a border wall, and military officials may also blanch, White House advisers said.
+Defense hawks in the Republican ranks would balk at taking money now dedicated to the Pentagon for aircraft, weapons and improvements to the armed forces’ readiness and instead steering it toward construction of the wall.
+“First Mexico was supposed to pay for it, then U.S. taxpayers, and now our men and women in uniform?” Senate Minority Leader Charles E. Schumer (D-N.Y.) said in a statement to The Washington Post. “This would be a blatant misuse of military funds and tied up in court for years. Secretary Mattis ought not bother and instead use the money to help our troops, rather than advance the president’s political fantasies.”
+Trump has grown frustrated watching constant TV criticism of the spending package and is determined to find a new way to fund the wall, several advisers said, privately grousing that his political supporters could become disenchanted without progress. After a recent trip to see prototypes of the wall in California, Trump has grown more animated by the issue, advisers said.
+The president’s comments raising the possibility of using Pentagon funds to build the wall came after the collapse of negotiations with Democrats to secure $25 billion in long-term wall funding in exchange for protections for young immigrants at risk for deportation because of Trump’s cancellation of the Deferred Action for Childhood Arrivals program.
+The White House offered three years of protections for DACA recipients, according to multiple congressional aides, but Democrats demanded protections for a larger group of “dreamers,” including those who never applied or are ineligible for DACA. The negotiations fell apart before the spending bill was drafted and passed last week.
+[‘Trump blew it’: The president missed his best chance yet to get funding for his border wall]
+The urgency to strike a deal reflected the growing sense that the spending bill represented the last chance for the Trump administration to secure substantial wall funding, at least in the president’s first term. Top Republicans believe it is all but certain that Democrats will gain House seats in November’s midterm elections — and perhaps take the majority — greatly enhancing their bargaining position in future spending negotiations.
+Only $641 million is earmarked for new primary fencing in areas that have no barriers, and most of the money can be spent only on “operationally effective designs” that were deployed as of last May. That means the prototype designs the Trump administration is exploring cannot be built, except along a stretch of the border near San Diego where a barrier is already in place.
+
+Greg Jaffe contributed to this report.
+

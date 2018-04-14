@@ -1,0 +1,393 @@
+:
+Dining tables are hot spots even when there’s no food on them. Playing games, helping with homework or just lingering after a meal, they’re where you share good times with family and friends. We make ours sturdy and durable, in lots of styles to help you find what suits your taste. Many are extendable so you’ll always have room for everyone.
+Providing healthy food to hungry Chapel Hill and Carrboro children every week.
+TABLE’s mission is to provide healthy, emergency food aid every week to hungry children living in Chapel Hill and Carrboro, NC.
+Learn More →
+One way to help is by making a tax deductible contribution to help us provide healthy food to more local hungry children. Make a single donation or set up an easy recurring donation. Anything you can do helps!
+Your food donations enable our hunger relief programs to deliver healthy food to hungry children in Carrboro and Chapel Hill. Currently serving 600 children each week, your food contribution makes a difference.
+TABLE depends on volunteers to prepare, pack and deliver bags to our kids every week as well as collect food, assist with PR, plan and work at special events, and much more.
+For TABLE, spring brings a season of hope for our kids. Every seedling planted means more fresh food for every bag we fill and deliver. Every new child we feed is one more child who doesn’t go hungry on the weekends or during holidays and the summer. It is this season where TABLE plans for the future to ensure we reach more kids in Chapel Hill and Carrboro.
+2018 marks TABLE’s 10th anniversary of feeding hungry children in Chapel Hill and Carrboro and we couldn’t be more excited! We have so much to be grateful for this year and to celebrate.
+Have you ever thought about how your sense of sight, smell and touch impact the food choices you make? They are a vital component to our dietary decisions from what we choose to purchase at the grocery store or farmer’s market to what we order at a restaurant or cook at home.
+Join neighbors and friends for delicious food and family fun - all to benefit TABLE's mission to feed local hungry kids.
+© 2018 TABLE NC
+Contact Us
+209 E. Main Street Carrboro, NC 27510 (919) 636-4860 info@tablenc.org
+Site by Newfangled
+TABLE is a 501(c)(3) Non-Profit Organization.
+We are listed with the following organizations:
+An HTML table is defined with the <table> tag.
+Each table row is defined with the <tr> tag. A table header is defined with the <th> tag. By default, table headings are bold and centered. A table data/cell is defined with the <td> tag.
+Note: The <td> elements are the data containers of the table. They can contain all sorts of HTML elements; text, images, lists, other tables, etc.
+If you do not specify a border for the table, it will be displayed without borders.
+A border is set using the CSS border property:
+Remember to define borders for both the table and the table cells.
+If you want the borders to collapse into one border, add the CSS border-collapse property:
+Cell padding specifies the space between the cell content and its borders.
+If you do not specify a padding, the table cells will be displayed without padding.
+To set the padding, use the CSS padding property:
+By default, table headings are bold and centered.
+To left-align the table headings, use the CSS text-align property:
+Border spacing specifies the space between the cells.
+To set the border spacing for a table, use the CSS border-spacing property:
+Note: If the table has collapsed borders, border-spacing has no effect.
+To make a cell span more than one column, use the colspan attribute:
+To make a cell span more than one row, use the rowspan attribute:
+To add a caption to a table, use the <caption> tag:
+Note: The <caption> tag must be inserted immediately after the <table> tag.
+To define a special style for a special table, add an id attribute to the table:
+Exercise 1 » Exercise 2 » Exercise 3 » Exercise 4 » Exercise 5 » Exercise 6 »
+Tabs Dropdowns Accordions Convert Weights Animated Buttons Side Navigation Top Navigation Modal Boxes Progress Bars Parallax Login Form HTML Includes Google Maps Range Sliders Tooltips Slideshow Filter List Sort List
+HTML, CSS, JavaScript, PHP, jQuery, Bootstrap and XML.
+Your message has been sent to W3Schools.
+every family member & friend gets a great view around this circle
+perfect for larger gatherings
+our most popular pieces
+low prices on the latest dining table looks
+follow Dictionary.com
+He gets up and goes over to their table and introduces himself, and he says, ‘Hello, I’m Oliver Reed.
+That means any response that could result in physical damage inside North Korea is off the table.
+A table creaking under the weight of a Christmas banquet, a classic celebration of binge eating and drinking.
+Targeting her upper back, Couple sat cross-legged on a table while she whipped her slave.
+Det. 2: (slamming his hand on the table and yelling) You hung her!
+All is prepared—the table and the feast— With due appurtenance of clothes and cushions.
+Half a dozen of Percival's friends sat at the table with them from time to time.
+Blowing out the candle, he advanced to the table and set it down.
+She stood by the table, the light from a shaded lamp making her colour glow.
+Almost every Barbarian at the table had made his own fortune.
+late 12c., "board, slab, plate," from Old French table "board, plank, writing table, picture" (11c.), and late Old English tabele, from West Germanic *tabal (cf. Old High German zabel, German Tafel), both the French and Germanic words from Latin tabula "a board, plank, table," originally "small flat slab or piece" usually for inscriptions or for games, of uncertain origin, related to Umbrian tafle "on the board." The sense of "piece of furniture with the flat top and legs" first recorded c.1300 (the usual Latin word for this was mensa (see mensa); Old English writers used bord (see board (n.1)). The meaning "arrangement of numbers or other figures for convenience" is recorded from late 14c. (e.g. table of contents, mid-15c.). Figurative phrase turn the tables (1630s) is from backgammon (in Old and Middle English the game was called tables). Table talk is attested from 1560s, translating Latin colloquia mensalis. To table-hop is first recorded 1956. The adjectival phrase under-the-table "hidden from view" is recorded from 1949; under the table "passed out from excess drinking" is recorded from 1921. Table tennis is recorded from 1887.
+in parliamentary sense, 1718, originally "to lay on the (speaker's) table for discussion," from table (n.). But in U.S. political jargon it has chiefly the sense of "to postpone indefinitely" (1866). Related: Tabled; tabling.
+table ta·ble (tā'bəl) n.
+An article of furniture supported by one or more vertical legs and having a flat horizontal surface.
+An orderly arrangement of data, especially one in which the data are arranged in columns and rows in an essentially rectangular form.
+An abbreviated list, as of contents; a synopsis.
+The inner or outer flat layer of bones of the skull separated by the diploë.
+Related Terms
+under the table
+TASTES
+BEAUSOLIEL (PEI) OYSTER
+MALTED MILK BREAD
+GF SUNFLOWER BREAD
+EVAN’S BABY ROOTS house tofu, togarashi, turmeric honey
+LENTIL FALAFEL little gem lettuce, black olive, tahini yoghurt
+BLUE CRAB HUSH PUPPY preserved lemon, jalapeno, tarragon
+MEATBALLS & CAULIFLOWER beet, yoghurt
+APPETIZERS
+ARTISANAL CHEESE and HOUSE CHARCUTERIE board
+LOCAL LETTUCES blue cheese, candied walnut
+ENGLISH PEAS pea greens, house bacon, scallion, satsuma, turmeric, activated charcoal
+STEAK TARTARE sour cream & onion, vinegar chips
+GRILLED HALOUMI favas & fava leaves, vadouvan, date honey
+ESCARGOT flax lumache pasta verde, fava beans
+WARM POLENTA Laura’s ramps, pork sausage, spring radish, ice lettuce
+ROASTED BONE MARROW tomato glaze, cornbread crumb
+MUSHROOM TOAST taleggio, mountain spinach
+ENTREES
+GNOCCHI PRIMAVERA fava beans, english peas, asparagus, sunflower seeds
+VA STRIPED BASS green-gold rice, preserved lemon, spring things
+ROASTED GA CHICKEN cabbage, red buds, bacon bread
+SPAGHETTI AL NERO calamari, crab, wild rapini, squid ink butter
+GRILLED SUNBURST TROUT High Mountain beans, spring onion and garlic, sorghum
+HERITAGE PORK CREPINETTE Evan’s little gems, polenta, satsuma, pork glaze
+BAVETTE STEAK country capt’n curry, onion rings, spring roots & onions
+BRASSTOWN BEEF BURGER & FRIES
+TO SHARE
+FRIED GA CHICKEN & SIDES FOR TWO cornbread, honey butter
+ROASTED SPRING LAMB & SIDES FOR TWO mint chutney, confit potatoes
+BONE-IN RIBEYE STEAK & SIDES FOR TWO chimmichurri, steak sauce, fines herbes
+SIDES
+ROASTED CAULIFLOWER herb tahini
+BLACK KALE spicy tamarind viniagrette
+SMASH-FRIED YUKON POTATOES house steak sauce
+SMALL & TO SHARE
+DEVILS ON HORSEBACK
+DEVILED EGGS
+LOCAL LETTUCES savory granola, blue cheese, apple
+PIMENTO CHEESE house crackers
+CRISPY CAULIFLOWER black lime yogurt
+ROASTED BONE MARROW soft herbs, shallot, toast
+ARTISANAL CHEESE and HOUSE CHARCUTERIE board
+LARGER PLATES
+PUMPERNICKLE BAGEL smoked tilefish, cream cheese, caper, red onion
+MORTADELLA SANDWICH fried egg, Parmesan, balsamic
+HOT CHICKEN SANDWICH B&B pickles, collard greens remoulade, chili oil
+BRASSTOWN BEEF BURGER potato bun
+GRIT SOUFFLE breakfast sausage, green onion, pimento cheese, preserved lemon
+SHRIMP & GRITS English peas, house bacon, little onions
+BAVETTE STEAK yukons, gentleman’s relish, foraged greens
+CAROLINA FISH High Mountain beans, spring onion and garlic, sorghum
+GREEN LENTIL FRITTERS hummous, tatziki, pita
+BUTTERMILK FRIED CHICKEN cornbread, chili honey, pea salad
+SMALL & TO SHARE
+DEVILS ON HORSEBACK
+DEVILED EGGS
+HOUSE PASTRY
+BISCUIT & SAWMILL GRAVY
+LOCAL LETTUCES blue cheese, candied walnut
+PIMENTO CHEESE house crackers
+CRISPY CAULIFLOWER black lime yogurt
+ROASTED BONE MARROW soft herbs, shallot, toast
+ARTISANAL CHEESE and HOUSE CHARCUTERIE board
+BRUNCH PLATES
+MORTADELLA SANDWICH fried egg, Parmesan, balsamic
+PUMPERNICKLE BAGEL smoked tilefish, cream cheese, caper, red onion
+HOT CHICKEN SANDWICH B&B pickles, collard greens remoulade, chili oil
+BRASSTOWN BEEF BURGER potato bun
+THE ABOVE PLATES ARE SERVED WITH HOMEFRIES, FRENCH FRIES OR SALAD
+SHAKSHUKA black kale, carrot & haloumi salad
+SHRIMP & GRITS English peas, house bacon, little onions
+ROPA VIEJA black beans, salsa verde, fried egg, tortilla
+GRAINS, BEANS & SEEDS kale, poached egg, roasted mushroom
+GRIT SOUFFLE breakfast sausage, green onion, pimento cheese, preserved lemon
+BUTTERMILK FRIED CHICKEN cheddar cornbread pickled pea salad, chili honey
+FRENCH TOAST spiced cream cheese, almond, blood orange & cranberry marmalade
+SIDES
+EGG (cooked your way)
+GRITS
+BACON
+BISCUIT
+HOMEFRIES
+COCKTAILS
+APEROL SPRITZ Aperol, Sparkling Wine, Sparkling Water
+WHITE PORT & IMPERIAL LIFE TONIC Quinta do Infantado White, House Tonic
+HOUSE BLOODY MARY Old Bay, House Pickles
+FRENCH 75 Gin, Fresh Lemon, Sugar, Sparkling Wine
+KIR ROYALE Prosecco, Creme de Cassis, lemon
+COCKTAILS - FROM THE HOUSE
+APPARENT WIND The Famous Smoky Grouse, hijiki honey, Saler's aperitif
+SPIRIT GUIDE Amaro Montenegro, Jim Beam Rye, Gran Classico bitter
+NORWEGIAN RAZORBLADE Linie Aquavit, cayenne, lemon, sugar
+CHARMING NANCY Drew's family glogg, gomme syrup, bitters, whole egg
+APPLE SHRUB apples, champagne vinegar, rosemary, lemon, soda
+COCKTAILS - CLASSICS
+EL DIABLO blanco tequila, creme de cassis, house ginger, lime, soda
+SAZERAC Rye whiskey, sugar, absinthe, Peychaud’s bitters
+OLD HALL London dry gin, dry vermouth, Pimm's no. 1, lime cordial, fresh lime
+BEER
+ESTRELLA DAURA LAGER (GF) Damm, Catalonia, Spain
+BLOODTUSK KELLERBIER LAGER Burial, AVL, NC
+HALLO, BERLINERWEISSE Mikkeler, SD, CA
+ULFBERHT, BALTIC PORTER with juniper, Burial, AVL, NC
+WINDY HILL, NEW ENGLAND STYLE IPA Mikkeler SD, CA
+CASTLING, FARMHOUSE ALE (22oz) Grimm, BK, NY
+MONCHSHOF, SCHWARZBIER Kulmbacher Brauerei, Klumbach, Germany
+TRAPPIST PALE ALE Orval, Gaume, Belgium
+GOLDEN ALE Duvel, Breendonk, Belgium
+THE STANDARD BEARER, CIDER Noble, AVL, NC
+WINE
+PINK
+PINOT NOIR (SPARKLING) Meinklang, Prosa, Burgenland, Austria 2016 (frizzante)
+GAMAY Domaine Blanc et fils, Savoie, France, 2016
+HONDARRIBI Ameztoi, Rubentis, Txakolina, Spain 2016
+AGLIANICO Fontanavecchia, Taburno, Italy 2016
+PLAVAC MALI Zlatan, North Dalmatia, Croatia 2016
+WHITE
+GLERA (SPARKLING) Bele Casel, ‘Col Fondo’, Unfiltered Prosecco, Treviso, IT, NV (frizzante)
+MUSCADET Chateau du Coing, Muscadet, Sevre et Maine, Loire, France 2015
+SAUVIGNON BLANC Kobal, Ptuj, Slovenia, 2016
+TREBBIANO SPOLETINO Tabarrini, Montefalco, Italy 2015
+CHENNIN BLANC J. Mourat, Fiefs Vendeens, Loire, France 2016
+GROS MANSENG Domaine Bru-Bache, Jurancon, France 2014
+PINOT BLEND Vignoble du Reveur, ‘Pierres sauvages’, Alsace, France 2013
+GODELLO Telmo Rodriguez, ‘Gabo do Xil’, Valdeorras, Spain 2015
+PINOT GRIS Omero, Willamette Valley, OR, USA 2015
+RED
+LAMBRUSCO (SPARKLING) Venturini-Baldini, Montelocco, Emilia-Romagna, IT NV
+PINOT NOIR Omero, Willamette Valley, OR, USA 2015
+GAMAY Jean Paul Brun, ‘beaujolais nouveau’, Beaujolais ,FR 2017
+ANCIENT ZINFANDEL Bura,’fresh,’ Dalmatian Coast, Croatia 2016
+ULL DE LIBRE - SUMOLL - SYRAH Finca Parera,’fosc’, Penendes, Spain 2015
+CARIGNAN - SYRAH - GRENACHE NOIR Dom. Des 2 Anes, Corbieres, France, 2014
+MALBEC Chateau Les Croisille ‘Silice’ Cahors, FR 2015
+TEMPRANILLO Vina Sastre, Ribera del Duero, SP 2015
+CABERNET SAUVIGNON - SYRAH Rasa Vineyards ‘Occam’s Razor’, Columbia Valley, WA 2016
+Full liquor bar is available
+Table is a small, seasonal, New American restaurant in the heart of downtown Asheville. A daily changing menu, created by Chef Jacob Sessoms and his seasoned team, is inspired by a wealth of American culinary traditions, paying particular homage to the South. Upon opening the doors in 2005, Table committed to supporting, celebrating, and showcasing regional and sustainable agriculture. Table fosters long-standing relationships with farmers and purveyors in Western NC and throughout the Southeast.
+Menus are indicative of the current seasonality, but may differ from each day's in-house menu. If you are interested in seeing the most up to date menu, please send us an email.
+The maximum number for online reservations is 12. Please call 828.254.8980 for parties of 13 or larger.
+For parties of 6 or larger, we ask for a credit card number to hold the reservation. No charge or hold will be placed on the card; we ask for 24 hours cancellation notice of parties from 6-12 people, 72 hours for more than 12. If the party were to cancel or no-show within the 24 hour window, the card would be subject to a $25 charge per head. Table will contact you via telephone to confirm your reservation and collect credit card information. No itemized checks will be issued for groups larger than six.
+Parties six or larger may split checks by percentages; individualized checks will not be issued.
+Join us for the third and final event for Chefs Cycle & No Kid Hungry!
+Join us for a night celebrating powerful women in the service industry
+Host your next luncheon or dinner with Table and The Imperial Life. We offer semi-private dining through a variety of packages. Experience elevated hospitality, service and style, catered and detailed to your needs. Our space is great for holiday parties, rehearsal dinners, business events and celebrations. The sample packages are designed to operate during normal service. Guests will enjoy a semi-private space with dedicated service and custom-tailored menus. A different set of pricing and packages will be offered for inquiries that require utilization of the entire space.
+We can host events up to 55 people so click below and let us know what you have in mind!
+Thank you! We will be in touch soon to go over your event's details.
+Table is the first of three ventures in Asheville, NC, built by husband and wife team, Jacob and Alicia Sessoms. The two own and operate Table, The Imperial Life, an intimate cocktail lounge, and Tod’s Tasties, a neighborhood café in historic Montford, NC.
+With Table, the Sessoms set out to create the space that they wanted to frequent - a real farm-to-table, creative, service driven, urban minded restaurant with an interesting wine list and cocktails. The resulting intimate dining room and small chef’s bar, offers a welcoming staff of service professionals that ensure that guests are comfortable and well-informed.
+Since Table’s inception in 2005, many of Asheville's top chefs have passed through its doors and the inventive chef has earned an array of accolades, including being named a James Beard Award semifinalist for Best Chef Southeast in 2010. Such a history has earned Chef Jacob Sessoms the nickname of, “the grandfather of creative cooking” in Asheville.
+More than a decade into its life, Table remains one of the longest standing fine-dining ventures in Asheville, continuing to set trends, while fostering supportive relationships within the local food community.
+Furniture
+Outdoor
+Bed & Bath
+Décor & Pillows
+Rugs
+Lighting & Ceiling Fans
+Home Improvement
+Appliances
+Kitchen & Tabletop
+Baby & Kids
+Storage & Organization
+Window Treatments
+Mattresses
+Pet
+Holiday Décor
+Living Room
+Bedroom
+Bathroom
+Kitchen
+Dining Room
+Kids Bedroom
+Foyer
+Home Office
+Outdoor
+Explore All
+Rustic
+Coastal
+Modern & Contemporary
+Cottage/Country
+Glam
+Industrial
+Eclectic
+Traditional
+by Loon Peak
+88
+FREE Shipping
+Bring a touch of classic and rustic design into any space with this Norman 95" Extendable Dining Table. Constructed from recovered wooden shipping pallets, this table is strong and durable enough for everyday use yet unique enough for all special and formal occasions. The simple design allows the natural reclaimed sustainable plantation grown pine to be showcased with exposing the knots and natural imperfections of the wood, that make each piece unique and subtly one of a kind.Extends to 95...
+by Loon Peak
+356
+FREE Shipping
+Rustic style abounds with this understated dining table, showcasing a clean-lined design and a natural honey finish. Its wood-grain details pair perfectly with exposed wood accents while its open trestle base adds breezy flair to any space. Drape it with a burlap table runner for a touch of country flair, then center it with a vase of bright sunflowers for farmhouse charm. Round out the look by pairing this design with a woven wool rug for a subtle touch of texture. Its extendable leaf design...
+by Grain Wood Furniture
+1620
+FREE Shipping
+Gather friends and family for Sunday brunch or weeknight meals around this lovely dining table, featuring carved legs.
+by Zipcode Design
+417
+FREE Shipping
+Bring a bit of contemporary appeal to any entertainment space or seating group with this eye-catching pub table, the perfect pick for contemporary and transitional aesthetics alike. Defined by a bold crisscross base and boxy silhouette, the MDF wood table offers a geometric twist to your space, while its deep cappuccino finish lets you effortlessly lean into neutral and earthy color palettes in any room. Set it in the living room on a color-block area rug, then add in a pair of matching black...
+by Andover Mills
+294
+FREE Shipping
+Be it a festive family feast, an upscale dinner party, or Sunday afternoon scrapbooking, this dining table is happy to sit at the center of it all. Made in the USA, it offers a traditional frame crafted from veneers and manufactured wood with a two-tone burnished brown and black finish. It is founded atop four legs, which stand out with turned details and a tapered silhouette. Fits up to six side chairs.
+by Langley Street
+284
+FREE Shipping
+Perfect for serving up tasty weeknight meals or gathering friends for happy hour in your home, this stylish dining table features a white lacquered top and beech wood legs with black steel hardware.
+by Laurel Foundry Modern Farmhouse
+
+by Birch Lane™
+
+by Lark Manor
+
+by Zipcode Design
+
+by Charlton Home
+
+by World Menagerie
+
+by Rosecliff Heights
+
+by Three Posts
+
+by Darby Home Co
+
+by Latitude Run
+
+by Rosecliff Heights
+
+by August Grove
+
+by Langley Street
+
+by Andover Mills
+
+by Birch Lane™
+
+by Brayden Studio
+
+by Langley Street
+
+by Lark Manor
+
+
+by Loon Peak
+
+by Zipcode Design
+
+by Three Posts
+
+by Donny Osmond Home
+
+by Brayden Studio
+
+by Astoria Grand
+
+by Lark Manor
+
+by George Oliver
+
+by Loon Peak
+
+by World Menagerie
+
+by Charlton Home
+
+by Trent Austin Design
+
+by Darby Home Co
+
+by Mercury Row
+
+by Andover Mills
+
+by Wade Logan
+
+by Red Barrel Studio
+
+by Charlton Home
+
+by Lark Manor
+
+by Lark Manor
+
+by Hooker Furniture
+
+by Three Posts
+
+by Laurel Foundry Modern Farmhouse
+
+by Andover Mills
+
+Kitchen & Dining Tables
+When it comes to getting a custom-made table, there aren't many that feel better to use than a solid wood dining table. Wood has a natural feel and when you have a high value table you can feel the quality even when you put your hands on the table. Wood dining tables come in all shapes and sizes so it's important to know what to look for when you get a table. Some factors you should keep an eye out for when you're getting a new table are table shapes and sizes.
+Wood Dining Table Shape
+A solid wood dining table can come in any conceivable shape, however the most common shape that you can find these tables is a square or rectangular shape. These are simple shapes that makes it easy to set up the dinner table and if you need to add extra seats it’s a simple task since you just need to add chairs at the end or sides of the table. Round dining tables are also exceptionally popular tables to have in your kitchen. These tables are fantastic because you can put them anywhere, since their round shape means there is no correct orientation. So there's one less thing to worry about when your setting up your dining room layout, which makes this table shape a great option if you want something that’s simple to add to your kitchen.
+Wood Dining Table Sizes
+Once you've decided on a shape, you should think about the size of your table. Dining tables can come in any size ranging from small to large which gives you a lot of options when it comes to finding a table that can accommodate everyone. If you need a table for a small apartment then a small counter height table is a great option. On the other hand if you have friends over frequently or have a big family then a large solid wood dining table is a good choice as well.
+
+
+Cookware Sale
+Sur La Table Cooks' Tools
+Knife & Cutting Board Sale
+Instant Pot
+New in Bakeware
+Garden Floral
+Housewares Sale
+Food Sale
+Seafood on the Grill
+Kids' & Teens' Summer Series
+Sur La Table ©2018
+EST'D 2017
+SEATTLE, WASH.
+
+Two guys who like to eat meat thought that cooking vegeTABLEs was more exciting. We know we aren't the first to do this, but we hope you try us out anyways (and, the restaurant name sounds like 'label', in case you were wondering).
+Is made with lots of love and care. We cut and brine our fresh pickles, grind and hand form all our burger patties, and hand cut all our potatoes. Our staff works hard to ensure that your food tastes great, and gets you out our doors and back to your life as quickly as possible!
+We make our staff a priority in a number ways. Some of these are by paying them above the full Seattle minimum wage and by subsidizing their public transportation needs. Our prices reflect this, and while we are very thankful that you would like to leave an additional gratuity we would encourage you use it instead for your next visit to ‘TABLE!
+Sign up with your email address to receive news and updates.
+We respect your privacy and will never sell your contact information.
+Powered by Squarespace
+I’m DMing for a group of eight people. This leads to some rather interesting situations, as they are all slowly warming to their characters and thus making their backstories more complex and detailed.
+A couple weeks ago, our Half-Elf Ranger sent me a text asking if he could have been cursed (ostensibly by our BBEG). I'm running a homebrew, so if someone wants to do something interesting I will do my best to make it work. So after some talking back and forth, we decided that he would turn into a Balghura (a demon that strongly resembles a 10 foot tall ape) whenever someone he cared deeply for was threatened. That person happened to be…
+Read more
+©2013–2018 Scott R. Kurtz
+Please Note: By submitting your story you agree that we can publish it on the Internet and on other mediums if the opportunity arises. The names and events may be edited to protect the innocent.

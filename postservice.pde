@@ -21,11 +21,13 @@ public class PostService {
             e.printStackTrace();
         }
     }
+    
+    public String PostData(String data) throws IOException, SocketTimeoutException { return PostData(data, 15000); }
 
-    public String PostData(String data) throws IOException {
+    public String PostData(String data, int timeout) throws IOException, SocketTimeoutException {
         HttpURLConnection con = (HttpURLConnection) serverURL.openConnection();
-        con.setReadTimeout(15000);
-        con.setConnectTimeout(15000);
+        con.setReadTimeout(timeout);
+        con.setConnectTimeout(timeout);
         con.setRequestMethod("POST");
         con.setDoInput(true);
         con.setDoOutput(true);

@@ -7,6 +7,10 @@ import java.util.Base64;
 import java.util.Map;
 import javax.activation.MimetypesFileTypeMap;
 import static java.lang.Math.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
 
 // DATUM DEFINIEREN
 
@@ -30,6 +34,7 @@ int index(int x, int y) {
   return x + y * video.width;
 }
 
+//DIVERSE EINSTELLUNGEN
 HashMap<String, Integer> wantedFeatures;
 HashMap<String, String> keys;
 HashMap<String, String> settings;
@@ -37,6 +42,13 @@ HashMap<String, String> settings;
 //MARKOV CHAIN
 private static MarkovChainWrapper markov;
 private static String[] filePaths = null;
+
+//SERVER MODE EINSTELLUNGEN
+boolean serverMode = false;
+boolean serverModePossible = true;
+String baseurl;
+PImage serverImg;
+
 
 
 //BERECHNUNG VIDEO*TEXT
@@ -59,7 +71,27 @@ void setup() {
   
   keys = loadConfig("keys.txt");
   settings = loadConfig("settings.txt");
-
+  
+  switch (settings.getOrDefault("servermode", "disabled")) {
+    case "disabled":
+      serverModePossible = false;
+      break;
+    case "onstart":
+      serverModePossible = true;
+      serverMode = true;
+  }
+  
+  if (serverModePossible && !settings.containsKey("serverurl")) {
+    println("No serverurl specified in settings.txt - Server mode disabled!");
+    serverModePossible = false;
+    serverMode = false;
+  } else {
+    baseurl = settings.get("serverurl");
+    if (!baseurl.endsWith("/")) {
+      baseurl += "/";
+    }
+  }
+  
   markov = new MarkovChainWrapper(filePaths);
 
   size(1440, 360);
@@ -69,7 +101,7 @@ void setup() {
   font = loadFont("HelveticaNeueLTStd-Bd-48.vlw");
   textFont(font, fontSize);
   background(255);
-}    
+}
 
 //DARSTELLUNG BASICS
 void draw() {
@@ -78,14 +110,22 @@ void draw() {
   tint(255, blaesse);
 
 
-  //VIDEO READ
-  if (video.available() == true) {
-    video.read();
+  if (!serverMode) {
+    //VIDEO READ
+    if (video.available() == true) {
+      video.read();
+    }
+  
+    //POSITION VIDEODARSTELLUNG
+    image(video, 0, 0, 640, 360);
+  } else {
+    if (serverImg != null) {
+      image(serverImg, 0, 0, 640, 360);
+    } else {
+      text("SERVER-MODE", 0, 0, 640, 360);
+    }
   }
-
-  //POSITION VIDEODARSTELLUNG
-  image(video, 0, 0, 640, 360);
-
+  
   //DIVERSE FILTER
   //filter(INVERT);
   //filter(THRESHOLD,0.3);
@@ -93,28 +133,47 @@ void draw() {
   //filter(BLUR, 15);
 }
 
+void exit() {
+  super.exit();
+  serverMode = false;
+}
+
 //INTERAKTION
 void keyPressed() {
   if (keyPressed) {
-    saveFrame("tmp.jpg");
-
-    try {
-      File file = new File(sketchPath("tmp.jpg"));
-      FileInputStream fis = new FileInputStream(file);
-      byte[] imagedata = new byte[(int) file.length()];
-      int res = fis.read(imagedata, 0, imagedata.length);
-      if (res != imagedata.length) {
-        System.err.println("Fehler beim einlesen der datei...");
+    if (serverModePossible && (key == 's' || key == 'S')) {
+      serverMode = !serverMode;
+      
+      if (serverMode) {
+        Thread serverThread = new Thread() {
+          @Override
+          public void run() {
+            server();
+          }
+        };
+        
+        serverThread.start();
       }
-
-      fis.close();
-      
-      String imageString = new String(Base64.getEncoder().encode(imagedata), "UTF-8");
-      
-      processImage(imageString);
-    } 
-    catch (IOException e) {
-      e.printStackTrace();
+    } else if (!serverMode) {
+    saveFrame("tmp.jpg");
+      try {
+        File file = new File(sketchPath("tmp.jpg"));
+        FileInputStream fis = new FileInputStream(file);
+        byte[] imagedata = new byte[(int) file.length()];
+        int res = fis.read(imagedata, 0, imagedata.length);
+        if (res != imagedata.length) {
+          System.err.println("Fehler beim einlesen der datei...");
+        }
+  
+        fis.close();
+        
+        String imageString = new String(Base64.getEncoder().encode(imagedata), "UTF-8");
+        
+        processImage(imageString);
+      }
+      catch (IOException e) {
+        e.printStackTrace();
+      }
     }
   }
 }
@@ -130,24 +189,6 @@ private void processImage(String imageString) {
     JSONObject json = parseJSONObject(answer);
 
     JSONObject jsonResponses = json.getJSONArray("responses").getJSONObject(0);
-    JSONArray jsonSimilarImages = jsonResponses.getJSONObject("webDetection").getJSONArray("visuallySimilarImages");
-    if (jsonSimilarImages != null) {
-      boolean success = false;
-      for (int i = 0; i < jsonSimilarImages.size() && !success; i++) {
-        try {
-          String similarImageURL = jsonSimilarImages.getJSONObject(0).getString("url");
-          System.out.println(similarImageURL);
-          URL imageurl = new URL(similarImageURL);
-
-          copyStream(imageurl.openStream(), new FileOutputStream(sketchPath("print2.jpg")));
-          String mimetype = new MimetypesFileTypeMap().getContentType(sketchPath("print2.jpg"));
-          success = mimetype.contains("image/jpg");
-        } 
-        catch (IOException e) {
-          System.out.println("Could not download, open next...");
-        }
-      }
-    }
 
     JSONArray labelObjects = jsonResponses.getJSONArray("labelAnnotations");
 
@@ -168,68 +209,92 @@ private void processImage(String imageString) {
 
     
     println("Auswertung abgeschlossen.");
+    
+    
+    synchronized (this) {
+      
+      JSONArray jsonSimilarImages = jsonResponses.getJSONObject("webDetection").getJSONArray("visuallySimilarImages");
+      if (jsonSimilarImages != null) {
+        boolean success = false;
+        for (int i = 0; i < jsonSimilarImages.size() && !success; i++) {
+          try {
+            String similarImageURL = jsonSimilarImages.getJSONObject(0).getString("url");
+            System.out.println(similarImageURL);
+            URL imageurl = new URL(similarImageURL);
+  
+            copyStream(imageurl.openStream(), new FileOutputStream(sketchPath("print2.jpg")));
+            String mimetype = new MimetypesFileTypeMap().getContentType(sketchPath("print2.jpg"));
+            success = mimetype.contains("image/jpg");
+          } 
+          catch (IOException e) {
+            System.out.println("Could not download, open next...");
+          }
+        }
+      }
+      
 
-    //SPEICHERUNG
-    saveFrame("photobooth-###.jpg");
-    saveFrame("print.jpg");
-
-
-
-    //ZUFALLSAUSWAHL LABEL
-    String[] labels = new String[labelCount];
-    for (int i=0; i < labelCount; i++) {
-      labels[i] = labelObjects.getJSONObject(i).getString("description");
-    }        
-    
-    int index = int(random(labelCount));
-    String selectedLabel = labels[index];
-    println("selectedLabel: " + selectedLabel);
-    
-    String markovFile = sketchPath("webdata\\" + selectedLabel + ".txt");
-    File f = new File(markovFile);
-    
-    if (!f.exists()) {
-      String[] keywordURLs = getURLsForKeyword(selectedLabel);
-      webscrape(keywordURLs, markovFile);
-    }
-    
-    markov.train(markovFile);
-    
-    String poem = markov.getPoem(selectedLabel);
-    println(poem);
-
-    //DARSTELLUNG DATUM-TEXT
-    fill(0);
-    
-    int x = 20;     // Location of start of text.
-    int y = 360;
-    
-    pushMatrix();
-    translate(x,y);
-    rotate(3*HALF_PI);
-    translate(-x,-y);
-    text(date, x, y);
-    popMatrix();      
-
-    //DARSTELLUNG POEM-TEXT
-    fill(0);
-    
-    int x2 = 660;     // Location of start of text.
-    int y2 = 360;
-    
-    pushMatrix();
-    translate(x2,y2);
-    rotate(3*HALF_PI);
-    translate(-x2,-y2);
-    text(poem, x2, y2, 360, 800); //650, 0, 1040, 360
-    popMatrix();
-    
-    saveFrame("print.jpg");
-
-    //DRUCKEN
-    if (settings.get("print").equals("true")) {
-      Runtime.getRuntime().exec("mspaint /pt " + sketchPath("print.jpg"));
-      Runtime.getRuntime().exec("mspaint /pt " + sketchPath("print2.jpg"));
+      //SPEICHERUNG
+      saveFrame("photobooth-###.jpg");
+      saveFrame("print.jpg");
+  
+  
+  
+      //ZUFALLSAUSWAHL LABEL
+      String[] labels = new String[labelCount];
+      for (int i=0; i < labelCount; i++) {
+        labels[i] = labelObjects.getJSONObject(i).getString("description");
+      }        
+      
+      int index = int(random(labelCount));
+      String selectedLabel = labels[index];
+      println("selectedLabel: " + selectedLabel);
+      
+      String markovFile = sketchPath("webdata\\" + selectedLabel + ".txt");
+      File f = new File(markovFile);
+      
+      if (!f.exists()) {
+        String[] keywordURLs = getURLsForKeyword(selectedLabel);
+        webscrape(keywordURLs, markovFile);
+      }
+      
+      markov.train(markovFile);
+      
+      String poem = markov.getPoem(selectedLabel);
+      println(poem);
+  
+      //DARSTELLUNG DATUM-TEXT
+      fill(0);
+      
+      int x = 20;     // Location of start of text.
+      int y = 360;
+      
+      pushMatrix();
+      translate(x,y);
+      rotate(3*HALF_PI);
+      translate(-x,-y);
+      text(date, x, y);
+      popMatrix();      
+  
+      //DARSTELLUNG POEM-TEXT
+      fill(0);
+      
+      int x2 = 660;     // Location of start of text.
+      int y2 = 360;
+      
+      pushMatrix();
+      translate(x2,y2);
+      rotate(3*HALF_PI);
+      translate(-x2,-y2);
+      text(poem, x2, y2, 360, 800); //650, 0, 1040, 360
+      popMatrix();
+      
+      saveFrame("print.jpg");
+  
+      //DRUCKEN
+      if (settings.getOrDefault("print", "false").equals("true")) {
+        Runtime.getRuntime().exec("mspaint /pt " + sketchPath("print.jpg"));
+        Runtime.getRuntime().exec("mspaint /pt " + sketchPath("print2.jpg"));
+      }
     }
   } catch (IOException e) {
     System.out.println("error");
@@ -301,7 +366,9 @@ private String accessGoogleCloudVision(String requestText) throws MalformedURLEx
 
 
 public String[] getURLsForKeyword(String keyword) throws IOException {
-  URL url = new URL("https://www.googleapis.com/customsearch/v1?key=" + keys.get("API_KEY_CUSTOMSEARCH") + "&cx=003881552290933724291:wdkgsjtvmks&fields="+URLEncoder.encode("items/link", "UTF-8") + "&q=" + URLEncoder.encode(keyword, "UTF-8"));
+  URL url = new URL("https://www.googleapis.com/customsearch/v1?key=" + keys.get("API_KEY_CUSTOMSEARCH") + 
+                    "&cx=003881552290933724291:wdkgsjtvmks&fields=" + URLEncoder.encode("items/link", "UTF-8") + 
+                    "&q=" + URLEncoder.encode(keyword, "UTF-8"));
   HttpURLConnection con = (HttpURLConnection)url.openConnection();
   BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
   
@@ -341,4 +408,50 @@ private HashMap<String, String> loadConfig(String filename) {
     }
   }
   return result;
+}
+
+void server() {
+  ExecutorService imageExecutioner = Executors.newFixedThreadPool(4);
+  PostService poster = new PostService(baseurl + "pop.php");
+  while (serverMode) {
+    try {
+      final String imageData = poster.PostData("", 60000);
+      
+      serverImg = DecodePImageFromBase64(imageData);
+      
+      processImage(imageData);
+      
+      /*
+      imageExecutioner.execute(
+        new Runnable() {
+          @Override
+          public void run() {
+            processImage(imageData);
+        }
+      });*/
+      
+    } catch (SocketTimeoutException e) {
+      // ignore timeout
+    } catch (IOException e) {
+      println("connection issue in server mode: falling back to normal mode...");
+      serverMode = false;
+    }
+  }
+  imageExecutioner.shutdown();
+  
+}
+
+// from https://forum.processing.org/two/discussion/6958/pimage-base64-encode-and-decode
+public PImage DecodePImageFromBase64(String i_Image64) throws IOException
+{
+   PImage result = null;
+   byte[] decodedBytes = Base64.getUrlDecoder().decode(i_Image64);
+ 
+   ByteArrayInputStream in = new ByteArrayInputStream(decodedBytes);
+   BufferedImage bImageFromConvert = ImageIO.read(in);
+   BufferedImage convertedImg = new BufferedImage(bImageFromConvert.getWidth(), bImageFromConvert.getHeight(), BufferedImage.TYPE_INT_ARGB);
+   convertedImg.getGraphics().drawImage(bImageFromConvert, 0, 0, null);
+   result = new PImage(convertedImg);
+   
+   return result;
 }
