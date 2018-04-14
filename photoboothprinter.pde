@@ -48,6 +48,7 @@ boolean serverMode = false;
 boolean serverModePossible = true;
 String baseurl;
 PImage serverImg;
+boolean printing = false;
 
 
 
@@ -79,6 +80,7 @@ void setup() {
     case "onstart":
       serverModePossible = true;
       serverMode = true;
+      
   }
   
   if (serverModePossible && !settings.containsKey("serverurl")) {
@@ -91,6 +93,17 @@ void setup() {
       baseurl += "/";
     }
   }
+  /*
+  if (serverMode) {
+    Thread serverThread = new Thread() {
+      @Override
+      public void run() {
+        server();
+      }
+    };
+    
+    serverThread.run();
+  }*/
   
   markov = new MarkovChainWrapper(filePaths);
 
@@ -152,10 +165,12 @@ void keyPressed() {
           }
         };
         
-        serverThread.start();
+        serverThread.run();
       }
     } else if (!serverMode) {
-    saveFrame("tmp.jpg");
+      saveFrame("tmp.jpg");
+      // saveFrame("photobooth-###.jpg");
+
       try {
         File file = new File(sketchPath("tmp.jpg"));
         FileInputStream fis = new FileInputStream(file);
@@ -213,6 +228,7 @@ private void processImage(String imageString) {
     
     synchronized (this) {
       
+      
       JSONArray jsonSimilarImages = jsonResponses.getJSONObject("webDetection").getJSONArray("visuallySimilarImages");
       if (jsonSimilarImages != null) {
         boolean success = false;
@@ -231,10 +247,8 @@ private void processImage(String imageString) {
           }
         }
       }
-      
 
       //SPEICHERUNG
-      saveFrame("photobooth-###.jpg");
       saveFrame("print.jpg");
   
   
@@ -261,7 +275,7 @@ private void processImage(String imageString) {
       
       String poem = markov.getPoem(selectedLabel);
       println(poem);
-  
+      
       //DARSTELLUNG DATUM-TEXT
       fill(0);
       
@@ -418,8 +432,9 @@ void server() {
       final String imageData = poster.PostData("", 60000);
       
       serverImg = DecodePImageFromBase64(imageData);
-      
+      draw();
       processImage(imageData);
+      
       
       /*
       imageExecutioner.execute(
