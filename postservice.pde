@@ -51,6 +51,6 @@ public class PostService {
             in.close();
             return sb.toString();
         }
-        return "ERROR: " + responseCode;
+        return ":ERROR " + responseCode;
     }
 }

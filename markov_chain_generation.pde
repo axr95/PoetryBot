@@ -6,6 +6,15 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Random;
+import java.util.concurrent.ConcurrentHashMap;
+
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
@@ -23,7 +32,7 @@ import io.vedder.ml.markov.tokens.file.StringToken;
 import io.vedder.ml.markov.LookbackContainer;
 
 class MarkovChainWrapper {  
-  private TokenHolder tokenHolder;
+  private EnhancedTokenHolder tokenHolder;
   
   // MARKOV CHAIN PARAMETERS
   private static final int lookback = 2;
@@ -34,16 +43,20 @@ class MarkovChainWrapper {
 
   
   public MarkovChainWrapper() {
-    tokenHolder = new MapTokenHolder(mapInitialSize);
+    tokenHolder = new EnhancedTokenHolder(mapInitialSize);
   }
   
   public MarkovChainWrapper(String... filePaths) {
     train(filePaths);
   }
   
+  public MarkovChainWrapper(MarkovChainWrapper template, String... filePaths) {
+    tokenHolder = new EnhancedTokenHolder(template.tokenHolder);
+    train(filePaths);
+  }
+  
   public void train(String... filePaths) {
     //MARKOV CHAIN
-    tokenHolder = new MapTokenHolder(mapInitialSize);
     
     JobManager jm = new JobManager();
 
@@ -84,7 +97,65 @@ class MarkovChainWrapper {
     }
   }
   
+  class EnhancedTokenHolder implements TokenHolder {
+    private Map<LookbackContainer, Map<Token, Integer>> tokenMap;
+    private Random r = null;
   
+    public EnhancedTokenHolder(int mapInitialSize) {
+      r = new Random();
+      tokenMap = new ConcurrentHashMap<>(mapInitialSize);
+    }
   
+    public EnhancedTokenHolder(EnhancedTokenHolder base) {
+      r = new Random();
+      tokenMap = new ConcurrentHashMap<>(base.tokenMap);
+    }
   
+    public void addToken(LookbackContainer lbc, Token next) {
+      Map<Token, Integer> nextElementMap = null;
+      if (tokenMap.containsKey(lbc)) {
+        nextElementMap = tokenMap.get(lbc);
+      } else {
+        nextElementMap = new HashMap<>();
+      }
+  
+      if (!nextElementMap.isEmpty() && nextElementMap.containsKey(next)) {
+        nextElementMap.put(next, nextElementMap.get(next) + 1);
+  
+      } else {
+        nextElementMap.put(next, 1);
+      }
+      tokenMap.put(lbc, nextElementMap);
+    }
+  
+    public Token getNext(LookbackContainer look) {
+      Map<Token, Integer> nextElementList = null;
+  
+      // Look for the largest lookback container which has a match. May be
+      // empty.
+      while (!look.isEmpty() && (nextElementList = tokenMap.get(look)) == null) {
+        look = look.shrinkContainer();
+      }
+  
+      if (nextElementList == null) {
+        throw new RuntimeException("Unable to find match to given input");
+      }
+  
+      int sum = 0;
+      // calculate sum
+      for (Entry<Token, Integer> entry : nextElementList.entrySet()) {
+        sum += entry.getValue();
+      }
+  
+      int randInt = r.nextInt(sum) + 1;
+      for (Entry<Token, Integer> entry : nextElementList.entrySet()) {
+        if (randInt <= entry.getValue()) {
+          return entry.getKey();
+        }
+        randInt -= entry.getValue();
+      }
+  
+      throw new RuntimeException("Failed to get next token");
+    }
+  }
 }

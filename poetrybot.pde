@@ -426,12 +426,13 @@ private HashMap<String, String> loadConfig(String filename) {
 
 void server() {
   ExecutorService imageExecutioner = Executors.newFixedThreadPool(4);
+  println("starting server");
   PostService poster = new PostService(baseurl + "pop.php");
   int tries = 3;
   while (serverMode) {
     try {
-      final String imageData = poster.PostData("", 60000);
-      
+      final String imageData = poster.PostData(" ", 10000);
+      println("got Picture from Server...");
       serverImg = DecodePImageFromBase64(imageData);
       draw();
       processImage(imageData);
@@ -451,9 +452,11 @@ void server() {
       
     } catch (SocketTimeoutException e) {
       // ignore timeout
+      System.out.println("timeout occured...");
     } catch (IOException e) {
-      
-      tries--;
+      System.out.println("ioexception:");
+      System.out.println(e.getMessage());
+      tries--; //<>//
       if (tries == 0) { serverMode = false; println("connection issue in server mode: falling back to normal mode..."); }
     }
   }

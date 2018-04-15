@@ -6,6 +6,9 @@ tmp.jpg
 print.jpg
 print2.jpg
 
+# ignore webdata folder
+webdata/
+
 # settings are different for each user
 settings.txt
 
