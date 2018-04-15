@@ -62,12 +62,14 @@ void setup() {
   wantedFeatures.put("IMAGE_PROPERTIES", 1);
 
   filePaths = new String[] {
-    sketchPath("poetry\\some imagist poems_clean.txt"), 
-    sketchPath("poetry\\african poetry source.txt"), 
-    sketchPath("poetry\\1914 poems.txt"), 
-    sketchPath("poetry\\drum taps.txt"), 
-    sketchPath("poetry\\sword blades and poppy seeds.txt"),
-    //sketchPath("poetry\\quran.txt"),
+    sketchPath("prose\\1984"), 
+    sketchPath("prose\\bible.txt"), 
+    sketchPath("prose\\book-of-wisdom.txt"), 
+    sketchPath("prose\\brave-new-world.txt"), 
+    sketchPath("prose\\cryptonomicon.txt"),
+    sketchPath("prose\\earthworm-papers.txt"),
+    sketchPath("prose\\neuromancer.txt"),
+    sketchPath("prose\\old-man-and-the-sea.txt")
   };
   
   keys = loadConfig("keys.txt");
