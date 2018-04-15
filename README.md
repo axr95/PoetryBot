@@ -28,13 +28,13 @@ The variables have to be stored each in its own line, in a "key:value" format. F
 
 KEYS
 In the file "keys.txt", you have to specify the following keys:
-  1) API_KEY_CLOUDVISION: Google Cloud Vision
-  2) API_KEY_CUSTOMSEARCH: Google Custom Search
-  note: you can easily create an account and get free credits for these services
+* **API_KEY_CLOUDVISION**: Google Cloud Vision
+* **API_KEY_CUSTOMSEARCH**: Google Custom Search
+note: you can easily create an account and get free credits for these services
 
 SETTINGS
 in the file "settings.txt" you can set the following (**bold** options are the default values):
-  1) print *(true|**false**)*: whether you actually want to print the pictures and the poem
-  2) servermode *(**enabled**|disabled|onstart)*: whether it should be possible to switch to server mode, where the program pulls images from a webserver instead of the camera on the device itself.
-  3) serverurl: specify url of the server where pictures are stored in base64 (needed for server mode)
+* **print** *(true|**false**)*: whether you actually want to print the pictures and the poem
+* **servermode** *(**enabled**|disabled|onstart)*: whether it should be possible to switch to server mode, where the program pulls images from a webserver instead of the camera on the device itself.
+* **serverurl**: specify url of the server where pictures are stored in base64 (needed for server mode)
 
