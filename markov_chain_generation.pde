@@ -47,6 +47,7 @@ class MarkovChainWrapper {
   }
   
   public MarkovChainWrapper(String... filePaths) {
+    tokenHolder = new EnhancedTokenHolder(mapInitialSize);
     train(filePaths);
   }
   
