@@ -11,6 +11,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
+import java.security.MessageDigest;
 
 // DATUM DEFINIEREN
 
@@ -62,12 +63,12 @@ void setup() {
   wantedFeatures.put("IMAGE_PROPERTIES", 1);
 
   filePaths = new String[] {
-    sketchPath("prose\\1984"), 
-    sketchPath("prose\\bible.txt"), 
-    sketchPath("prose\\book-of-wisdom.txt"), 
-    sketchPath("prose\\brave-new-world.txt"), 
-    sketchPath("prose\\cryptonomicon.txt"),
-    sketchPath("prose\\earthworm-papers.txt"),
+    //sketchPath("prose\\1984.txt"),
+    //sketchPath("prose\\bible.txt"),             // a bit long for debugging, waiting for save mechanism
+    //sketchPath("prose\\book-of-wisdom.txt"), 
+    //sketchPath("prose\\brave-new-world.txt"),   // TODO: please sanitize files before adding them here. The other were okayish, but this one is pretty annoying to sanitize to pure UTF-8
+    //sketchPath("prose\\cryptonomicon.txt"),     // also too long
+    //sketchPath("prose\\earthworm-papers.txt"),
     sketchPath("prose\\neuromancer.txt"),
     sketchPath("prose\\old-man-and-the-sea.txt")
   };
@@ -107,9 +108,10 @@ void setup() {
     serverThread.run();
   }*/
   
-  markov = new MarkovChainWrapper(filePaths);
-
-  size(1440, 360);
+  markov = loadMarkov(filePaths, sketchPath("markov_tokens.ser"), sketchPath("markov_tokens_md5"));
+  
+  //size(1440, 360);
+  size(640, 360);
   String[] cameras = Capture.list();
   video = new Capture(this, cameras[18]);
   video.start();
@@ -172,31 +174,36 @@ void keyPressed() {
     } else if (!serverMode) {
       saveFrame("tmp.jpg");
       // saveFrame("photobooth-###.jpg");
-
-      try {
-        File file = new File(sketchPath("tmp.jpg"));
-        FileInputStream fis = new FileInputStream(file);
-        byte[] imagedata = new byte[(int) file.length()];
-        int res = fis.read(imagedata, 0, imagedata.length);
-        if (res != imagedata.length) {
-          System.err.println("Fehler beim einlesen der datei...");
-        }
-  
-        fis.close();
-        
-        String imageString = new String(Base64.getEncoder().encode(imagedata), "UTF-8");
-        
-        processImage(imageString);
-      }
-      catch (IOException e) {
-        e.printStackTrace();
-      }
+      
+      processImage(video);
     }
   }
 }
 
-// imageString muss ein Base64-codiertes Bild sein
+private void processImage(PImage image) {
+  try {
+    String imageString = EncodePImageToBase64(image);
+    processImage(imageString, image);
+  } catch (IOException e) {
+    println("error while converting PImage to String...");
+  }
+}
+
 private void processImage(String imageString) {
+  try {
+    PImage image = DecodePImageFromBase64(imageString);
+    if (serverMode) {
+      serverImg = image;
+    }
+    processImage(imageString, image);
+    
+  } catch (IOException e) {
+    println("error while converting imageString to PImage...");
+  }
+}
+
+// imageString muss ein Base64-codiertes Bild sein
+private void processImage(String imageString, PImage image) {
   try {
     //ZUGRIFF CLOUD VISION API
     String requestText = getRequestFromImage(imageString);
@@ -223,14 +230,12 @@ private void processImage(String imageString) {
     text(infoPrint, 0, height-7/3*fontSize, width, height);
     //System.out.println(label + ": " + score);*/
     System.out.println(infoPrint);
-
+    
     
     println("Auswertung abgeschlossen.");
     
     
     synchronized (this) {
-      
-      
       JSONArray jsonSimilarImages = jsonResponses.getJSONObject("webDetection").getJSONArray("visuallySimilarImages");
       if (jsonSimilarImages != null) {
         boolean success = false;
@@ -249,9 +254,16 @@ private void processImage(String imageString) {
           }
         }
       }
+      
+      PGraphics pg = createGraphics(1440, 360);
+      pg.beginDraw();
+      pg.background(255);
+      
+      pg.image(image, 0, 0, 640, 360);
+      
 
       //SPEICHERUNG
-      saveFrame("print.jpg");
+      //saveFrame("print.jpg");
   
   
   
@@ -284,12 +296,12 @@ private void processImage(String imageString) {
       int x = 20;     // Location of start of text.
       int y = 360;
       
-      pushMatrix();
-      translate(x,y);
-      rotate(3*HALF_PI);
-      translate(-x,-y);
-      text(date, x, y);
-      popMatrix();      
+      pg.pushMatrix();
+      pg.translate(x,y);
+      pg.rotate(3*HALF_PI);
+      pg.translate(-x,-y);
+      pg.text(date, x, y);
+      pg.popMatrix();      
   
       //DARSTELLUNG POEM-TEXT
       fill(0);
@@ -297,14 +309,14 @@ private void processImage(String imageString) {
       int x2 = 660;     // Location of start of text.
       int y2 = 360;
       
-      pushMatrix();
-      translate(x2,y2);
-      rotate(3*HALF_PI);
-      translate(-x2,-y2);
-      text(poem, x2, y2, 360, 800); //650, 0, 1040, 360
-      popMatrix();
+      pg.pushMatrix();
+      pg.translate(x2,y2);
+      pg.rotate(3*HALF_PI);
+      pg.translate(-x2,-y2);
+      pg.text(poem, x2, y2, 360, 800); //650, 0, 1040, 360
+      pg.popMatrix();
       
-      saveFrame("print.jpg");
+      pg.save("print.jpg");
   
       //DRUCKEN
       if (settings.getOrDefault("print", "false").equals("true")) {
@@ -435,7 +447,7 @@ void server() {
     try {
       final String imageData = poster.PostData(" ", 10000);
       println("got Picture from Server...");
-      serverImg = DecodePImageFromBase64(imageData);
+     
       draw();
       processImage(imageData);
       
@@ -444,7 +456,7 @@ void server() {
       /*
       imageExecutioner.execute(
         new Runnable() {
-          @Override
+          @Override //<>//
           public void run() {
             processImage(imageData);
         }
@@ -480,3 +492,15 @@ public PImage DecodePImageFromBase64(String i_Image64) throws IOException
    
    return result;
 }
+
+public String EncodePImageToBase64(PImage i_Image) throws UnsupportedEncodingException, IOException
+ {
+    String result = null;
+    BufferedImage buffImage = (BufferedImage)i_Image.getNative();
+    ByteArrayOutputStream out = new ByteArrayOutputStream();
+    ImageIO.write(buffImage, "PNG", out);
+    byte[] bytes = out.toByteArray();
+    result = Base64.getUrlEncoder().encodeToString(bytes);
+ 
+    return result;
+ }
