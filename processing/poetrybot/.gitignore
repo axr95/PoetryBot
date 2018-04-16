@@ -1,0 +1,16 @@
+# ignoring photos made
+photobooth-[0-9]+.jpg
+
+# ignoring tmp and print temporary files
+tmp.jpg
+print.jpg
+print2.jpg
+
+# ignore webdata folder
+webdata/
+
+# settings are different for each user
+settings.txt
+
+# keys should not be uploaded to github
+keys.txt
