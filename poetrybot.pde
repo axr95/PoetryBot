@@ -255,6 +255,8 @@ private void processImage(String imageString, PImage image) {
         }
       }
       
+      // Mit diesem pg Objekt können wir auf unsere Rechnung zeichnen, ohne auf den Screen zeichnen zu müssen
+      // - das ist um einiges sauberer und beugt Problemen vor, da draw() uns so nicht mehr hineinpfuschen kann.
       PGraphics pg = createGraphics(1440, 360);
       pg.beginDraw();
       pg.background(255);
@@ -291,7 +293,7 @@ private void processImage(String imageString, PImage image) {
       println(poem);
       
       //DARSTELLUNG DATUM-TEXT
-      fill(0);
+      pg.fill(0);
       
       int x = 20;     // Location of start of text.
       int y = 360;
@@ -304,7 +306,7 @@ private void processImage(String imageString, PImage image) {
       pg.popMatrix();      
   
       //DARSTELLUNG POEM-TEXT
-      fill(0);
+      pg.fill(0);
       
       int x2 = 660;     // Location of start of text.
       int y2 = 360;
