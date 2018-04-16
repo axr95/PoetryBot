@@ -31,40 +31,23 @@ import io.vedder.ml.markov.tokens.file.DelimitToken;
 import io.vedder.ml.markov.tokens.file.StringToken;
 import io.vedder.ml.markov.LookbackContainer;
 
-/*  static is needed in processing for Serialization - since this becomes an inner class,
- *  it has to be a STATIC inner class so it does not depend on the PApplet it is nested
- *  in to be Serializable as well.
- */
-static class MarkovChainWrapper {
-  private EnhancedTokenHolder tokenHolder;
+class MarkovChainWrapper {
+  private MapTokenHolder tokenHolder;
   
   // MARKOV CHAIN PARAMETERS
   private static final int lookback = 2;
   private static final int mapInitialSize = 50000;
-  private static final int numSent = 1;
   
   private final List<String> punctuation = Arrays.asList(",", ";", ":", ".", "?", "!", "-");
-  
-  
-  
+
   public MarkovChainWrapper() {
-    tokenHolder = new EnhancedTokenHolder(mapInitialSize);
+    tokenHolder = new MapTokenHolder(mapInitialSize);
   }
   
-  public MarkovChainWrapper(String... filePaths) {
-    tokenHolder = new EnhancedTokenHolder(mapInitialSize);
-    train(filePaths);
-  }
-  
-  /*  Creates Markov Chain generator based on another: the old token-list is copied, and the
-   *  filePaths given are additionally tokenized and added to that list.
-   */
-  public MarkovChainWrapper(MarkovChainWrapper base, String... filePaths) {
-    tokenHolder = new EnhancedTokenHolder(base.tokenHolder);
-    train(filePaths);
-  }
-  
-  private MarkovChainWrapper(EnhancedTokenHolder base) {
+  /*  
+   *  Creates Markov Chain generator based on another by simply copying the generated token-list
+   */  
+  private MarkovChainWrapper(MapTokenHolder base) {
     tokenHolder = base;
   }
   
@@ -110,89 +93,32 @@ static class MarkovChainWrapper {
     }
   }
   
-  private static class EnhancedTokenHolder implements TokenHolder, Serializable {
-    private ConcurrentHashMap<LookbackContainer, HashMap<Token, Integer>> tokenMap;
-    private Random r = null;
-  
-    public EnhancedTokenHolder(int mapInitialSize) {
-      r = new Random();
-      tokenMap = new ConcurrentHashMap<LookbackContainer, HashMap<Token, Integer>>(mapInitialSize);
-    }
-  
-    public EnhancedTokenHolder(EnhancedTokenHolder base) {
-      r = new Random();
-      tokenMap = new ConcurrentHashMap<LookbackContainer, HashMap<Token, Integer>>(base.tokenMap);
-    }
-  
-    public void addToken(LookbackContainer lbc, Token next) {
-      HashMap<Token, Integer> nextElementMap = null;
-      if (tokenMap.containsKey(lbc)) {
-        nextElementMap = tokenMap.get(lbc);
-      } else {
-        nextElementMap = new HashMap<Token, Integer>();
-      }
-  
-      if (!nextElementMap.isEmpty() && nextElementMap.containsKey(next)) {
-        nextElementMap.put(next, nextElementMap.get(next) + 1);
-  
-      } else {
-        nextElementMap.put(next, 1);
-      }
-      tokenMap.put(lbc, nextElementMap);
-    }
-  
-    public Token getNext(LookbackContainer look) {
-      HashMap<Token, Integer> nextElementList = null;
-  
-      // Look for the largest lookback container which has a match. May be
-      // empty.
-      while (!look.isEmpty() && (nextElementList = tokenMap.get(look)) == null) {
-        look = look.shrinkContainer();
-      }
-  
-      if (nextElementList == null) {
-        throw new RuntimeException("Unable to find match to given input");
-      }
-  
-      int sum = 0;
-      // calculate sum
-      for (Entry<Token, Integer> entry : nextElementList.entrySet()) {
-        sum += entry.getValue();
-      }
-  
-      int randInt = r.nextInt(sum) + 1;
-      for (Entry<Token, Integer> entry : nextElementList.entrySet()) {
-        if (randInt <= entry.getValue()) {
-          return entry.getKey();
-        }
-        randInt -= entry.getValue();
-      }
-  
-      throw new RuntimeException("Failed to get next token");
-    }
-  }
 }
 
 MarkovChainWrapper loadMarkov(String[] filePaths, String storePath, String md5Path) {
+  int startTime = millis();
   println("Loading / creating markov token holder...");
   MarkovChainWrapper result = null;
   byte[] md5computed = getChecksumForFiles(filePaths);
   byte[] md5stored = loadBytes(md5Path);
-  if (MessageDigest.isEqual(md5computed, md5stored)) {
-    println("Computed md5 checksum is equal to stored md5, loading token holder...");
+  boolean canLoadTokenHolder = MessageDigest.isEqual(md5computed, md5stored);
+  println((canLoadTokenHolder) ? "Computed md5 checksum is equal to stored md5, loading token holder..." : "md5 checksum is different from stored md5, need to tokenize sources again...");
+  if (canLoadTokenHolder) {
     try {
       FileInputStream fis = new FileInputStream(storePath);
       ObjectInputStream ois = new ObjectInputStream(fis);
-      result = new MarkovChainWrapper((MarkovChainWrapper.EnhancedTokenHolder) ois.readObject());
+      result = new MarkovChainWrapper((MapTokenHolder) ois.readObject());
       ois.close();
       fis.close();
     } catch (Exception e) {
       System.err.println("Error when trying to load Token holder: " + e.getMessage());
-      exit();
+      System.out.println("Creating new...");
+      canLoadTokenHolder = false;
     }
-  } else {
-    println("md5 checksum is different from stored md5, need to tokenize sources again...");
-    result = new MarkovChainWrapper(filePaths);
+  }
+  if (!canLoadTokenHolder) {
+    result = new MarkovChainWrapper();
+    result.train(filePaths);
     try {
       FileOutputStream fos = new FileOutputStream(storePath);
       ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -206,9 +132,8 @@ MarkovChainWrapper loadMarkov(String[] filePaths, String storePath, String md5Pa
       e.printStackTrace();
       System.err.println("Error when trying to save Token holder: " + e.getMessage()); //<>//
     }
-    
   }
-  println("finished loading markov chain generator");
+  println("Finished loading / creating token holder after " + (millis() - startTime) + "ms.");
   return result;
 }
 
