@@ -31,7 +31,7 @@ import io.vedder.ml.markov.tokens.file.DelimitToken;
 import io.vedder.ml.markov.tokens.file.StringToken;
 import io.vedder.ml.markov.LookbackContainer;
 
-class MarkovChainWrapper {
+class MarkovChainGenerator {
   private MapTokenHolder tokenHolder;
   
   // MARKOV CHAIN PARAMETERS
@@ -40,15 +40,19 @@ class MarkovChainWrapper {
   
   private final List<String> punctuation = Arrays.asList(",", ";", ":", ".", "?", "!", "-");
 
-  public MarkovChainWrapper() {
+  public MarkovChainGenerator() {
     tokenHolder = new MapTokenHolder(mapInitialSize);
   }
   
   /*  
    *  Creates Markov Chain generator based on another by simply copying the generated token-list
-   */  
-  private MarkovChainWrapper(MapTokenHolder base) {
-    tokenHolder = base;
+   */
+  public MarkovChainGenerator(MarkovChainGenerator base) {
+    tokenHolder = new MapTokenHolder(base.tokenHolder);
+  }
+  
+  private MarkovChainGenerator(MapTokenHolder baseTokenHolder) {
+    tokenHolder = baseTokenHolder;
   }
   
   public void train(String... filePaths) {
@@ -95,10 +99,10 @@ class MarkovChainWrapper {
   
 }
 
-MarkovChainWrapper loadMarkov(String[] filePaths, String storePath, String md5Path) {
+MarkovChainGenerator loadMarkov(String[] filePaths, String storePath, String md5Path) {
   int startTime = millis();
   println("Loading / creating markov token holder...");
-  MarkovChainWrapper result = null;
+  MarkovChainGenerator result = null;
   byte[] md5computed = getChecksumForFiles(filePaths);
   byte[] md5stored = loadBytes(md5Path);
   boolean canLoadTokenHolder = MessageDigest.isEqual(md5computed, md5stored);
@@ -107,7 +111,7 @@ MarkovChainWrapper loadMarkov(String[] filePaths, String storePath, String md5Pa
     try {
       FileInputStream fis = new FileInputStream(storePath);
       ObjectInputStream ois = new ObjectInputStream(fis);
-      result = new MarkovChainWrapper((MapTokenHolder) ois.readObject());
+      result = new MarkovChainGenerator((MapTokenHolder) ois.readObject());
       ois.close();
       fis.close();
     } catch (Exception e) {
@@ -117,7 +121,7 @@ MarkovChainWrapper loadMarkov(String[] filePaths, String storePath, String md5Pa
     }
   }
   if (!canLoadTokenHolder) {
-    result = new MarkovChainWrapper();
+    result = new MarkovChainGenerator();
     result.train(filePaths);
     try {
       FileOutputStream fos = new FileOutputStream(storePath);

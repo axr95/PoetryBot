@@ -14,7 +14,6 @@ import javax.imageio.ImageIO;
 import java.security.MessageDigest;
 
 // DATUM DEFINIEREN
-
 int d = day();    // Values from 1 - 31
 int m = month();  // Values from 1 - 12
 int y = year();   // 2003, 2004, 2005, etc.
@@ -41,15 +40,14 @@ HashMap<String, String> keys;
 HashMap<String, String> settings;
 
 //MARKOV CHAIN
-private static MarkovChainWrapper markov;
+private static MarkovChainGenerator markov;
 private static String[] filePaths = null;
 
 //SERVER MODE EINSTELLUNGEN
 boolean serverMode = false;
 boolean serverModePossible = true;
-String baseurl;
 PImage serverImg;
-boolean printing = false;
+String serverurl_pop;
 
 
 
@@ -61,16 +59,18 @@ void setup() {
   wantedFeatures.put("WEB_DETECTION", 2);
   //wantedFeatures.put("FACE_DETECTION", 3);
   wantedFeatures.put("IMAGE_PROPERTIES", 1);
+  
+  String sourceBasePath = sketchPath("poemsource" + File.separator + "prose" + File.separator);
 
   filePaths = new String[] {
-    sketchPath("poemsource\\prose\\1984.txt"),
-    //sketchPath("poemsource\\prose\\bible.txt"),             // a bit long for debugging, waiting for save mechanism
-    sketchPath("poemsource\\prose\\book-of-wisdom.txt"), 
-    //sketchPath("poemsource\\prose\\brave-new-world.txt"),   // TODO: please sanitize files before adding them here. The other were okayish, but this one is pretty annoying to sanitize to pure UTF-8
-    //sketchPath("poemsource\\prose\\cryptonomicon.txt"),     // also too long
-    sketchPath("poemsource\\prose\\earthworm-papers.txt"),
-    sketchPath("poemsource\\prose\\neuromancer.txt"),
-    sketchPath("poemsource\\prose\\old-man-and-the-sea.txt")
+    sourceBasePath + "1984.txt",
+    //sourceBasePath + "bible.txt",             // a bit long for debugging, waiting for save mechanism
+    sourceBasePath + "book-of-wisdom.txt", 
+    //sketchPath(sourceBasePath + "brave-new-world.txt",   // TODO: please sanitize files before adding them here. The other were okayish, but this one is pretty annoying to sanitize to pure UTF-8
+    //sketchPath(sourceBasePath + "cryptonomicon.txt",     // also too long
+    sourceBasePath + "earthworm-papers.txt",
+    sourceBasePath + "neuromancer.txt",
+    sourceBasePath + "old-man-and-the-sea.txt"
   };
   
   keys = loadConfig("keys.txt");
@@ -86,15 +86,12 @@ void setup() {
       
   }
   
-  if (serverModePossible && !settings.containsKey("serverurl")) {
-    println("No serverurl specified in settings.txt - Server mode disabled!");
+  if (serverModePossible && !settings.containsKey("serverurl-read")) {
+    println("No serverurl-read specified in settings.txt - Server mode disabled!");
     serverModePossible = false;
     serverMode = false;
   } else {
-    baseurl = settings.get("serverurl");
-    if (!baseurl.endsWith("/")) {
-      baseurl += "/";
-    }
+    serverurl_pop = settings.get("serverurl-read");
   }
   /*
   if (serverMode) {
@@ -108,7 +105,7 @@ void setup() {
     serverThread.run();
   }*/
   
-  markov = loadMarkov(filePaths, sketchPath("markov_tokens.ser"), sketchPath("markov_tokens_md5"));
+  markov = loadMarkov(filePaths, sketchPath("cache" + File.separator + "markov_tokens.ser"), sketchPath("cache" + File.separator + "markov_tokens_md5.bin"));
   
   //size(1440, 360);
   size(640, 360);
@@ -127,7 +124,14 @@ void draw() {
   tint(255, blaesse);
 
 
-  if (!serverMode) {
+  if (serverMode) {
+    if (serverImg != null) {
+      image(serverImg, 0, 0, 640, 360);
+    } else {
+      text("SERVER-MODE", 0, 0, 640, 360);
+    }
+    
+  } else {
     //VIDEO READ
     if (video.available() == true) {
       video.read();
@@ -135,12 +139,6 @@ void draw() {
   
     //POSITION VIDEODARSTELLUNG
     image(video, 0, 0, 640, 360);
-  } else {
-    if (serverImg != null) {
-      image(serverImg, 0, 0, 640, 360);
-    } else {
-      text("SERVER-MODE", 0, 0, 640, 360);
-    }
   }
   
   //DIVERSE FILTER
@@ -274,7 +272,7 @@ private void processImage(String imageString, PImage image) {
       String selectedLabel = labels[index];
       println("selectedLabel: " + selectedLabel);
       
-      String markovFile = sketchPath("webdata\\" + selectedLabel + ".txt");
+      String markovFile = sketchPath("cache" + File.separator + "webdata" + File.separator + selectedLabel + ".txt");
       File f = new File(markovFile);
       
       if (!f.exists()) {
@@ -282,6 +280,7 @@ private void processImage(String imageString, PImage image) {
         webscrape(keywordURLs, markovFile);
       }
       
+      markov = new MarkovChainGenerator();
       markov.train(markovFile);
       
       String poem = markov.getPoem(selectedLabel);
@@ -438,7 +437,7 @@ private HashMap<String, String> loadConfig(String filename) {
 void server() {
   ExecutorService imageExecutioner = Executors.newFixedThreadPool(4);
   println("starting server");
-  PostService poster = new PostService(baseurl + "pop.php");
+  PostService poster = new PostService(serverurl_pop);
   int tries = 3;
   while (serverMode) {
     try {
