@@ -63,14 +63,14 @@ void setup() {
   wantedFeatures.put("IMAGE_PROPERTIES", 1);
 
   filePaths = new String[] {
-    sketchPath("prose\\1984.txt"),
-    //sketchPath("prose\\bible.txt"),             // a bit long for debugging, waiting for save mechanism
-    sketchPath("prose\\book-of-wisdom.txt"), 
-    //sketchPath("prose\\brave-new-world.txt"),   // TODO: please sanitize files before adding them here. The other were okayish, but this one is pretty annoying to sanitize to pure UTF-8
-    //sketchPath("prose\\cryptonomicon.txt"),     // also too long
-    sketchPath("prose\\earthworm-papers.txt"),
-    sketchPath("prose\\neuromancer.txt"),
-    sketchPath("prose\\old-man-and-the-sea.txt")
+    sketchPath("poemsource\\prose\\1984.txt"),
+    //sketchPath("poemsource\\prose\\bible.txt"),             // a bit long for debugging, waiting for save mechanism
+    sketchPath("poemsource\\prose\\book-of-wisdom.txt"), 
+    //sketchPath("poemsource\\prose\\brave-new-world.txt"),   // TODO: please sanitize files before adding them here. The other were okayish, but this one is pretty annoying to sanitize to pure UTF-8
+    //sketchPath("poemsource\\prose\\cryptonomicon.txt"),     // also too long
+    sketchPath("poemsource\\prose\\earthworm-papers.txt"),
+    sketchPath("poemsource\\prose\\neuromancer.txt"),
+    sketchPath("poemsource\\prose\\old-man-and-the-sea.txt")
   };
   
   keys = loadConfig("keys.txt");
@@ -189,6 +189,7 @@ private void processImage(PImage image) {
   }
 }
 
+// imageString muss ein Base64-codiertes Bild sein
 private void processImage(String imageString) {
   try {
     PImage image = DecodePImageFromBase64(imageString);
@@ -202,7 +203,7 @@ private void processImage(String imageString) {
   }
 }
 
-// imageString muss ein Base64-codiertes Bild sein
+// imageString muss ein Base64-codiertes Bild sein, image das dazugehörige Bild (wird nur zum Drucken verwendet)
 private void processImage(String imageString, PImage image) {
   try {
     //ZUGRIFF CLOUD VISION API
@@ -262,13 +263,7 @@ private void processImage(String imageString, PImage image) {
       pg.background(255);
       
       pg.image(image, 0, 0, 640, 360);
-      
-
-      //SPEICHERUNG
-      //saveFrame("print.jpg");
-  
-  
-  
+        
       //ZUFALLSAUSWAHL LABEL
       String[] labels = new String[labelCount];
       for (int i=0; i < labelCount; i++) {
@@ -318,6 +313,7 @@ private void processImage(String imageString, PImage image) {
       pg.text(poem, x2, y2, 360, 800); //650, 0, 1040, 360
       pg.popMatrix();
       
+      //SPEICHERUNG
       pg.save("print.jpg");
   
       //DRUCKEN
