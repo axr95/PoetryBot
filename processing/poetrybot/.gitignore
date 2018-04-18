@@ -14,3 +14,6 @@ settings.txt
 
 # keys should not be uploaded to github
 keys.txt
+
+# ignoring exported executables
+application.*/
