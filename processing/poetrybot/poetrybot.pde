@@ -61,7 +61,7 @@ void setup() {
   wantedFeatures.put("IMAGE_PROPERTIES", 1);
   
   String sourceBasePath = sketchPath("poemsource" + File.separator + "prose" + File.separator);
-
+  
   filePaths = new String[] {
     sourceBasePath + "1984.txt",
     //sourceBasePath + "bible.txt",             // a bit long for debugging, waiting for save mechanism
@@ -105,7 +105,7 @@ void setup() {
     serverThread.run();
   }*/
   
-  markov = loadMarkov(filePaths, sketchPath("cache" + File.separator + "markov_tokens.ser"), sketchPath("cache" + File.separator + "markov_tokens_md5.bin"));
+  markov = loadMarkov(filePaths, sketchPath("cache" + File.separator + "markov_tokens.gz"), sketchPath("cache" + File.separator + "markov_tokens_md5.bin"));
   
   //size(1440, 360);
   size(640, 360);
@@ -273,6 +273,7 @@ private void processImage(String imageString, PImage image) {
       println("selectedLabel: " + selectedLabel);
       
       String markovFile = sketchPath("cache" + File.separator + "webdata" + File.separator + selectedLabel + ".txt");
+      
       File f = new File(markovFile);
       
       if (!f.exists()) {
@@ -280,6 +281,7 @@ private void processImage(String imageString, PImage image) {
         webscrape(keywordURLs, markovFile);
       }
       
+      // Momentan wird der Markov Chain Generator jedes Mal neu an den Input angepasst.
       markov = new MarkovChainGenerator();
       markov.train(markovFile);
       

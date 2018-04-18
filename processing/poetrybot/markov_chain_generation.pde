@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.GZIPOutputStream;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -110,11 +112,14 @@ MarkovChainGenerator loadMarkov(String[] filePaths, String storePath, String md5
   if (canLoadTokenHolder) {
     try {
       FileInputStream fis = new FileInputStream(storePath);
-      ObjectInputStream ois = new ObjectInputStream(fis);
+      GZIPInputStream zis = new GZIPInputStream(fis);
+      ObjectInputStream ois = new ObjectInputStream(zis);
       result = new MarkovChainGenerator((MapTokenHolder) ois.readObject());
       ois.close();
+      zis.close();
       fis.close();
     } catch (Exception e) {
+      e.printStackTrace();
       System.err.println("Error when trying to load Token holder: " + e.getMessage());
       System.out.println("Creating new...");
       canLoadTokenHolder = false;
@@ -125,9 +130,14 @@ MarkovChainGenerator loadMarkov(String[] filePaths, String storePath, String md5
     result.train(filePaths);
     try {
       FileOutputStream fos = new FileOutputStream(storePath);
-      ObjectOutputStream oos = new ObjectOutputStream(fos);
+      GZIPOutputStream zos = new GZIPOutputStream(fos);
+      ObjectOutputStream oos = new ObjectOutputStream(zos);
       oos.writeObject(result.tokenHolder);
+      oos.flush();
       oos.close();
+      zos.flush();
+      zos.close();
+      fos.flush();
       fos.close();
       
       saveBytes(md5Path, md5computed);
