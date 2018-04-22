@@ -9,6 +9,10 @@ import javax.activation.MimetypesFileTypeMap;
 import static java.lang.Math.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.security.MessageDigest;
@@ -49,7 +53,8 @@ boolean serverModePossible = true;
 PImage serverImg;
 String serverurl_pop;
 
-
+//MULTITHREADING
+ExecutorService threadPool = Executors.newCachedThreadPool();
 
 //BERECHNUNG VIDEO*TEXT
 void setup() {
@@ -174,39 +179,41 @@ void keyPressed() {
       saveFrame(dataPath("temp" + File.separator + "tmp.jpg"));
       // saveFrame("photobooth-###.jpg");
       
-      processImage(video);
+      threadPool.execute(new Runnable() { 
+        public void run() { 
+          processImage(video); 
+        } 
+      });
     }
   }
 }
 
-private void processImage(PImage image) {
-  try {
-    String imageString = EncodePImageToBase64(image);
-    processImage(imageString, image);
-  } catch (IOException e) {
-    println("error while converting PImage to String...");
-  }
+private void processImage(final PImage image) {
+  Future<String> imageStringFuture = threadPool.submit(new Callable<String>() {
+    public String call() throws IOException {
+      return EncodePImageToBase64(image);
+    }
+  });
+  Future<PImage> imageFuture = CompletableFuture.completedFuture(image);
+  processImage(imageStringFuture, imageFuture);
 }
 
 // imageString muss ein Base64-codiertes Bild sein
-private void processImage(String imageString) {
-  try {
-    PImage image = DecodePImageFromBase64(imageString);
-    if (serverMode) {
-      serverImg = image;
+private void processImage(final String imageString) {
+  Future<String> imageStringFuture = CompletableFuture.completedFuture(imageString);
+  Future<PImage> imageFuture = threadPool.submit(new Callable<PImage>() {
+    public PImage call() throws IOException {
+      return DecodePImageFromBase64(imageString); 
     }
-    processImage(imageString, image);
-    
-  } catch (IOException e) {
-    println("error while converting imageString to PImage...");
-  }
+  });
+  processImage(imageStringFuture, imageFuture);
 }
 
 // imageString muss ein Base64-codiertes Bild sein, image das dazugehörige Bild (wird nur zum Drucken verwendet)
-private void processImage(String imageString, PImage image) {
+private void processImage(Future<String> imageStringFuture, Future<PImage> imageFuture) {
   try {
     //ZUGRIFF CLOUD VISION API
-    String requestText = getRequestFromImage(imageString);
+    String requestText = getRequestFromImage(imageStringFuture.get());
     String answer = accessGoogleCloudVision(requestText);
 
     //JSON-KONVERTIERUNG
@@ -261,7 +268,7 @@ private void processImage(String imageString, PImage image) {
       pg.beginDraw();
       pg.background(255);
       
-      pg.image(image, 0, 0, 640, 360);
+      pg.image(imageFuture.get(), 0, 0, 640, 360);
         
       //ZUFALLSAUSWAHL LABEL
       String[] labels = new String[labelCount];
@@ -326,6 +333,10 @@ private void processImage(String imageString, PImage image) {
     }
   } catch (IOException e) {
     System.out.println("error");
+  } catch (ExecutionException e) {
+    System.err.println("Execution of subtask failed: " + e.getMessage()); 
+  } catch (InterruptedException e) {
+    System.err.println("Executor of subtasks was interrupted");
   }
 }
 
@@ -439,7 +450,6 @@ private HashMap<String, String> loadConfig(String filename) {
 }
 
 void server() {
-  ExecutorService imageExecutioner = Executors.newFixedThreadPool(4);
   println("starting server");
   PostService poster = new PostService(serverurl_pop);
   int tries = 3;
@@ -449,18 +459,14 @@ void server() {
       println("got Picture from Server...");
      
       draw();
-      processImage(imageData);
       
-      
-      
-      /*
-      imageExecutioner.execute(
+      threadPool.execute(
         new Runnable() {
           @Override //<>//
           public void run() {
             processImage(imageData);
-        }
-      });*/
+          }
+      });
       
       tries = 3;
       
@@ -474,33 +480,30 @@ void server() {
       if (tries == 0) { serverMode = false; println("connection issue in server mode: falling back to normal mode..."); }
     }
   }
-  imageExecutioner.shutdown();
-  
 }
 
 // from https://forum.processing.org/two/discussion/6958/pimage-base64-encode-and-decode
 public PImage DecodePImageFromBase64(String i_Image64) throws IOException
 {
-   PImage result = null;
-   byte[] decodedBytes = Base64.getUrlDecoder().decode(i_Image64);
- 
-   ByteArrayInputStream in = new ByteArrayInputStream(decodedBytes);
-   BufferedImage bImageFromConvert = ImageIO.read(in);
-   BufferedImage convertedImg = new BufferedImage(bImageFromConvert.getWidth(), bImageFromConvert.getHeight(), BufferedImage.TYPE_INT_ARGB);
-   convertedImg.getGraphics().drawImage(bImageFromConvert, 0, 0, null);
-   result = new PImage(convertedImg);
+  PImage result = null;
+  byte[] decodedBytes = Base64.getUrlDecoder().decode(i_Image64);
+  ByteArrayInputStream in = new ByteArrayInputStream(decodedBytes);
+  BufferedImage bImageFromConvert = ImageIO.read(in);
+  BufferedImage convertedImg = new BufferedImage(bImageFromConvert.getWidth(), bImageFromConvert.getHeight(), BufferedImage.TYPE_INT_ARGB);
+  convertedImg.getGraphics().drawImage(bImageFromConvert, 0, 0, null);
+  result = new PImage(convertedImg);
    
-   return result;
+  return result;
 }
 
 public String EncodePImageToBase64(PImage i_Image) throws UnsupportedEncodingException, IOException
- {
-    String result = null;
-    BufferedImage buffImage = (BufferedImage)i_Image.getNative();
-    ByteArrayOutputStream out = new ByteArrayOutputStream();
-    ImageIO.write(buffImage, "JPG", out);
-    byte[] bytes = out.toByteArray();
-    result = Base64.getUrlEncoder().encodeToString(bytes);
- 
-    return result;
- }
+{
+  String result = null;
+  BufferedImage buffImage = (BufferedImage)i_Image.getNative();
+  ByteArrayOutputStream out = new ByteArrayOutputStream();
+  ImageIO.write(buffImage, "JPG", out);
+  byte[] bytes = out.toByteArray();
+  result = Base64.getUrlEncoder().encodeToString(bytes);
+  
+  return result;
+}
