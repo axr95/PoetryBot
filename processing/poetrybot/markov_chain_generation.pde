@@ -102,7 +102,7 @@ class MarkovChainGenerator {
 }
 
 MarkovChainGenerator loadMarkov(String[] filePaths, String storePath, String md5Path) {
-  int startTime = millis(); //<>//
+  int startTime = millis();
   println("Loading / creating markov token holder...");
   MarkovChainGenerator result = null;
   byte[] md5computed = getChecksumForFiles(filePaths);
@@ -144,7 +144,7 @@ MarkovChainGenerator loadMarkov(String[] filePaths, String storePath, String md5
       
     } catch (IOException e) {
       e.printStackTrace();
-      System.err.println("Error when trying to save Token holder: " + e.getMessage()); //<>//
+      System.err.println("Error when trying to save Token holder: " + e.getMessage());
     }
   }
   println("Finished loading / creating token holder after " + (millis() - startTime) + "ms.");
