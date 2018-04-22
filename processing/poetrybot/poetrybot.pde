@@ -60,14 +60,14 @@ void setup() {
   //wantedFeatures.put("FACE_DETECTION", 3);
   wantedFeatures.put("IMAGE_PROPERTIES", 1);
   
-  String sourceBasePath = sketchPath("poemsource" + File.separator + "prose" + File.separator);
+  String sourceBasePath = dataPath("poemsource" + File.separator + "prose") + File.separator;
   
   filePaths = new String[] {
     sourceBasePath + "1984.txt",
     //sourceBasePath + "bible.txt",             // a bit long for debugging, waiting for save mechanism
     sourceBasePath + "book-of-wisdom.txt", 
-    //sketchPath(sourceBasePath + "brave-new-world.txt",   // TODO: please sanitize files before adding them here. The other were okayish, but this one is pretty annoying to sanitize to pure UTF-8
-    //sketchPath(sourceBasePath + "cryptonomicon.txt",     // also too long
+    //sourceBasePath + "brave-new-world.txt",   // TODO: please sanitize files before adding them here. The other were okayish, but this one is pretty annoying to sanitize to pure UTF-8
+    //sourceBasePath + "cryptonomicon.txt",     // also too long
     sourceBasePath + "earthworm-papers.txt",
     sourceBasePath + "neuromancer.txt",
     sourceBasePath + "old-man-and-the-sea.txt"
@@ -105,14 +105,15 @@ void setup() {
     serverThread.run();
   }*/
   
-  markov = loadMarkov(filePaths, sketchPath("cache" + File.separator + "markov_tokens.gz"), sketchPath("cache" + File.separator + "markov_tokens_md5.bin"));
+  markov = loadMarkov(filePaths, dataPath("cache" + File.separator + "markov_tokens.gz"), 
+                                 dataPath("cache" + File.separator + "markov_tokens_md5.bin"));
   
   //size(1440, 360);
   size(640, 360);
   String[] cameras = Capture.list();
   video = new Capture(this, cameras[18]);
   video.start();
-  font = loadFont("HelveticaNeueLTStd-Bd-48.vlw");
+  font = loadFont(dataPath("fonts" + File.separator + "HelveticaNeueLTStd-Bd-48.vlw"));
   textFont(font, fontSize);
   background(255);
 }
@@ -170,7 +171,7 @@ void keyPressed() {
         serverThread.run();
       }
     } else if (!serverMode) {
-      saveFrame("tmp.jpg");
+      saveFrame(dataPath("temp" + File.separator + "tmp.jpg"));
       // saveFrame("photobooth-###.jpg");
       
       processImage(video);
@@ -244,8 +245,8 @@ private void processImage(String imageString, PImage image) {
             System.out.println(similarImageURL);
             URL imageurl = new URL(similarImageURL);
   
-            copyStream(imageurl.openStream(), new FileOutputStream(sketchPath("print2.jpg")));
-            String mimetype = new MimetypesFileTypeMap().getContentType(sketchPath("print2.jpg"));
+            copyStream(imageurl.openStream(), new FileOutputStream(dataPath("temp" + File.separator + "print2.jpg")));
+            String mimetype = new MimetypesFileTypeMap().getContentType(dataPath("temp" + File.separator + "print2.jpg"));
             success = mimetype.contains("image/jpg");
           } 
           catch (IOException e) {
@@ -272,7 +273,7 @@ private void processImage(String imageString, PImage image) {
       String selectedLabel = labels[index];
       println("selectedLabel: " + selectedLabel);
       
-      String markovFile = sketchPath("cache" + File.separator + "webdata" + File.separator + selectedLabel + ".txt");
+      String markovFile = dataPath("cache" + File.separator + "webdata" + File.separator + selectedLabel + ".txt");
       
       File f = new File(markovFile);
       
@@ -315,12 +316,12 @@ private void processImage(String imageString, PImage image) {
       pg.popMatrix();
       
       //SPEICHERUNG
-      pg.save("print.jpg");
+      pg.save(dataPath("temp" + File.separator + "print.jpg"));
   
       //DRUCKEN
       if (settings.getOrDefault("print", "false").equals("true")) {
-        Runtime.getRuntime().exec("mspaint /pt " + sketchPath("print.jpg"));
-        Runtime.getRuntime().exec("mspaint /pt " + sketchPath("print2.jpg"));
+        Runtime.getRuntime().exec("mspaint /pt " + dataPath("temp" + File.separator + "print.jpg"));
+        Runtime.getRuntime().exec("mspaint /pt " + dataPath("temp" + File.separator + "print2.jpg"));
       }
     }
   } catch (IOException e) {
@@ -393,7 +394,8 @@ private String accessGoogleCloudVision(String requestText) throws MalformedURLEx
 
 public String[] getURLsForKeyword(String keyword) throws IOException {
   URL url = new URL("https://www.googleapis.com/customsearch/v1?key=" + keys.get("API_KEY_CUSTOMSEARCH") + 
-                    "&cx=003881552290933724291:wdkgsjtvmks&fields=" + URLEncoder.encode("items/link", "UTF-8") + 
+                    "&cx=003881552290933724291:wdkgsjtvmks" +
+                    "&fields=" + URLEncoder.encode("items/link", "UTF-8") + 
                     "&q=" + URLEncoder.encode(keyword, "UTF-8"));
   HttpURLConnection con = (HttpURLConnection)url.openConnection();
   BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
@@ -496,7 +498,7 @@ public String EncodePImageToBase64(PImage i_Image) throws UnsupportedEncodingExc
     String result = null;
     BufferedImage buffImage = (BufferedImage)i_Image.getNative();
     ByteArrayOutputStream out = new ByteArrayOutputStream();
-    ImageIO.write(buffImage, "PNG", out);
+    ImageIO.write(buffImage, "JPG", out);
     byte[] bytes = out.toByteArray();
     result = Base64.getUrlEncoder().encodeToString(bytes);
  

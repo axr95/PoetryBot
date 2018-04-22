@@ -102,7 +102,7 @@ class MarkovChainGenerator {
 }
 
 MarkovChainGenerator loadMarkov(String[] filePaths, String storePath, String md5Path) {
-  int startTime = millis();
+  int startTime = millis(); //<>//
   println("Loading / creating markov token holder...");
   MarkovChainGenerator result = null;
   byte[] md5computed = getChecksumForFiles(filePaths);
