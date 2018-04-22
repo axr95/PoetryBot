@@ -43,6 +43,11 @@ HashMap<String, Integer> wantedFeatures;
 HashMap<String, String> keys;
 HashMap<String, String> settings;
 
+//PFADE
+final String cachePath = dataPath("cache") + File.separator;
+final String tempPath = dataPath("temp") + File.separator;
+final String fontPath = dataPath("cache") + File.separator;
+
 //MARKOV CHAIN
 private static MarkovChainGenerator markov;
 private static String[] filePaths = null;
@@ -110,15 +115,15 @@ void setup() {
     serverThread.run();
   }*/
   
-  markov = loadMarkov(filePaths, dataPath("cache" + File.separator + "markov_tokens.gz"), 
-                                 dataPath("cache" + File.separator + "markov_tokens_md5.bin"));
+  markov = loadMarkov(filePaths, cachePath + "markov_tokens.gz", 
+                                 cachePath + "markov_tokens_md5.bin");
   
   //size(1440, 360);
   size(640, 360);
   String[] cameras = Capture.list();
   video = new Capture(this, cameras[18]);
   video.start();
-  font = loadFont(dataPath("fonts" + File.separator + "HelveticaNeueLTStd-Bd-48.vlw"));
+  font = loadFont(fontPath + "HelveticaNeueLTStd-Bd-48.vlw");
   textFont(font, fontSize);
   background(255);
 }
@@ -176,7 +181,7 @@ void keyPressed() {
         serverThread.run();
       }
     } else if (!serverMode) {
-      saveFrame(dataPath("temp" + File.separator + "tmp.jpg"));
+      saveFrame(tempPath + "tmp.jpg");
       // saveFrame("photobooth-###.jpg");
       
       threadPool.execute(new Runnable() { 
@@ -252,8 +257,8 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
             System.out.println(similarImageURL);
             URL imageurl = new URL(similarImageURL);
   
-            copyStream(imageurl.openStream(), new FileOutputStream(dataPath("temp" + File.separator + "print2.jpg")));
-            String mimetype = new MimetypesFileTypeMap().getContentType(dataPath("temp" + File.separator + "print2.jpg"));
+            copyStream(imageurl.openStream(), new FileOutputStream(tempPath + "print2.jpg"));
+            String mimetype = new MimetypesFileTypeMap().getContentType(tempPath + "print2.jpg");
             success = mimetype.contains("image/jpg");
           } 
           catch (IOException e) {
@@ -280,7 +285,8 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
       String selectedLabel = labels[index];
       println("selectedLabel: " + selectedLabel);
       
-      String markovFile = dataPath("cache" + File.separator + "webdata" + File.separator + selectedLabel + ".txt");
+      // ...\cache\webdata\labelname.txt
+      String markovFile = cachePath + "webdata" + File.separator + selectedLabel + ".txt";
       
       File f = new File(markovFile);
       
@@ -323,12 +329,12 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
       pg.popMatrix();
       
       //SPEICHERUNG
-      pg.save(dataPath("temp" + File.separator + "print.jpg"));
+      pg.save(tempPath + "print.jpg");
   
       //DRUCKEN
       if (settings.getOrDefault("print", "false").equals("true")) {
-        Runtime.getRuntime().exec("mspaint /pt " + dataPath("temp" + File.separator + "print.jpg"));
-        Runtime.getRuntime().exec("mspaint /pt " + dataPath("temp" + File.separator + "print2.jpg"));
+        Runtime.getRuntime().exec("mspaint /pt " + tempPath + "print.jpg");
+        Runtime.getRuntime().exec("mspaint /pt " + tempPath + "print2.jpg");
       }
     }
   } catch (IOException e) {
