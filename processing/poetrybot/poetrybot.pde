@@ -44,9 +44,9 @@ HashMap<String, String> keys;
 HashMap<String, String> settings;
 
 //PFADE
-final String cachePath = dataPath("cache") + File.separator;
-final String tempPath = dataPath("temp") + File.separator;
-final String fontPath = dataPath("cache") + File.separator;
+String cachePath;
+String tempPath;
+String fontPath;
 
 //MARKOV CHAIN
 private static MarkovChainGenerator markov;
@@ -70,8 +70,12 @@ void setup() {
   //wantedFeatures.put("FACE_DETECTION", 3);
   wantedFeatures.put("IMAGE_PROPERTIES", 1);
   
-  String sourceBasePath = dataPath("poemsource" + File.separator + "prose") + File.separator;
+  cachePath = sketchPath("data") + File.separator + ("cache") + File.separator;
+  tempPath = sketchPath("data") + File.separator + ("temp") + File.separator;
+  fontPath = sketchPath("data") + File.separator + ("fonts") + File.separator;
   
+  String sourceBasePath = sketchPath("data") + File.separator + "poemsource" + File.separator + "prose" + File.separator;
+  println(sourceBasePath, cachePath, tempPath, fontPath);
   filePaths = new String[] {
     sourceBasePath + "1984.txt",
     //sourceBasePath + "bible.txt",             // a bit long for debugging, waiting for save mechanism
