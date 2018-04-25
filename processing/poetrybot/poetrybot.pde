@@ -45,7 +45,7 @@ HashMap<String, String> settings;
 
 //PFADE
 String cachePath;
-String tempPath;
+String baseTempPath;
 String fontPath;
 
 //MARKOV CHAIN
@@ -71,11 +71,11 @@ void setup() {
   wantedFeatures.put("IMAGE_PROPERTIES", 1);
   
   cachePath = sketchPath("data") + File.separator + ("cache") + File.separator;
-  tempPath = sketchPath("data") + File.separator + ("temp") + File.separator;
+  baseTempPath = sketchPath("data") + File.separator + ("temp") + File.separator;
   fontPath = sketchPath("data") + File.separator + ("fonts") + File.separator;
   
   String sourceBasePath = sketchPath("data") + File.separator + "poemsource" + File.separator + "prose" + File.separator;
-  println(sourceBasePath, cachePath, tempPath, fontPath);
+  
   filePaths = new String[] {
     sourceBasePath + "1984.txt",
     //sourceBasePath + "bible.txt",             // a bit long for debugging, waiting for save mechanism
@@ -97,7 +97,7 @@ void setup() {
     case "onstart":
       serverModePossible = true;
       serverMode = true;
-      
+      break;
   }
   
   if (serverModePossible && !settings.containsKey("serverurl-read")) {
@@ -185,7 +185,7 @@ void keyPressed() {
         serverThread.run();
       }
     } else if (!serverMode) {
-      saveFrame(tempPath + "tmp.jpg");
+      saveFrame(baseTempPath + "tmp.jpg");
       // saveFrame("photobooth-###.jpg");
       
       threadPool.execute(new Runnable() { 
@@ -221,6 +221,18 @@ private void processImage(final String imageString) {
 // imageString muss ein Base64-codiertes Bild sein, image das dazugehörige Bild (wird nur zum Drucken verwendet)
 private void processImage(Future<String> imageStringFuture, Future<PImage> imageFuture) {
   try {
+    //EINRICHTUNG TEMPORAERER ORDNER
+    File tempFolder = new File(baseTempPath + Thread.currentThread().getId());
+    if (tempFolder.exists()) {
+      for (File f : tempFolder.listFiles()) {
+        if (!f.isDirectory()) {
+          f.delete();
+        }
+      }
+    } else {
+      tempFolder.mkdirs();
+    }
+    
     //ZUGRIFF CLOUD VISION API
     String requestText = getRequestFromImage(imageStringFuture.get());
     String answer = accessGoogleCloudVision(requestText);
@@ -252,24 +264,31 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
     
     
     synchronized (this) {
+      File internetPictureFile = null;
       JSONArray jsonSimilarImages = jsonResponses.getJSONObject("webDetection").getJSONArray("visuallySimilarImages");
       if (jsonSimilarImages != null) {
         boolean success = false;
+        internetPictureFile = new File(tempFolder, "print2.jpg");
+        internetPictureFile.createNewFile();
         for (int i = 0; i < jsonSimilarImages.size() && !success; i++) {
           try {
             String similarImageURL = jsonSimilarImages.getJSONObject(0).getString("url");
             System.out.println(similarImageURL);
             URL imageurl = new URL(similarImageURL);
-  
-            copyStream(imageurl.openStream(), new FileOutputStream(tempPath + "print2.jpg"));
-            String mimetype = new MimetypesFileTypeMap().getContentType(tempPath + "print2.jpg");
+            
+            copyStream(imageurl.openStream(), new FileOutputStream(internetPictureFile));
+            String mimetype = new MimetypesFileTypeMap().getContentType(internetPictureFile);
             success = mimetype.contains("image/jpg");
           } 
           catch (IOException e) {
             System.out.println("Could not download, open next...");
           }
         }
+        if (!success) {
+          internetPictureFile = null;
+        }
       }
+      
       
       // Mit diesem pg Objekt können wir auf unsere Rechnung zeichnen, ohne auf den Screen zeichnen zu müssen
       // - das ist um einiges sauberer und beugt Problemen vor, da draw() uns so nicht mehr hineinpfuschen kann.
@@ -333,12 +352,16 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
       pg.popMatrix();
       
       //SPEICHERUNG
-      pg.save(tempPath + "print.jpg");
+      File printedImageFile = new File(tempFolder, "print.jpg");
+      printedImageFile.createNewFile();
+      pg.save(printedImageFile.getAbsolutePath());
   
       //DRUCKEN
       if (settings.getOrDefault("print", "false").equals("true")) {
-        Runtime.getRuntime().exec("mspaint /pt " + tempPath + "print.jpg");
-        Runtime.getRuntime().exec("mspaint /pt " + tempPath + "print2.jpg");
+        Runtime.getRuntime().exec("mspaint /pt " + printedImageFile.getAbsolutePath());
+        if (internetPictureFile != null) {
+          Runtime.getRuntime().exec("mspaint /pt " + internetPictureFile.getAbsolutePath());
+        }
       }
     }
   } catch (IOException e) {
@@ -451,6 +474,9 @@ private HashMap<String, String> loadConfig(String filename) {
   String[] keylines = loadStrings(filename);
   HashMap<String, String> result = new HashMap<String, String>();
   for (String line : keylines) {
+    if (line.startsWith("#") || line.trim().isEmpty())
+      continue;
+      
     String[] a = line.split(":", 2);
     if (a.length == 2) {
       result.put(a[0], a[1]);
