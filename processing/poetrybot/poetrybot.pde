@@ -57,9 +57,13 @@ boolean serverMode = false;
 boolean serverModePossible = true;
 PImage serverImg;
 String serverurl_pop;
+long minDelay;
+long maxDelay;
+int doubleDelayInterval;
 
 //MULTITHREADING
 ExecutorService threadPool = Executors.newCachedThreadPool();
+Thread serverThread;
 
 //BERECHNUNG VIDEO*TEXT
 void setup() {
@@ -89,6 +93,10 @@ void setup() {
   
   keys = loadConfig("keys.txt");
   settings = loadConfig("settings.txt");
+  
+  minDelay = Long.parseLong(settings.getOrDefault("min-delay", "2000"));
+  maxDelay = Long.parseLong(settings.getOrDefault("max-delay", "60000"));
+  doubleDelayInterval = Integer.parseInt(settings.getOrDefault("double-delay-interval", "10"));
   
   switch (settings.getOrDefault("servermode", "disabled")) {
     case "disabled":
@@ -143,7 +151,8 @@ void draw() {
     if (serverImg != null) {
       image(serverImg, 0, 0, 640, 360);
     } else {
-      text("SERVER-MODE", 0, 0, 640, 360);
+      fill(0);
+      text("SERVER-MODE", 0, 0);
     }
     
   } else {
@@ -175,14 +184,16 @@ void keyPressed() {
       serverMode = !serverMode;
       
       if (serverMode) {
-        Thread serverThread = new Thread() {
+        serverThread = new Thread() {
           @Override
           public void run() {
             server();
           }
         };
         
-        serverThread.run();
+        serverThread.start();
+      } else {
+        serverThread.interrupt();
       }
     } else if (!serverMode) {
       saveFrame(baseTempPath + "tmp.jpg");
@@ -262,100 +273,99 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
     
     println("Auswertung abgeschlossen.");
     
+    File internetPictureFile = null;
+    JSONArray jsonSimilarImages = jsonResponses.getJSONObject("webDetection").getJSONArray("visuallySimilarImages");
+    if (jsonSimilarImages != null) {
+      boolean success = false;
+      internetPictureFile = new File(tempFolder, "print2.jpg");
+      internetPictureFile.createNewFile();
+      for (int i = 0; i < jsonSimilarImages.size() && !success; i++) {
+        try {
+          String similarImageURL = jsonSimilarImages.getJSONObject(0).getString("url");
+          System.out.println(similarImageURL);
+          URL imageurl = new URL(similarImageURL);
+          
+          copyStream(imageurl.openStream(), new FileOutputStream(internetPictureFile));
+          String mimetype = new MimetypesFileTypeMap().getContentType(internetPictureFile);
+          success = mimetype.contains("image/jpg");
+        } 
+        catch (IOException e) {
+          System.out.println("Could not download, open next...");
+        }
+      }
+      if (!success) {
+        internetPictureFile = null;
+      }
+    }
     
+    
+    // Mit diesem pg Objekt können wir auf unsere Rechnung zeichnen, ohne auf den Screen zeichnen zu müssen
+    // - das ist um einiges sauberer und beugt Problemen vor, da draw() uns so nicht mehr hineinpfuschen kann.
+    PGraphics pg = createGraphics(1440, 360);
+    pg.beginDraw();
+    pg.background(255);
+    
+    pg.image(imageFuture.get(), 0, 0, 640, 360);
+      
+    //ZUFALLSAUSWAHL LABEL
+    String[] labels = new String[labelCount];
+    for (int i=0; i < labelCount; i++) {
+      labels[i] = labelObjects.getJSONObject(i).getString("description");
+    }        
+    
+    int index = int(random(labelCount));
+    String selectedLabel = labels[index];
+    println("selectedLabel: " + selectedLabel);
+    
+    // ...\cache\webdata\labelname.txt
+    String markovFile = cachePath + "webdata" + File.separator + selectedLabel + ".txt";
+    
+    File f = new File(markovFile);
+    
+    if (!f.exists()) {
+      String[] keywordURLs = getURLsForKeyword(selectedLabel);
+      webscrape(keywordURLs, markovFile);
+    }
+    
+    // Momentan wird der Markov Chain Generator jedes Mal neu an den Input angepasst.
+    markov = new MarkovChainGenerator();
+    markov.train(markovFile);
+    
+    String poem = markov.getPoem(selectedLabel);
+    println(poem);
+    
+    //DARSTELLUNG DATUM-TEXT
+    pg.fill(0);
+    
+    int x = 20;     // Location of start of text.
+    int y = 360;
+    
+    pg.pushMatrix();
+    pg.translate(x,y);
+    pg.rotate(3*HALF_PI);
+    pg.translate(-x,-y);
+    pg.text(date, x, y);
+    pg.popMatrix();      
+
+    //DARSTELLUNG POEM-TEXT
+    pg.fill(0);
+    
+    int x2 = 660;     // Location of start of text.
+    int y2 = 360;
+    
+    pg.pushMatrix();
+    pg.translate(x2,y2);
+    pg.rotate(3*HALF_PI);
+    pg.translate(-x2,-y2);
+    pg.text(poem, x2, y2, 360, 800); //650, 0, 1040, 360
+    pg.popMatrix();
+    
+    //SPEICHERUNG
+    File printedImageFile = new File(tempFolder, "print.jpg");
+    printedImageFile.createNewFile();
+    pg.save(printedImageFile.getAbsolutePath());
+  
     synchronized (this) {
-      File internetPictureFile = null;
-      JSONArray jsonSimilarImages = jsonResponses.getJSONObject("webDetection").getJSONArray("visuallySimilarImages");
-      if (jsonSimilarImages != null) {
-        boolean success = false;
-        internetPictureFile = new File(tempFolder, "print2.jpg");
-        internetPictureFile.createNewFile();
-        for (int i = 0; i < jsonSimilarImages.size() && !success; i++) {
-          try {
-            String similarImageURL = jsonSimilarImages.getJSONObject(0).getString("url");
-            System.out.println(similarImageURL);
-            URL imageurl = new URL(similarImageURL);
-            
-            copyStream(imageurl.openStream(), new FileOutputStream(internetPictureFile));
-            String mimetype = new MimetypesFileTypeMap().getContentType(internetPictureFile);
-            success = mimetype.contains("image/jpg");
-          } 
-          catch (IOException e) {
-            System.out.println("Could not download, open next...");
-          }
-        }
-        if (!success) {
-          internetPictureFile = null;
-        }
-      }
-      
-      
-      // Mit diesem pg Objekt können wir auf unsere Rechnung zeichnen, ohne auf den Screen zeichnen zu müssen
-      // - das ist um einiges sauberer und beugt Problemen vor, da draw() uns so nicht mehr hineinpfuschen kann.
-      PGraphics pg = createGraphics(1440, 360);
-      pg.beginDraw();
-      pg.background(255);
-      
-      pg.image(imageFuture.get(), 0, 0, 640, 360);
-        
-      //ZUFALLSAUSWAHL LABEL
-      String[] labels = new String[labelCount];
-      for (int i=0; i < labelCount; i++) {
-        labels[i] = labelObjects.getJSONObject(i).getString("description");
-      }        
-      
-      int index = int(random(labelCount));
-      String selectedLabel = labels[index];
-      println("selectedLabel: " + selectedLabel);
-      
-      // ...\cache\webdata\labelname.txt
-      String markovFile = cachePath + "webdata" + File.separator + selectedLabel + ".txt";
-      
-      File f = new File(markovFile);
-      
-      if (!f.exists()) {
-        String[] keywordURLs = getURLsForKeyword(selectedLabel);
-        webscrape(keywordURLs, markovFile);
-      }
-      
-      // Momentan wird der Markov Chain Generator jedes Mal neu an den Input angepasst.
-      markov = new MarkovChainGenerator();
-      markov.train(markovFile);
-      
-      String poem = markov.getPoem(selectedLabel);
-      println(poem);
-      
-      //DARSTELLUNG DATUM-TEXT
-      pg.fill(0);
-      
-      int x = 20;     // Location of start of text.
-      int y = 360;
-      
-      pg.pushMatrix();
-      pg.translate(x,y);
-      pg.rotate(3*HALF_PI);
-      pg.translate(-x,-y);
-      pg.text(date, x, y);
-      pg.popMatrix();      
-  
-      //DARSTELLUNG POEM-TEXT
-      pg.fill(0);
-      
-      int x2 = 660;     // Location of start of text.
-      int y2 = 360;
-      
-      pg.pushMatrix();
-      pg.translate(x2,y2);
-      pg.rotate(3*HALF_PI);
-      pg.translate(-x2,-y2);
-      pg.text(poem, x2, y2, 360, 800); //650, 0, 1040, 360
-      pg.popMatrix();
-      
-      //SPEICHERUNG
-      File printedImageFile = new File(tempFolder, "print.jpg");
-      printedImageFile.createNewFile();
-      pg.save(printedImageFile.getAbsolutePath());
-  
       //DRUCKEN
       if (settings.getOrDefault("print", "false").equals("true")) {
         Runtime.getRuntime().exec("mspaint /pt " + printedImageFile.getAbsolutePath());
@@ -489,31 +499,51 @@ void server() {
   println("starting server");
   PostService poster = new PostService(serverurl_pop);
   int tries = 3;
+  long currentDelay = minDelay;
+  int delayCounter = doubleDelayInterval;
   while (serverMode) {
     try {
-      final String imageData = poster.PostData(" ", 10000);
-      println("got Picture from Server...");
-     
-      draw();
+      final String imageData = poster.PostData(" ");
+      if (imageData.startsWith(":ERROR")) {
+        println("server request failure: " + imageData);
+        continue;
+      } else if (imageData.trim().isEmpty()) {
+        delayCounter--;
+        if (delayCounter == 0) {
+          currentDelay = Math.min(currentDelay * 2, maxDelay);
+          delayCounter = doubleDelayInterval;
+          println("Doubling the server request interval to " + currentDelay + "ms after " + doubleDelayInterval + " requests without image response");
+        }
+      } else {
+        println("got Picture from Server...");
+        
+        draw();
+        
+        threadPool.execute(
+          new Runnable() {
+            @Override
+            public void run() {
+              processImage(imageData);
+            }
+        });
+        tries = 3;
+      }
       
-      threadPool.execute(
-        new Runnable() {
-          @Override //<>//
-          public void run() {
-            processImage(imageData);
-          }
-      });
-      
-      tries = 3;
-      
+      Thread.sleep(currentDelay);
     } catch (SocketTimeoutException e) {
       // ignore timeout
       System.out.println("timeout occured...");
     } catch (IOException e) {
       System.out.println("ioexception:");
       System.out.println(e.getMessage());
-      tries--; //<>//
-      if (tries == 0) { serverMode = false; println("connection issue in server mode: falling back to normal mode..."); }
+      tries--;
+      if (tries == 0) {
+        serverMode = false;
+        println("connection issue in server mode: falling back to normal mode...");
+      }
+    } catch (InterruptedException e) {
+      serverMode = false;
+      System.out.println("Server thread was interrupted. Shutting down...");
     }
   }
 }
