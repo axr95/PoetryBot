@@ -54,8 +54,6 @@ private static String[] filePaths = null;
 
 //SERVER MODE EINSTELLUNGEN
 boolean serverMode = false;
-boolean serverModePossible = true;
-PImage serverImg;
 String serverurl_pop;
 long minDelay;
 long maxDelay;
@@ -94,41 +92,29 @@ void setup() {
   keys = loadConfig("keys.txt");
   settings = loadConfig("settings.txt");
   
-  minDelay = Long.parseLong(settings.getOrDefault("min-delay", "2000"));
-  maxDelay = Long.parseLong(settings.getOrDefault("max-delay", "60000"));
-  doubleDelayInterval = Integer.parseInt(settings.getOrDefault("double-delay-interval", "10"));
+  markov = loadMarkov(filePaths, cachePath + "markov_tokens.gz", 
+                                 cachePath + "markov_tokens_md5.bin");
+                                 
+  serverMode = ("enabled".equals(settings.get("servermode")));
   
-  switch (settings.getOrDefault("servermode", "disabled")) {
-    case "disabled":
-      serverModePossible = false;
-      break;
-    case "onstart":
-      serverModePossible = true;
-      serverMode = true;
-      break;
-  }
-  
-  if (serverModePossible && !settings.containsKey("serverurl-read")) {
-    println("No serverurl-read specified in settings.txt - Server mode disabled!");
-    serverModePossible = false;
-    serverMode = false;
-  } else {
-    serverurl_pop = settings.get("serverurl-read");
-  }
-  /*
   if (serverMode) {
-    Thread serverThread = new Thread() {
+    minDelay = Long.parseLong(settings.getOrDefault("min-delay", "2000"));
+    maxDelay = Long.parseLong(settings.getOrDefault("max-delay", "60000"));
+    doubleDelayInterval = Integer.parseInt(settings.getOrDefault("double-delay-interval", "10"));
+    
+    if (!settings.containsKey("serverurl-read")) {
+      println("No serverurl-read specified in settings.txt - Server mode disabled!");
+      serverMode = false;
+    } else {
+      serverurl_pop = settings.get("serverurl-read");
+    }serverThread = new Thread() {
       @Override
       public void run() {
         server();
       }
     };
-    
-    serverThread.run();
-  }*/
-  
-  markov = loadMarkov(filePaths, cachePath + "markov_tokens.gz", 
-                                 cachePath + "markov_tokens_md5.bin");
+    serverThread.start();
+  }
   
   //size(1440, 360);
   size(640, 360);
@@ -146,24 +132,13 @@ void draw() {
   frameRate (30);
   tint(255, blaesse);
 
-
-  if (serverMode) {
-    if (serverImg != null) {
-      image(serverImg, 0, 0, 640, 360);
-    } else {
-      fill(0);
-      text("SERVER-MODE", 0, 0);
-    }
-    
-  } else {
-    //VIDEO READ
-    if (video.available() == true) {
-      video.read();
-    }
-  
-    //POSITION VIDEODARSTELLUNG
-    image(video, 0, 0, 640, 360);
+  //VIDEO READ
+  if (video.available() == true) {
+    video.read();
   }
+
+  //POSITION VIDEODARSTELLUNG
+  image(video, 0, 0, 640, 360);
   
   //DIVERSE FILTER
   //filter(INVERT);
@@ -180,31 +155,14 @@ void exit() {
 //INTERAKTION
 void keyPressed() {
   if (keyPressed) {
-    if (serverModePossible && (key == 's' || key == 'S')) {
-      serverMode = !serverMode;
-      
-      if (serverMode) {
-        serverThread = new Thread() {
-          @Override
-          public void run() {
-            server();
-          }
-        };
-        
-        serverThread.start();
-      } else {
-        serverThread.interrupt();
-      }
-    } else if (!serverMode) {
-      saveFrame(baseTempPath + "tmp.jpg");
-      // saveFrame("photobooth-###.jpg");
-      
-      threadPool.execute(new Runnable() { 
-        public void run() { 
-          processImage(video); 
-        } 
-      });
-    }
+    saveFrame(baseTempPath + "tmp.jpg");
+    // saveFrame("photobooth-###.jpg");
+    
+    threadPool.execute(new Runnable() { 
+      public void run() { 
+        processImage(video); 
+      } 
+    });
   }
 }
 
@@ -496,7 +454,7 @@ private HashMap<String, String> loadConfig(String filename) {
 }
 
 void server() {
-  println("starting server");
+  println("starting server request thread");
   PostService poster = new PostService(serverurl_pop);
   int tries = 3;
   long currentDelay = minDelay;
@@ -539,13 +497,14 @@ void server() {
       tries--;
       if (tries == 0) {
         serverMode = false;
-        println("connection issue in server mode: falling back to normal mode...");
+        println("connection issue for server requests: disabling server mode...");
       }
     } catch (InterruptedException e) {
       serverMode = false;
-      System.out.println("Server thread was interrupted. Shutting down...");
+      System.out.println("Server request thread was interrupted. Shutting down...");
     }
   }
+  println("servermode was shut down.");
 }
 
 // from https://forum.processing.org/two/discussion/6958/pimage-base64-encode-and-decode
