@@ -168,6 +168,8 @@ void keyPressed() {
         } catch (IOException e) {
           println("could not save good poem...");
         }
+      } else {
+        println("last poem was already saved!");
       }
     } else {
       saveFrame(baseTempPath + "tmp.jpg");
@@ -188,7 +190,7 @@ private void processImage(final PImage image) {
       return EncodePImageToBase64(image);
     }
   });
-  Future<PImage> imageFuture = CompletableFuture.completedFuture(image);
+  Future<PImage> imageFuture = CompletableFuture.completedFuture(video.copy());
   processImage(imageStringFuture, imageFuture);
 }
 
@@ -249,7 +251,7 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
     
     File internetPictureFile = null;
     JSONArray jsonSimilarImages = jsonResponses.getJSONObject("webDetection").getJSONArray("visuallySimilarImages");
-    if (jsonSimilarImages != null) {
+    if (jsonSimilarImages != null && boolean(settings.getOrDefault("usewebimage", "true"))) {
       boolean success = false;
       internetPictureFile = new File(tempFolder, "print2.jpg");
       internetPictureFile.createNewFile();
@@ -261,7 +263,7 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
           
           copyStream(imageurl.openStream(), new FileOutputStream(internetPictureFile));
           String mimetype = new MimetypesFileTypeMap().getContentType(internetPictureFile);
-          success = mimetype.contains("image/jpg");
+          success = mimetype.contains("image/jpg") || mimetype.contains("image/jpeg");
         } 
         catch (IOException e) {
           System.out.println("Could not download, open next...");
@@ -281,7 +283,22 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
     pg.textFont(font, fontSize);
     pg.tint(255, blaesse);
     
-    pg.image(imageFuture.get(), 0, 0, 640, 360);
+    int writePointer = 0;
+    
+    
+    PImage imageToDraw = null;
+    if (boolean(settings.getOrDefault("usewebimage", "true")) && internetPictureFile != null) {
+      imageToDraw = loadImage(internetPictureFile.getAbsolutePath());
+    }
+    
+    if (imageToDraw == null || imageToDraw.width <= 0 || imageToDraw.height <= 0) {
+      imageToDraw = imageFuture.get();
+    }
+    
+    imageToDraw.resize(0, 360);
+    
+    pg.image(imageToDraw, writePointer, 0, imageToDraw.width, 360);
+    writePointer += imageToDraw.width + 15;
     
     //ZUFALLSAUSWAHL LABEL
     String[] labels = new String[labelCount];
@@ -294,18 +311,18 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
     println("selectedLabel: " + selectedLabel);
     
     // ...\cache\webdata\labelname.txt
-    String markovFile = cachePath + "webdata" + File.separator + selectedLabel + ".txt";
+    String webMarkovFile = cachePath + "webdata" + File.separator + selectedLabel + ".txt";
     
-    File f = new File(markovFile);
+    File f = new File(webMarkovFile);
     
     if (!f.exists()) {
       String[] keywordURLs = getURLsForKeyword(selectedLabel);
-      webscrape(keywordURLs, markovFile);
+      webscrape(keywordURLs, webMarkovFile);
     }
     
     // Momentan wird der Markov Chain Generator jedes Mal neu an den Input angepasst.
     markov = new MarkovChainGenerator();
-    markov.train(markovFile);
+    markov.train(webMarkovFile, cachePath + "goodpoems.txt");
     
     String poem = markov.getPoem(selectedLabel);
     println(poem);
@@ -326,7 +343,7 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
     //DARSTELLUNG POEM-TEXT
     pg.fill(0);
     
-    int x2 = 660;     // Location of start of text.
+    int x2 = writePointer;     // Location of start of text.
     int y2 = 360;
     
     pg.pushMatrix();
@@ -345,9 +362,6 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
       //DRUCKEN
       if (settings.getOrDefault("print", "false").equals("true")) {
         Runtime.getRuntime().exec("mspaint /pt " + printedImageFile.getAbsolutePath());
-        if (internetPictureFile != null) {
-          Runtime.getRuntime().exec("mspaint /pt " + internetPictureFile.getAbsolutePath());
-        }
       }
       
       lastPoem = poem;

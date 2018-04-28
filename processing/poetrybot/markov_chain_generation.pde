@@ -82,7 +82,10 @@ class MarkovChainGenerator {
       sb.append(start);
       LookbackContainer lbc = new LookbackContainer(Integer.MAX_VALUE, DELIMIT_TOKEN);
       if (start != null) {
-        lbc.addToken(new StringToken(start));
+        String[] startTokens = start.split(" ");
+        for (String s : startTokens) {
+          lbc.addToken(new StringToken(s));
+        }
       }
       
       Token t = null;
@@ -95,7 +98,7 @@ class MarkovChainGenerator {
       }
       return sb.toString();
     } catch (Exception e) {
-      return e.getMessage();
+      return "No poem for " + start + " :(";
     }
   }
   
