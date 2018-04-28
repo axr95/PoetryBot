@@ -168,6 +168,8 @@ void keyPressed() {
         } catch (IOException e) {
           println("could not save good poem...");
         }
+      } else {
+        println("last poem was already saved!");
       }
     } else {
       saveFrame(baseTempPath + "tmp.jpg");
@@ -294,18 +296,18 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
     println("selectedLabel: " + selectedLabel);
     
     // ...\cache\webdata\labelname.txt
-    String markovFile = cachePath + "webdata" + File.separator + selectedLabel + ".txt";
+    String webMarkovFile = cachePath + "webdata" + File.separator + selectedLabel + ".txt";
     
-    File f = new File(markovFile);
+    File f = new File(webMarkovFile);
     
     if (!f.exists()) {
       String[] keywordURLs = getURLsForKeyword(selectedLabel);
-      webscrape(keywordURLs, markovFile);
+      webscrape(keywordURLs, webMarkovFile);
     }
     
     // Momentan wird der Markov Chain Generator jedes Mal neu an den Input angepasst.
     markov = new MarkovChainGenerator();
-    markov.train(markovFile);
+    markov.train(webMarkovFile, cachePath + "goodpoems.txt");
     
     String poem = markov.getPoem(selectedLabel);
     println(poem);
