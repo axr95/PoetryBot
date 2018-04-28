@@ -62,6 +62,7 @@ int doubleDelayInterval;
 //MULTITHREADING
 ExecutorService threadPool = Executors.newCachedThreadPool();
 Thread serverThread;
+volatile String lastPoem = null;
 
 //BERECHNUNG VIDEO*TEXT
 void setup() {
@@ -155,14 +156,29 @@ void exit() {
 //INTERAKTION
 void keyPressed() {
   if (keyPressed) {
-    saveFrame(baseTempPath + "tmp.jpg");
-    // saveFrame("photobooth-###.jpg");
-    
-    threadPool.execute(new Runnable() { 
-      public void run() { 
-        processImage(video); 
-      } 
-    });
+    if (key == 'y' || key == 'Y') {
+      if (lastPoem != null) {
+        try {
+          PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(cachePath + "goodpoems.txt", true)));
+          out.println(lastPoem);
+          out.flush();
+          out.close();
+          lastPoem = null;
+          println("poem saved!");
+        } catch (IOException e) {
+          println("could not save good poem...");
+        }
+      }
+    } else {
+      saveFrame(baseTempPath + "tmp.jpg");
+      // saveFrame("photobooth-###.jpg");
+      
+      threadPool.execute(new Runnable() { 
+        public void run() { 
+          processImage(video); 
+        } 
+      });
+    }
   }
 }
 
@@ -333,6 +349,9 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
           Runtime.getRuntime().exec("mspaint /pt " + internetPictureFile.getAbsolutePath());
         }
       }
+      
+      lastPoem = poem;
+      println("Is this a good poem? :)");
     }
   } catch (IOException e) {
     System.out.println("error");
