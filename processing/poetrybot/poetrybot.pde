@@ -81,12 +81,12 @@ void setup() {
   filePaths = new String[] {
     sourceBasePath + "1984.txt",
     //sourceBasePath + "bible.txt",             // a bit long for debugging, waiting for save mechanism
-    sourceBasePath + "book-of-wisdom.txt", 
+    //sourceBasePath + "book-of-wisdom.txt", 
     //sourceBasePath + "brave-new-world.txt",   // TODO: please sanitize files before adding them here. The other were okayish, but this one is pretty annoying to sanitize to pure UTF-8
     //sourceBasePath + "cryptonomicon.txt",     // also too long
-    sourceBasePath + "earthworm-papers.txt",
+    //sourceBasePath + "earthworm-papers.txt",
     sourceBasePath + "neuromancer.txt",
-    sourceBasePath + "old-man-and-the-sea.txt"
+    //sourceBasePath + "old-man-and-the-sea.txt"
   };
   
   keys = loadConfig("keys.txt");
@@ -262,9 +262,11 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
     PGraphics pg = createGraphics(1440, 360);
     pg.beginDraw();
     pg.background(255);
+    pg.textFont(font, fontSize);
+    pg.tint(255, blaesse);
     
     pg.image(imageFuture.get(), 0, 0, 640, 360);
-      
+    
     //ZUFALLSAUSWAHL LABEL
     String[] labels = new String[labelCount];
     for (int i=0; i < labelCount; i++) {

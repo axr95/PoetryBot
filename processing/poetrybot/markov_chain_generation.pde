@@ -95,7 +95,7 @@ class MarkovChainGenerator {
       }
       return sb.toString();
     } catch (Exception e) {
-      return "No poem for this word :(";
+      return e.getMessage();
     }
   }
   
