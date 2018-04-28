@@ -27,6 +27,7 @@ You can use the following configuration files to specify some settings. Note tha
 The variables have to be stored each in its own line, in a "key:value" format. For example, to specify that the output should actually be printed, the data/settings.txt must contain a line with the content "print:true".
 
 KEYS
+
 In the file "keys.txt", you have to specify the following keys:
 * **API_KEY_CLOUDVISION**: Google Cloud Vision
 * **API_KEY_CUSTOMSEARCH**: Google Custom Search
@@ -34,6 +35,7 @@ In the file "keys.txt", you have to specify the following keys:
 note: you can easily create an account and get free credits for these services
 
 SETTINGS
+
 in the file "settings.txt" you can set the following (**bold** options are the default values):
 * **print** *(true|**false**)*: whether you actually want to print the pictures and the poem (on your standard printer)
 * **servermode** *(**enabled**|disabled)*: whether it should be possible to switch to server mode, where the program pulls images from a webserver instead of the camera on the device itself.
@@ -41,6 +43,7 @@ in the file "settings.txt" you can set the following (**bold** options are the d
 * **min-delay**: the minimum delay between requests to the server in server mode (in ms)
 * **max-delay**: the maximum delay between requests to the server in server mode (in ms)
 * **double-delay-interval**: after so many requests without an image answer, the delay between requests is doubled.
+* **usewebimage** *(**true**|false)*: whether to use the similar image from the web. if there is an error loading this image, the photo from the device will be used instead.
 
 Project dependencies:
 --------------------
