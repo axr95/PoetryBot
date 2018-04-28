@@ -251,7 +251,7 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
     
     File internetPictureFile = null;
     JSONArray jsonSimilarImages = jsonResponses.getJSONObject("webDetection").getJSONArray("visuallySimilarImages");
-    if (jsonSimilarImages != null) {
+    if (jsonSimilarImages != null && boolean(settings.getOrDefault("usewebimage", "true"))) {
       boolean success = false;
       internetPictureFile = new File(tempFolder, "print2.jpg");
       internetPictureFile.createNewFile();
@@ -286,11 +286,13 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
     int writePointer = 0;
     
     
-    PImage imageToDraw;
-    if (internetPictureFile == null) {
-      imageToDraw = imageFuture.get();
-    } else {
+    PImage imageToDraw = null;
+    if (boolean(settings.getOrDefault("usewebimage", "true")) && internetPictureFile != null) {
       imageToDraw = loadImage(internetPictureFile.getAbsolutePath());
+    }
+    
+    if (imageToDraw == null || imageToDraw.width <= 0 || imageToDraw.height <= 0) {
+      imageToDraw = imageFuture.get();
     }
     
     imageToDraw.resize(0, 360);
@@ -360,9 +362,6 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
       //DRUCKEN
       if (settings.getOrDefault("print", "false").equals("true")) {
         Runtime.getRuntime().exec("mspaint /pt " + printedImageFile.getAbsolutePath());
-        if (internetPictureFile != null) {
-          Runtime.getRuntime().exec("mspaint /pt " + internetPictureFile.getAbsolutePath());
-        }
       }
       
       lastPoem = poem;
