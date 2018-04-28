@@ -190,7 +190,7 @@ private void processImage(final PImage image) {
       return EncodePImageToBase64(image);
     }
   });
-  Future<PImage> imageFuture = CompletableFuture.completedFuture(image);
+  Future<PImage> imageFuture = CompletableFuture.completedFuture(video.copy());
   processImage(imageStringFuture, imageFuture);
 }
 
@@ -263,7 +263,7 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
           
           copyStream(imageurl.openStream(), new FileOutputStream(internetPictureFile));
           String mimetype = new MimetypesFileTypeMap().getContentType(internetPictureFile);
-          success = mimetype.contains("image/jpg");
+          success = mimetype.contains("image/jpg") || mimetype.contains("image/jpeg");
         } 
         catch (IOException e) {
           System.out.println("Could not download, open next...");
@@ -283,7 +283,20 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
     pg.textFont(font, fontSize);
     pg.tint(255, blaesse);
     
-    pg.image(imageFuture.get(), 0, 0, 640, 360);
+    int writePointer = 0;
+    
+    
+    PImage imageToDraw;
+    if (internetPictureFile == null) {
+      imageToDraw = imageFuture.get();
+    } else {
+      imageToDraw = loadImage(internetPictureFile.getAbsolutePath());
+    }
+    
+    imageToDraw.resize(0, 360);
+    
+    pg.image(imageToDraw, writePointer, 0, imageToDraw.width, 360);
+    writePointer += imageToDraw.width + 15;
     
     //ZUFALLSAUSWAHL LABEL
     String[] labels = new String[labelCount];
@@ -328,7 +341,7 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
     //DARSTELLUNG POEM-TEXT
     pg.fill(0);
     
-    int x2 = 660;     // Location of start of text.
+    int x2 = writePointer;     // Location of start of text.
     int y2 = 360;
     
     pg.pushMatrix();
