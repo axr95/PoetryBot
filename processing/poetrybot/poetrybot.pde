@@ -320,11 +320,12 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
       webscrape(keywordURLs, webMarkovFile);
     }
     
-    // Momentan wird der Markov Chain Generator jedes Mal neu an den Input angepasst.
-    markov = new MarkovChainGenerator();
-    markov.train(webMarkovFile, cachePath + "goodpoems.txt");
+    // Momentan wird der Markov Chain Generator von den oben genannten sourcefiles
+    // kopiert und um die Webtokens und die goodpoems erweitert.
+    MarkovChainGenerator gen = new MarkovChainGenerator(markov);
+    gen.train(webMarkovFile, cachePath + "goodpoems.txt");
     
-    String poem = markov.getPoem(selectedLabel);
+    String poem = gen.getPoem(selectedLabel);
     println(poem);
     
     //DARSTELLUNG DATUM-TEXT
