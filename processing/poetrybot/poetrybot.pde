@@ -190,7 +190,7 @@ private void processImage(final PImage image) {
       return EncodePImageToBase64(image);
     }
   });
-  Future<PImage> imageFuture = CompletableFuture.completedFuture(video.copy());
+  Future<PImage> imageFuture = CompletableFuture.completedFuture(image.copy());
   processImage(imageStringFuture, imageFuture);
 }
 
