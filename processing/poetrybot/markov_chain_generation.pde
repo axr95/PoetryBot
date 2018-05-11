@@ -77,18 +77,18 @@ class MarkovChainGenerator {
   }
  
   public String getPoem(String start) {
-    try {
-      StringBuilder sb = new StringBuilder();
-      sb.append(start);
-      LookbackContainer lbc = new LookbackContainer(Integer.MAX_VALUE, DELIMIT_TOKEN);
-      if (start != null) {
-        String[] startTokens = start.split(" ");
-        for (String s : startTokens) {
-          lbc.addToken(new StringToken(s));
-        }
+    StringBuilder sb = new StringBuilder();
+    sb.append(start);
+    LookbackContainer lbc = new LookbackContainer(Integer.MAX_VALUE, DELIMIT_TOKEN);
+    if (start != null) {
+      String[] startTokens = start.split(" ");
+      for (String s : startTokens) {
+        lbc.addToken(new StringToken(s));
       }
-      
-      Token t = null;
+    }
+    
+    Token t = null;
+    try {
       while ((t = tokenHolder.getNext(lbc)) != null && !t.equals(DELIMIT_TOKEN)) {
         if (!punctuation.contains(t.toString())) {
           sb.append(' ');

@@ -42,6 +42,7 @@ int index(int x, int y) {
 HashMap<String, Integer> wantedFeatures;
 HashMap<String, String> keys;
 HashMap<String, String> settings;
+HashMap<String, String> poemsource;
 
 //PFADE
 String cachePath;
@@ -77,25 +78,26 @@ void setup() {
   baseTempPath = sketchPath("data") + File.separator + ("temp") + File.separator;
   fontPath = sketchPath("data") + File.separator + ("fonts") + File.separator;
   
-  String sourceBasePath = sketchPath("data") + File.separator + "poemsource" + File.separator + "prose" + File.separator;
-  
-  filePaths = new String[] {
-    sourceBasePath + "1984.txt",
-    //sourceBasePath + "bible.txt",             // a bit long for debugging, waiting for save mechanism
-    //sourceBasePath + "book-of-wisdom.txt", 
-    //sourceBasePath + "brave-new-world.txt",   // TODO: please sanitize files before adding them here. The other were okayish, but this one is pretty annoying to sanitize to pure UTF-8
-    //sourceBasePath + "cryptonomicon.txt",     // also too long
-    //sourceBasePath + "earthworm-papers.txt",
-    sourceBasePath + "neuromancer.txt",
-    //sourceBasePath + "old-man-and-the-sea.txt"
-  };
-  
   keys = loadConfig("keys.txt");
   settings = loadConfig("settings.txt");
+  poemsource = loadConfig("poemsource.txt");
   
-  markov = loadMarkov(filePaths, cachePath + "markov_tokens.gz", 
-                                 cachePath + "markov_tokens_md5.bin");
-                                 
+  if (poemsource.containsKey("base")) {
+    filePaths = poemsource.get("base").split(",");
+    String sourceBasePath = sketchPath("data") + File.separator;
+    for (int i = 0; i < filePaths.length; i++) {
+      filePaths[i] = sourceBasePath + filePaths[i];
+    }
+    markov = loadMarkov(filePaths, cachePath + "markov_tokens.gz", 
+                                   cachePath + "markov_tokens_md5.bin");
+  } else {
+    markov = new MarkovChainGenerator();
+  }
+  
+  if (boolean(poemsource.get("use-goodpoems"))) {
+    markov.train(cachePath + "goodpoems.txt");
+  }
+                              
   serverMode = ("enabled".equals(settings.get("servermode")));
   
   if (serverMode) {
@@ -322,10 +324,15 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
     
     // Momentan wird der Markov Chain Generator von den oben genannten sourcefiles
     // kopiert und um die Webtokens und die goodpoems erweitert.
-    MarkovChainGenerator gen = new MarkovChainGenerator(markov);
-    gen.train(webMarkovFile, cachePath + "goodpoems.txt");
     
-    String poem = gen.getPoem(selectedLabel);
+    MarkovChainGenerator gen;
+    gen = new MarkovChainGenerator(markov);
+    
+    if (boolean(poemsource.getOrDefault("use-webdata", "true"))) {
+      gen.train(webMarkovFile);
+    }
+    
+    String poem = gen.getPoem(selectedLabel);  
     println(poem);
     
     //DARSTELLUNG DATUM-TEXT
