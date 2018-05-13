@@ -7,6 +7,9 @@ temp/
 # ignore webdata folder
 webdata/
 
+# ignore poemsource folder (because im nervously unsure if we are allowed to have the sources on github)
+poemsource/
+
 # settings are different for each user
 settings.txt
 
