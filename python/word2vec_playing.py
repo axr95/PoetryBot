@@ -13,9 +13,8 @@ args = ap.parse_args()
 splitter = re.compile("[\w']+|[^\w\s]+")
 
 with open(args.file, "r") as fo:
-	sentences = map(lambda line : splitter.findall(line.lower()), fo)
-	wvmodel = word2vec.Word2Vec(sentences)
+    sentences = map(lambda line : splitter.findall(line.lower()), fo)
+    wvmodel = word2vec.Word2Vec(sentences, size=200)
 
-print (wvmodel.wv.most_similar(['man']))
-print (wvmodel.wv.get_vector("man"))
+print (wvmodel.wv.most_similar(['god']))
 
