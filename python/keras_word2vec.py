@@ -24,9 +24,10 @@ logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=lo
 BATCH_SIZE = 512
 HIDDEN_DIM = 300
 #SEQ_LENGTH = 40
-VEC_SIZE = 3
+VEC_SIZE = 200
 WORD_LOOKBACK = 5
 EPOCHS = 100
+STATEFUL = False
 
 ap = argparse.ArgumentParser()
 ap.add_argument("file")
@@ -62,10 +63,12 @@ def mapHelper(line):
     return res
 
 with open(args.file, "r") as fo:
-    sentences = map(mapHelper, fo)
-    wvmodel = word2vec.Word2Vec(sentences, size=VEC_SIZE, min_count=1)
+    sentences = list(map(mapHelper, fo))
+
+wvmodel = word2vec.Word2Vec(sentences, size=VEC_SIZE, min_count=1)
 
 del mapHelper
+del sentences
 
 x = np.zeros((wordCount - WORD_LOOKBACK, WORD_LOOKBACK, VEC_SIZE), dtype=np.float32)
 y = np.zeros((wordCount - WORD_LOOKBACK, VEC_SIZE), dtype=np.float32)
@@ -81,6 +84,12 @@ with open(args.file, "r") as fo:
 
 #print(wvmodel.wv.similar_by_vector(random.choice(y)))
 
+if STATEFUL:
+    rest = (wordCount - WORD_LOOKBACK) % BATCH_SIZE
+    if rest > 0:
+        x = x[range(wordCount - WORD_LOOKBACK - rest),:,:]
+        y = y[range(wordCount - WORD_LOOKBACK - rest),:]
+
 
 print("setup model")
 
@@ -88,14 +97,21 @@ def vector_similarity(y_true, y_pred):
     y_true = K.l2_normalize(y_true, axis=-1)
     y_pred = K.l2_normalize(y_pred, axis=-1)
     res = -K.sum(y_true * y_pred, axis=-1)
+    #return res
     return (1 - res**2)
 
 #'''
 model = Sequential()
-model.add(LSTM(HIDDEN_DIM, input_shape=(WORD_LOOKBACK, VEC_SIZE)))
+if STATEFUL:
+    model.add(LSTM(HIDDEN_DIM, batch_input_shape=(BATCH_SIZE, WORD_LOOKBACK, VEC_SIZE), activation=None, stateful=STATEFUL))
+else:
+    model.add(LSTM(HIDDEN_DIM, input_shape=(WORD_LOOKBACK, VEC_SIZE), activation=None))
+#model.add(Dense(HIDDEN_DIM, input_shape=(WORD_LOOKBACK, VEC_SIZE)))
+model.add(Dense(HIDDEN_DIM))
+model.add(Dense(HIDDEN_DIM))
+model.add(Dense(HIDDEN_DIM))
+model.add(Dense(HIDDEN_DIM))
 model.add(Dense(VEC_SIZE))
-#model.add(Dense(VEC_SIZE))
-#model.add(Dense(VEC_SIZE))
 model.compile(loss=vector_similarity, optimizer="rmsprop")
 
 #'''
@@ -105,31 +121,26 @@ def on_epoch_end(epoch, logs):
     # Function invoked at end of each epoch. Prints generated text.
     print()
     print('----- Generating text after Epoch: %d' % epoch)
-    
-    x_pred = np.zeros((1, WORD_LOOKBACK, VEC_SIZE), dtype=np.float32)
+	
+    x_pred = np.zeros((BATCH_SIZE, WORD_LOOKBACK, VEC_SIZE), dtype=np.float32)
     x_pred[0] = random.choice(x)
     
     sentence = list(map(lambda vec : wvmodel.wv.similar_by_vector(vec)[0][0], x_pred[0,:,:]))
     
     sentence += ["===>"]
     
-    for i in range(20):
-        predv = model.predict(x_pred, verbose=0)
-        predword = wvmodel.wv.similar_by_vector(predv[0])[0][0]
+    for i in range(31):
+        #predv = model.predict(x_pred, verbose=0)
+        predv = model.predict_on_batch(x_pred)
+        predword = wvmodel.wv.similar_by_vector(predv[i])[0][0]
         #print (list(map(lambda vec : wvmodel.wv.similar_by_vector(vec)[0][0], x_pred[0,:,:])), " ===> ", list(map(lambda vec : wvmodel.wv.similar_by_vector(vec)[0][0], predv[0:10])))
         sentence.append(predword)
-        predv = wvmodel.wv.get_vector(predword)
         for j in range(WORD_LOOKBACK - 1):
-            x_pred[0, j, :] = x_pred[0, j + 1, :]
-        x_pred[0, WORD_LOOKBACK - 1, :] = predv
+            x_pred[i+1, j, :] = x_pred[i, j + 1, :]
+        x_pred[i+1, WORD_LOOKBACK - 1, :] = wvmodel.wv.get_vector(predword)
     
     print(" ".join(sentence))
     print()
-    
-    # shuffle input data:
-    # https://stackoverflow.com/questions/43229034/randomly-shuffle-data-and-labels-from-different-files-in-the-same-order/43229113#43229113
-    idx = np.random.permutation(len(y))
-    x,y = x[idx,:,:],y[idx,:]
 
 print_callback = LambdaCallback(on_epoch_end=on_epoch_end)
 
@@ -137,7 +148,10 @@ print("begin train")
 model.fit(x, y,
           batch_size=BATCH_SIZE,
           epochs=EPOCHS,
-          callbacks=[print_callback])
+          callbacks=[print_callback],
+		  shuffle=True,
+		  validation_split = 0.5,
+		  verbose=2)
           
 model.summary()
 #'''
