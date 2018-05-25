@@ -1,11 +1,9 @@
-from gensim.models import word2vec
 import argparse
 import re
 import logging
 import numpy as np
 import itertools
 import random
-import pyttsx
 from collections import deque
 from keras.callbacks import LambdaCallback
 from keras.models import Sequential
@@ -19,20 +17,18 @@ ap = argparse.ArgumentParser(description='Takes source files, computes a word2ve
 ap.add_argument('file', help='input file')
 ap.add_argument('--batch_size', metavar='batch-size', type=int, default=256, help='batch size for training the NN')
 ap.add_argument('--hidden_dim', metavar='hidden-dim', type=int, default=500, help='dimension of hidden layers in the NN')
-ap.add_argument('--vec_size', metavar='vec-size', type=int, default=200, help='dimension of the generated word2vec vectors')
 ap.add_argument('--word_lookback', metavar='word-lookback', type=int, default=5, help='how many words back the NN is feeded, before having to make a decision')
 ap.add_argument('--epochs', type=int, default=100, help='number of epochs in training the NN')
 ap.add_argument('--stateful', action='store_true', help='makes a stateful LSTM (experimental)')
 ap.add_argument('-v', '--verbosity', type=int, default=1, help='Sets verbosity of keras while training. Accepted values: 0 - no output, 1 - one line per batch, 2 - one line per epoch')
 ap.add_argument('--valid_split', metavar='valid-split', type=float, default=0.5, help='ratio of how much of the data is used as validation set while training')
 
-
 args = ap.parse_args()
 
 BATCH_SIZE = args.batch_size
 HIDDEN_DIM = args.hidden_dim
 #SEQ_LENGTH = 40
-VEC_SIZE = args.vec_size
+#VEC_SIZE = args.vec_size
 WORD_LOOKBACK = args.word_lookback
 EPOCHS = args.epochs
 STATEFUL = args.stateful
@@ -42,9 +38,6 @@ print(args)
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.ERROR)
 
 splitter = re.compile("[\w']+|[^\w\s]+")
-
-
-speaker = pyttsx.init()
 
 def wordIterator(lineiterable):
     for line in lineiterable:
@@ -76,7 +69,7 @@ def mapHelper(line):
 with open(args.file, "r", encoding="utf8") as fo:
     sentences = list(map(mapHelper, fo))
 
-wvmodel = word2vec.Word2Vec(sentences, size=VEC_SIZE, min_count=1)
+
 
 del mapHelper
 del sentences
@@ -103,14 +96,6 @@ if STATEFUL:
 
 
 print("setup model")
-
-def vector_similarity(y_true, y_pred):
-    y_true = K.l2_normalize(y_true, axis=-1)
-    y_pred = K.l2_normalize(y_pred, axis=-1)
-    res = -K.sum(y_true * y_pred, axis=-1)
-    #return res
-    #return (1 - res ** 2)
-    return (-res)
 
 #'''
 model = Sequential()
@@ -155,8 +140,6 @@ def on_epoch_end(epoch, logs):
     
     print(" ".join(sentence))
     print()
-    speaker.say(" ".join(sentence))
-    speaker.runAndWait()
 
 print_callback = LambdaCallback(on_epoch_end=on_epoch_end)
 
