@@ -18,7 +18,7 @@ splitter = re.compile("[\w']+|[^\w\s]+")
 with open(args.file, "r") as fo:
     sentences = list(map(lambda line : splitter.findall(line.lower()), fo))
 
-wvmodel = word2vec.Word2Vec(sentences, size=200, min_count=50, window=10, sample=1e-3)
+wvmodel = word2vec.Word2Vec(sentences, size=200, min_count=3, window=10, sample=1e-3)
 
 print (wvmodel.wv.most_similar([',']))
 

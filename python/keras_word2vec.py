@@ -10,28 +10,34 @@ from keras.callbacks import LambdaCallback
 from keras.models import Sequential
 from keras.layers.core import Dense, Activation, Dropout
 from keras.layers.recurrent import LSTM, SimpleRNN
-from keras.layers.wrappers import TimeDistributed
+from keras.optimizers import RMSprop
 from keras import backend as K
 
 
-ap = argparse.ArgumentParser()
-ap.add_argument("file")
+ap = argparse.ArgumentParser(description='Takes source files, computes a word2vec model for it, and then trains an LSTM based on the same sources that tries to predict the next word based on the last few words.')
+ap.add_argument('file', help='input file')
+ap.add_argument('--batch_size', metavar='batch-size', type=int, default=256, help='batch size for training the NN')
+ap.add_argument('--hidden_dim', metavar='hidden-dim', type=int, default=500, help='dimension of hidden layers in the NN')
+ap.add_argument('--vec_size', metavar='vec-size', type=int, default=200, help='dimension of the generated word2vec vectors')
+ap.add_argument('--word_lookback', metavar='word-lookback', type=int, default=5, help='how many words back the NN is feeded, before having to make a decision')
+ap.add_argument('--epochs', type=int, default=100, help='number of epochs in training the NN')
+ap.add_argument('--stateful', action='store_true', help='makes a stateful LSTM (experimental)')
+ap.add_argument('-v', '--verbosity', type=int, default=1, help='Sets verbosity of keras while training. Accepted values: 0 - no output, 1 - one line per batch, 2 - one line per epoch')
+
+
 args = ap.parse_args()
 
+BATCH_SIZE = args.batch_size
+HIDDEN_DIM = args.hidden_dim
+#SEQ_LENGTH = 40
+VEC_SIZE = args.vec_size
+WORD_LOOKBACK = args.word_lookback
+EPOCHS = args.epochs
+STATEFUL = args.stateful
+
+print(args)
 
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.ERROR)
-
-BATCH_SIZE = 512
-HIDDEN_DIM = 300
-#SEQ_LENGTH = 40
-VEC_SIZE = 200
-WORD_LOOKBACK = 5
-EPOCHS = 100
-STATEFUL = False
-
-ap = argparse.ArgumentParser()
-ap.add_argument("file")
-args = ap.parse_args()
 
 splitter = re.compile("[\w']+|[^\w\s]+")
 
@@ -108,11 +114,13 @@ else:
     model.add(LSTM(HIDDEN_DIM, input_shape=(WORD_LOOKBACK, VEC_SIZE), activation=None))
 #model.add(Dense(HIDDEN_DIM, input_shape=(WORD_LOOKBACK, VEC_SIZE)))
 model.add(Dense(HIDDEN_DIM))
-model.add(Dense(HIDDEN_DIM))
-model.add(Dense(HIDDEN_DIM))
-model.add(Dense(HIDDEN_DIM))
+#model.add(Dense(HIDDEN_DIM))
+#model.add(Dense(HIDDEN_DIM))
+#model.add(Dense(HIDDEN_DIM))
 model.add(Dense(VEC_SIZE))
-model.compile(loss=vector_similarity, optimizer="rmsprop")
+
+optimizer = RMSprop(lr=0.0001)
+model.compile(loss=vector_similarity, optimizer=optimizer)
 
 #'''
 # https://github.com/keras-team/keras/blob/master/examples/lstm_text_generation.py
@@ -129,7 +137,7 @@ def on_epoch_end(epoch, logs):
     
     sentence += ["===>"]
     
-    for i in range(31):
+    for i in range(min(BATCH_SIZE - 1, 20)):
         #predv = model.predict(x_pred, verbose=0)
         predv = model.predict_on_batch(x_pred)
         predword = wvmodel.wv.similar_by_vector(predv[i])[0][0]
@@ -149,9 +157,9 @@ model.fit(x, y,
           batch_size=BATCH_SIZE,
           epochs=EPOCHS,
           callbacks=[print_callback],
-		  shuffle=True,
+		  shuffle=not STATEFUL,
 		  validation_split = 0.5,
-		  verbose=2)
+		  verbose=args.verbosity)
           
 model.summary()
 #'''
