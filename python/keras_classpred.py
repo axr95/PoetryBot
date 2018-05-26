@@ -5,6 +5,7 @@ from numpy import array
 import numpy as np
 import itertools
 import random
+import time
 from collections import deque
 from keras.callbacks import LambdaCallback
 from keras.models import Sequential
@@ -19,13 +20,15 @@ from keras.preprocessing.text import Tokenizer
 ap = argparse.ArgumentParser(description='Takes source files, computes a word2vec model for it, and then trains an LSTM based on the same sources that tries to predict the next word based on the last few words.')
 ap.add_argument('file', help='input file')
 ap.add_argument('--batch_size', type=int, default=256, help='batch size for training the NN')
-ap.add_argument('--hidden_dim', type=int, default=500, help='dimension of hidden layers in the NN')
+ap.add_argument('--hidden_dim', type=int, default=100, help='dimension of hidden layers in the NN')
 ap.add_argument('--vec_size', type=int, default=200, help='dimension of the generated word2vec vectors')
 ap.add_argument('--word_lookback', type=int, default=5, help='how many words back the NN is feeded, before having to make a decision')
 ap.add_argument('--epochs', type=int, default=100, help='number of epochs in training the NN')
-ap.add_argument('--stateful', action='store_true', help='makes a stateful LSTM (experimental)')
+ap.add_argument('--stateful', action='store_true', help='makes a stateful LSTM (currently ignored)')
 ap.add_argument('-v', '--verbosity', type=int, default=1, help='Sets verbosity of keras while training. Accepted values: 0 - no output, 1 - one line per batch, 2 - one line per epoch')
 ap.add_argument('--valid_split', type=float, default=0.5, help='ratio of how much of the data is used as validation set while training')
+ap.add_argument('--predict_len', type=int, default=20, help='length of predicted sentences (in words) after each epoch')
+ap.add_argument('--predict_count', type=int, default=1, help='how many different sentences should be predicted after each epoch')
 
 args = ap.parse_args()
 
@@ -35,7 +38,7 @@ HIDDEN_DIM = args.hidden_dim
 VEC_SIZE = args.vec_size
 WORD_LOOKBACK = args.word_lookback
 EPOCHS = args.epochs
-STATEFUL = args.stateful
+STATEFUL = False #args.stateful
 
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.ERROR)
 
@@ -93,9 +96,9 @@ y = to_categorical(y)
 # define model
 model = Sequential()
 model.add(Embedding(dictSize, VEC_SIZE, input_length=WORD_LOOKBACK))
-model.add(LSTM(100, return_sequences=True))
-model.add(LSTM(100))
-model.add(Dense(100, activation='relu'))
+model.add(LSTM(HIDDEN_DIM, return_sequences=True))
+model.add(LSTM(HIDDEN_DIM))
+model.add(Dense(HIDDEN_DIM, activation='relu'))
 model.add(Dense(dictSize, activation='softmax'))
 
 # compile model
@@ -107,25 +110,27 @@ def on_epoch_end(epoch, logs):
     global x, y
     # Function invoked at end of each epoch. Prints generated text.
     print()
-    print('----- Generating text after Epoch: %d' % epoch)
-	
-    x_pred = np.zeros((1, WORD_LOOKBACK), dtype=np.int)
-    x_pred[0,:] = np.asarray(random.choice(x), dtype=np.int)
+    print('----- Generating text after Epoch: %d' % (epoch + 1))
     
-    sentence = list(map(getWordFromIndex, x_pred[0]))
-    sentence += ["===>"]
-    
-    for i in range(min(BATCH_SIZE - 1, 20)):
-        #predv = model.predict(x_pred, verbose=0)
-        predv = model.predict_classes(x_pred)[0]
-        predword = getWordFromIndex(predv)
-        sentence.append(predword)
-        for j in range(WORD_LOOKBACK - 1):
-            x_pred[0,j] = x_pred[0,j + 1]
-        x_pred[0,WORD_LOOKBACK - 1] = predv
-    
-    print(" ".join(sentence))
-    print()
+    for _ in range(args.predict_count):
+        starttime = time.process_time()
+        
+        x_pred = np.zeros((1, WORD_LOOKBACK), dtype=np.int)
+        x_pred[0,:] = np.asarray(random.choice(x), dtype=np.int)
+        
+        sentence = list(map(getWordFromIndex, x_pred[0]))
+        sentence += ["===>"]
+        
+        for i in range(args.predict_len):
+            predv = model.predict_classes(x_pred)[0]
+            predword = getWordFromIndex(predv)
+            sentence.append(predword)
+            for j in range(WORD_LOOKBACK - 1):
+                x_pred[0,j] = x_pred[0,j + 1]
+            x_pred[0,WORD_LOOKBACK - 1] = predv
+        
+        print(" ".join(sentence))
+        print("----- Generated in", time.process_time() - starttime, "seconds")
 
 print_callback = LambdaCallback(on_epoch_end=on_epoch_end)
 
