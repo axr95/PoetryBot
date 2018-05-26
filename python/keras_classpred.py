@@ -112,10 +112,7 @@ def on_epoch_end(epoch, logs):
     x_pred = np.zeros((1, WORD_LOOKBACK), dtype=np.int)
     x_pred[0,:] = np.asarray(random.choice(x), dtype=np.int)
     
-    print(x_pred)
-    
     sentence = list(map(getWordFromIndex, x_pred[0]))
-    
     sentence += ["===>"]
     
     for i in range(min(BATCH_SIZE - 1, 20)):
