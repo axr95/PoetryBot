@@ -39,6 +39,7 @@ class MarkovChainGenerator {
   // MARKOV CHAIN PARAMETERS
   private static final int lookback = 2;
   private static final int mapInitialSize = 50000;
+  private final Token DELIMIT_TOKEN = DelimitToken.getInstance();
   
   private final List<String> punctuation = Arrays.asList(",", ";", ":", ".", "?", "!", "-");
 
@@ -54,7 +55,7 @@ class MarkovChainGenerator {
   }
   
   private MarkovChainGenerator(MapTokenHolder baseTokenHolder) {
-    tokenHolder = baseTokenHolder;
+    tokenHolder = new MapTokenHolder(baseTokenHolder);
   }
   
   public void train(String... filePaths) {
@@ -76,17 +77,19 @@ class MarkovChainGenerator {
   }
  
   public String getPoem(String start) {
-    try {
-      final Token DELIMIT_TOKEN = DelimitToken.getInstance();
-      StringBuilder sb = new StringBuilder();
-      sb.append(start);
-      LookbackContainer lbc = new LookbackContainer(Integer.MAX_VALUE, DELIMIT_TOKEN);
-      if (start != null) {
-        lbc.addToken(new StringToken(start));
+    StringBuilder sb = new StringBuilder();
+    sb.append(start);
+    LookbackContainer lbc = new LookbackContainer(Integer.MAX_VALUE, DELIMIT_TOKEN);
+    if (start != null) {
+      String[] startTokens = start.split(" ");
+      for (String s : startTokens) {
+        lbc.addToken(new StringToken(s));
       }
-      
-      Token t = null;
-      while ((t = tokenHolder.getNext(lbc)) != DELIMIT_TOKEN && t != null) {
+    }
+    
+    Token t = null;
+    try {
+      while ((t = tokenHolder.getNext(lbc)) != null && !t.equals(DELIMIT_TOKEN)) {
         if (!punctuation.contains(t.toString())) {
           sb.append(' ');
         }
@@ -95,7 +98,7 @@ class MarkovChainGenerator {
       }
       return sb.toString();
     } catch (Exception e) {
-      return "No poem for this word :(";
+      return e.getMessage() + "\nNo poem for " + start + " :(";
     }
   }
   

@@ -1,0 +1,3 @@
+use-webdata:false
+use-goodpoems:false
+base:poemsource/poetry/some imagist poems_clean.txt

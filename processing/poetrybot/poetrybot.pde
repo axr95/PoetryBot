@@ -42,6 +42,7 @@ int index(int x, int y) {
 HashMap<String, Integer> wantedFeatures;
 HashMap<String, String> keys;
 HashMap<String, String> settings;
+HashMap<String, String> poemsource;
 
 //PFADE
 String cachePath;
@@ -62,6 +63,7 @@ int doubleDelayInterval;
 //MULTITHREADING
 ExecutorService threadPool = Executors.newCachedThreadPool();
 Thread serverThread;
+volatile String lastPoem = null;
 
 //BERECHNUNG VIDEO*TEXT
 void setup() {
@@ -76,25 +78,26 @@ void setup() {
   baseTempPath = sketchPath("data") + File.separator + ("temp") + File.separator;
   fontPath = sketchPath("data") + File.separator + ("fonts") + File.separator;
   
-  String sourceBasePath = sketchPath("data") + File.separator + "poemsource" + File.separator + "prose" + File.separator;
-  
-  filePaths = new String[] {
-    sourceBasePath + "1984.txt",
-    //sourceBasePath + "bible.txt",             // a bit long for debugging, waiting for save mechanism
-    sourceBasePath + "book-of-wisdom.txt", 
-    //sourceBasePath + "brave-new-world.txt",   // TODO: please sanitize files before adding them here. The other were okayish, but this one is pretty annoying to sanitize to pure UTF-8
-    //sourceBasePath + "cryptonomicon.txt",     // also too long
-    sourceBasePath + "earthworm-papers.txt",
-    sourceBasePath + "neuromancer.txt",
-    sourceBasePath + "old-man-and-the-sea.txt"
-  };
-  
   keys = loadConfig("keys.txt");
   settings = loadConfig("settings.txt");
+  poemsource = loadConfig("poemsource.txt");
   
-  markov = loadMarkov(filePaths, cachePath + "markov_tokens.gz", 
-                                 cachePath + "markov_tokens_md5.bin");
-                                 
+  if (poemsource.containsKey("base")) {
+    filePaths = poemsource.get("base").split(",");
+    String sourceBasePath = sketchPath("data") + File.separator;
+    for (int i = 0; i < filePaths.length; i++) {
+      filePaths[i] = sourceBasePath + filePaths[i];
+    }
+    markov = loadMarkov(filePaths, cachePath + "markov_tokens.gz", 
+                                   cachePath + "markov_tokens_md5.bin");
+  } else {
+    markov = new MarkovChainGenerator();
+  }
+  
+  if (boolean(poemsource.get("use-goodpoems"))) {
+    markov.train(cachePath + "goodpoems.txt");
+  }
+                              
   serverMode = ("enabled".equals(settings.get("servermode")));
   
   if (serverMode) {
@@ -155,14 +158,31 @@ void exit() {
 //INTERAKTION
 void keyPressed() {
   if (keyPressed) {
-    saveFrame(baseTempPath + "tmp.jpg");
-    // saveFrame("photobooth-###.jpg");
-    
-    threadPool.execute(new Runnable() { 
-      public void run() { 
-        processImage(video); 
-      } 
-    });
+    if (key == 'y' || key == 'Y') {
+      if (lastPoem != null) {
+        try {
+          PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(cachePath + "goodpoems.txt", true)));
+          out.println(lastPoem);
+          out.flush();
+          out.close();
+          lastPoem = null;
+          println("poem saved!");
+        } catch (IOException e) {
+          println("could not save good poem...");
+        }
+      } else {
+        println("last poem was already saved!");
+      }
+    } else {
+      saveFrame(baseTempPath + "tmp.jpg");
+      // saveFrame("photobooth-###.jpg");
+      
+      threadPool.execute(new Runnable() { 
+        public void run() { 
+          processImage(video); 
+        } 
+      });
+    }
   }
 }
 
@@ -172,7 +192,7 @@ private void processImage(final PImage image) {
       return EncodePImageToBase64(image);
     }
   });
-  Future<PImage> imageFuture = CompletableFuture.completedFuture(image);
+  Future<PImage> imageFuture = CompletableFuture.completedFuture(image.copy());
   processImage(imageStringFuture, imageFuture);
 }
 
@@ -233,7 +253,7 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
     
     File internetPictureFile = null;
     JSONArray jsonSimilarImages = jsonResponses.getJSONObject("webDetection").getJSONArray("visuallySimilarImages");
-    if (jsonSimilarImages != null) {
+    if (jsonSimilarImages != null && boolean(settings.getOrDefault("usewebimage", "true"))) {
       boolean success = false;
       internetPictureFile = new File(tempFolder, "print2.jpg");
       internetPictureFile.createNewFile();
@@ -245,7 +265,7 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
           
           copyStream(imageurl.openStream(), new FileOutputStream(internetPictureFile));
           String mimetype = new MimetypesFileTypeMap().getContentType(internetPictureFile);
-          success = mimetype.contains("image/jpg");
+          success = mimetype.contains("image/jpg") || mimetype.contains("image/jpeg");
         } 
         catch (IOException e) {
           System.out.println("Could not download, open next...");
@@ -262,9 +282,26 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
     PGraphics pg = createGraphics(1440, 360);
     pg.beginDraw();
     pg.background(255);
+    pg.textFont(font, fontSize);
+    pg.tint(255, blaesse);
     
-    pg.image(imageFuture.get(), 0, 0, 640, 360);
-      
+    int writePointer = 0;
+    
+    
+    PImage imageToDraw = null;
+    if (boolean(settings.getOrDefault("usewebimage", "true")) && internetPictureFile != null) {
+      imageToDraw = loadImage(internetPictureFile.getAbsolutePath());
+    }
+    
+    if (imageToDraw == null || imageToDraw.width <= 0 || imageToDraw.height <= 0) {
+      imageToDraw = imageFuture.get();
+    }
+    
+    imageToDraw.resize(0, 360);
+    
+    pg.image(imageToDraw, writePointer, 0, imageToDraw.width, 360);
+    writePointer += imageToDraw.width + 15;
+    
     //ZUFALLSAUSWAHL LABEL
     String[] labels = new String[labelCount];
     for (int i=0; i < labelCount; i++) {
@@ -276,20 +313,26 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
     println("selectedLabel: " + selectedLabel);
     
     // ...\cache\webdata\labelname.txt
-    String markovFile = cachePath + "webdata" + File.separator + selectedLabel + ".txt";
+    String webMarkovFile = cachePath + "webdata" + File.separator + selectedLabel + ".txt";
     
-    File f = new File(markovFile);
+    File f = new File(webMarkovFile);
     
     if (!f.exists()) {
       String[] keywordURLs = getURLsForKeyword(selectedLabel);
-      webscrape(keywordURLs, markovFile);
+      webscrape(keywordURLs, webMarkovFile);
     }
     
-    // Momentan wird der Markov Chain Generator jedes Mal neu an den Input angepasst.
-    markov = new MarkovChainGenerator();
-    markov.train(markovFile);
+    // Momentan wird der Markov Chain Generator von den oben genannten sourcefiles
+    // kopiert und um die Webtokens und die goodpoems erweitert.
     
-    String poem = markov.getPoem(selectedLabel);
+    MarkovChainGenerator gen;
+    gen = new MarkovChainGenerator(markov);
+    
+    if (boolean(poemsource.getOrDefault("use-webdata", "true"))) {
+      gen.train(webMarkovFile);
+    }
+    
+    String poem = gen.getPoem(selectedLabel);  
     println(poem);
     
     //DARSTELLUNG DATUM-TEXT
@@ -308,7 +351,7 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
     //DARSTELLUNG POEM-TEXT
     pg.fill(0);
     
-    int x2 = 660;     // Location of start of text.
+    int x2 = writePointer;     // Location of start of text.
     int y2 = 360;
     
     pg.pushMatrix();
@@ -327,10 +370,10 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
       //DRUCKEN
       if (settings.getOrDefault("print", "false").equals("true")) {
         Runtime.getRuntime().exec("mspaint /pt " + printedImageFile.getAbsolutePath());
-        if (internetPictureFile != null) {
-          Runtime.getRuntime().exec("mspaint /pt " + internetPictureFile.getAbsolutePath());
-        }
       }
+      
+      lastPoem = poem;
+      println("Is this a good poem? :)");
     }
   } catch (IOException e) {
     System.out.println("error");
