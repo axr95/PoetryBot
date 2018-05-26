@@ -5,7 +5,7 @@ import logging
 import numpy as np
 import itertools
 import random
-import pyttsx
+import pyttsx3
 from collections import deque
 from keras.callbacks import LambdaCallback
 from keras.models import Sequential
@@ -44,7 +44,7 @@ logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=lo
 splitter = re.compile("[\w']+|[^\w\s]+")
 
 
-speaker = pyttsx.init()
+speaker = pyttsx3.init()
 
 def wordIterator(lineiterable):
     for line in lineiterable:
@@ -125,7 +125,7 @@ model.add(Dense(HIDDEN_DIM))
 #model.add(Dense(HIDDEN_DIM))
 model.add(Dense(VEC_SIZE))
 
-optimizer = RMSprop(lr=0.0001)
+optimizer = RMSprop(lr=0.001)
 model.compile(loss=vector_similarity, optimizer=optimizer)
 
 #'''
