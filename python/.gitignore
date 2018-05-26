@@ -1,0 +1,6 @@
+# ignore poemsource folder (because im nervously unsure if we are allowed to have the sources on github)
+source/
+
+# ignoring dictionary and output
+output/
+words_alpha.txt
