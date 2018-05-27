@@ -6,6 +6,7 @@ import numpy as np
 import itertools
 import random
 import time
+from difflib import SequenceMatcher
 from collections import deque
 from keras.callbacks import LambdaCallback
 from keras.models import Sequential
@@ -15,7 +16,6 @@ from keras.layers import Embedding
 from keras.optimizers import RMSprop
 from keras import backend as K
 from keras.utils import to_categorical
-from keras.preprocessing.text import Tokenizer
 
 ap = argparse.ArgumentParser(description='Takes source files, computes a word2vec model for it, and then trains an LSTM based on the same sources that tries to predict the next word based on the last few words.')
 ap.add_argument('file', help='input file')
@@ -34,7 +34,6 @@ args = ap.parse_args()
 
 BATCH_SIZE = args.batch_size
 HIDDEN_DIM = args.hidden_dim
-#SEQ_LENGTH = 40
 VEC_SIZE = args.vec_size
 WORD_LOOKBACK = args.word_lookback
 EPOCHS = args.epochs
@@ -80,6 +79,10 @@ def getWordFromIndex(index):
         if dict[w] == index:
             return w
 
+print (args)
+print ("dictSize:", dictSize)
+print ("wordCount:", wordCount)
+
 x = np.zeros((wordCount - WORD_LOOKBACK, WORD_LOOKBACK), dtype=np.int)
 y = np.zeros((wordCount - WORD_LOOKBACK), dtype=np.int)
 
@@ -91,8 +94,12 @@ with open(args.file, "r", encoding="utf8") as fo:
     for i, (hist, target) in enumerate(sIter):
         x[i,:] = hist
         y[i] = target
-
+        
+# set up copy checker
+seqMatcher = SequenceMatcher(a=y)
+        
 y = to_categorical(y)
+
 # define model
 model = Sequential()
 model.add(Embedding(dictSize, VEC_SIZE, input_length=WORD_LOOKBACK))
@@ -104,10 +111,10 @@ model.add(Dense(dictSize, activation='softmax'))
 # compile model
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-#'''
+
 # https://github.com/keras-team/keras/blob/master/examples/lstm_text_generation.py
 def on_epoch_end(epoch, logs):
-    global x, y
+    global x, y, seqMatcher
     # Function invoked at end of each epoch. Prints generated text.
     print()
     print('----- Generating text after Epoch: %d' % (epoch + 1))
@@ -121,8 +128,12 @@ def on_epoch_end(epoch, logs):
         sentence = list(map(getWordFromIndex, x_pred[0]))
         sentence += ["===>"]
         
+        generated = []
+        
         for i in range(args.predict_len):
             predv = model.predict_classes(x_pred)[0]
+            generated.append(predv)
+            
             predword = getWordFromIndex(predv)
             sentence.append(predword)
             for j in range(WORD_LOOKBACK - 1):
@@ -131,6 +142,10 @@ def on_epoch_end(epoch, logs):
         
         print(" ".join(sentence))
         print("----- Generated in", time.process_time() - starttime, "seconds")
+        
+        seqMatcher.set_seq2(generated)
+        (_, j, k) = seqMatcher.find_longest_match(0, len(y), 0, args.predict_len)
+        print("----- Longest copied sequence:", k, "-", " ".join(sentence[(WORD_LOOKBACK + 1 + j):(WORD_LOOKBACK + 1 + j + k)]).replace("\n", "\\n"))
 
 print_callback = LambdaCallback(on_epoch_end=on_epoch_end)
 
@@ -144,4 +159,3 @@ model.fit(x, y,
 		  verbose=args.verbosity)
           
 model.summary()
-#'''
