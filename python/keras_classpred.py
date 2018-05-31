@@ -23,11 +23,11 @@ ap.add_argument('--batch_size', type=int, default=256, help='batch size for trai
 ap.add_argument('--hidden_dim', type=int, default=100, help='dimension of hidden layers in the NN')
 ap.add_argument('--vec_size', type=int, default=200, help='dimension of the generated word2vec vectors')
 ap.add_argument('--word_lookback', type=int, default=5, help='how many words back the NN is feeded, before having to make a decision')
-ap.add_argument('--epochs', type=int, default=100, help='number of epochs in training the NN')
+ap.add_argument('-e', '--epochs', type=int, default=100, help='number of epochs in training the NN')
 ap.add_argument('--stateful', action='store_true', help='makes a stateful LSTM (currently ignored)')
 ap.add_argument('-v', '--verbosity', type=int, default=1, help='Sets verbosity of keras while training. Accepted values: 0 - no output, 1 - one line per batch, 2 - one line per epoch')
 ap.add_argument('--valid_split', type=float, default=0.5, help='ratio of how much of the data is used as validation set while training')
-ap.add_argument('--predict_len', type=int, default=20, help='length of predicted sentences (in words) after each epoch')
+ap.add_argument('--predict_len', type=int, default=50, help='length of predicted sentences (in words) after each epoch')
 ap.add_argument('--predict_count', type=int, default=1, help='how many different sentences should be predicted after each epoch')
 
 args = ap.parse_args()
@@ -38,10 +38,12 @@ VEC_SIZE = args.vec_size
 WORD_LOOKBACK = args.word_lookback
 EPOCHS = args.epochs
 STATEFUL = False #args.stateful
+PRED_COUNT = args.predict_count
+PRED_LEN = args.predict_len
 
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.ERROR)
 
-splitter = re.compile("[\w']+|[^\w\s]+")
+splitter = re.compile("[\w']+|[^\w\s+]")
 
 def wordIterator(lineiterable):
     for line in lineiterable:
@@ -65,6 +67,7 @@ def printIterable(iterable):
 wordCount = 0
 dictSize = 0
 dict = {}
+dictIndex = []
 
 with open(args.file, "r", encoding="utf8") as fo:
     wIter = wordIterator(fo)
@@ -72,19 +75,21 @@ with open(args.file, "r", encoding="utf8") as fo:
         wordCount = wordCount + 1
         if not w in dict:
             dict[w] = dictSize
+            dictIndex.append(w)
             dictSize = dictSize + 1
 
 def getWordFromIndex(index):
-    for w in dict:
-        if dict[w] == index:
-            return w
+    return dictIndex[index]
+    #for w in dict:
+    #    if dict[w] == index:
+    #        return w
 
 print (args)
 print ("dictSize:", dictSize)
 print ("wordCount:", wordCount)
 
-x = np.zeros((wordCount - WORD_LOOKBACK, WORD_LOOKBACK), dtype=np.int)
-y = np.zeros((wordCount - WORD_LOOKBACK), dtype=np.int)
+x = np.zeros((wordCount - WORD_LOOKBACK, WORD_LOOKBACK), dtype=np.uint32)
+y = np.zeros((wordCount - WORD_LOOKBACK), dtype=np.uint32)
 
 with open(args.file, "r", encoding="utf8") as fo:
     wIter = wordIterator(fo)
@@ -94,10 +99,11 @@ with open(args.file, "r", encoding="utf8") as fo:
     for i, (hist, target) in enumerate(sIter):
         x[i,:] = hist
         y[i] = target
-        
+
+
 # set up copy checker
 seqMatcher = SequenceMatcher(a=y)
-        
+
 y = to_categorical(y)
 
 # define model
@@ -114,42 +120,42 @@ model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accur
 
 # https://github.com/keras-team/keras/blob/master/examples/lstm_text_generation.py
 def on_epoch_end(epoch, logs):
-    global x, y, seqMatcher
+    global x, y, seqMatcher, timestamp
     # Function invoked at end of each epoch. Prints generated text.
     print()
-    print('----- Generating text after Epoch: %d' % (epoch + 1))
+    print('----- Generating text after Epoch %d, which took %d seconds for training' % (epoch + 1, time.time() - timestamp))
+    timestamp = time.time()
     
-    for _ in range(args.predict_count):
-        starttime = time.process_time()
-        
-        x_pred = np.zeros((1, WORD_LOOKBACK), dtype=np.int)
-        x_pred[0,:] = np.asarray(random.choice(x), dtype=np.int)
-        
-        sentence = list(map(getWordFromIndex, x_pred[0]))
-        sentence += ["===>"]
-        
-        generated = []
-        
-        for i in range(args.predict_len):
-            predv = model.predict_classes(x_pred)[0]
-            generated.append(predv)
-            
-            predword = getWordFromIndex(predv)
-            sentence.append(predword)
-            for j in range(WORD_LOOKBACK - 1):
-                x_pred[0,j] = x_pred[0,j + 1]
-            x_pred[0,WORD_LOOKBACK - 1] = predv
-        
-        print(" ".join(sentence))
-        print("----- Generated in", time.process_time() - starttime, "seconds")
-        
-        seqMatcher.set_seq2(generated)
-        (_, j, k) = seqMatcher.find_longest_match(0, len(y), 0, args.predict_len)
-        print("----- Longest copied sequence:", k, "-", " ".join(sentence[(WORD_LOOKBACK + 1 + j):(WORD_LOOKBACK + 1 + j + k)]).replace("\n", "\\n"))
+    x_pred = np.zeros((PRED_COUNT, WORD_LOOKBACK + PRED_LEN), dtype=np.uint32)
+    x_pred[:,0:WORD_LOOKBACK] = np.copy(x[np.random.choice(x.shape[0], size=PRED_COUNT, replace=False),:])
+
+    for i in range(PRED_LEN):
+        x_pred[:, i+WORD_LOOKBACK] = model.predict_classes(x_pred[:, i:(i+WORD_LOOKBACK)])
+    
+    print ('----- Generated %i texts in %i seconds.' % (PRED_COUNT, time.time() - timestamp))
+    timestamp = time.time()
+    
+    copycounts = []
+    for i in range(PRED_COUNT):
+        seqMatcher.set_seq2(x_pred[i,:])
+        (_, j, k) = seqMatcher.find_longest_match(0, len(y), WORD_LOOKBACK, PRED_LEN+WORD_LOOKBACK)
+        copycounts.append((i,j,k))
+    
+    copycounts.sort(key=lambda tup: tup[2])
+    
+    print ("----- 75%% quantil of longest copied sequence: %d (computed in %d seconds)" % (copycounts[int(PRED_COUNT * 0.75)][2], time.time() - timestamp))
+    timestamp = time.time()
+    
+    (idx, _, cnt) = random.choice(copycounts)
+    print (" ".join(map(getWordFromIndex, x_pred[idx,0:WORD_LOOKBACK])), "===>")
+    print (" ".join(map(getWordFromIndex, x_pred[idx,WORD_LOOKBACK:(WORD_LOOKBACK+PRED_LEN)])))
+    print ("----- End of sample with longest copied sequence:", cnt)
 
 print_callback = LambdaCallback(on_epoch_end=on_epoch_end)
 
 print("begin train")
+timestamp = time.time()
+
 model.fit(x, y,
           batch_size=BATCH_SIZE,
           epochs=EPOCHS,
@@ -157,5 +163,6 @@ model.fit(x, y,
 		  shuffle=not STATEFUL,
 		  validation_split = args.valid_split,
 		  verbose=args.verbosity)
+
           
 model.summary()
