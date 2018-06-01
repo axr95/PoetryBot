@@ -29,6 +29,7 @@ ap.add_argument('-v', '--verbosity', type=int, default=1, help='Sets verbosity o
 ap.add_argument('--valid_split', type=float, default=0.5, help='ratio of how much of the data is used as validation set while training')
 ap.add_argument('--predict_len', type=int, default=50, help='length of predicted sentences (in words) after each epoch')
 ap.add_argument('--predict_count', type=int, default=1, help='how many different sentences should be predicted after each epoch')
+ap.add_argument('-d', '--dropout', type=float, default=0.2, help="sets dropout for lstm layers")
 
 args = ap.parse_args()
 
@@ -40,6 +41,7 @@ EPOCHS = args.epochs
 STATEFUL = False #args.stateful
 PRED_COUNT = args.predict_count
 PRED_LEN = args.predict_len
+DROPOUT = args.dropout
 
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.ERROR)
 
@@ -65,9 +67,9 @@ def printIterable(iterable):
     
 
 wordCount = 0
-dictSize = 0
-dict = {}
-dictIndex = []
+dictSize = 1
+dict = {"\n": 0}
+dictIndex = ["\n"]
 
 with open(args.file, "r", encoding="utf8") as fo:
     wIter = wordIterator(fo)
@@ -109,8 +111,8 @@ y = to_categorical(y)
 # define model
 model = Sequential()
 model.add(Embedding(dictSize, VEC_SIZE, input_length=WORD_LOOKBACK))
-model.add(LSTM(HIDDEN_DIM, return_sequences=True))
-model.add(LSTM(HIDDEN_DIM))
+model.add(LSTM(HIDDEN_DIM, return_sequences=True, dropout=DROPOUT))
+model.add(LSTM(HIDDEN_DIM, dropout=DROPOUT))
 model.add(Dense(HIDDEN_DIM, activation='relu'))
 model.add(Dense(dictSize, activation='softmax'))
 
@@ -143,13 +145,12 @@ def on_epoch_end(epoch, logs):
     
     copycounts.sort(key=lambda tup: tup[2])
     
-    print ("----- 75%% quantil of longest copied sequence: %d (computed in %d seconds)" % (copycounts[int(PRED_COUNT * 0.75)][2], time.time() - timestamp))
-    timestamp = time.time()
-    
     (idx, _, cnt) = random.choice(copycounts)
     print (" ".join(map(getWordFromIndex, x_pred[idx,0:WORD_LOOKBACK])), "===>")
     print (" ".join(map(getWordFromIndex, x_pred[idx,WORD_LOOKBACK:(WORD_LOOKBACK+PRED_LEN)])))
     print ("----- End of sample with longest copied sequence:", cnt)
+    print ("----- 75%% quantil of longest copied sequence: %d (computed in %d seconds)" % (copycounts[int(PRED_COUNT * 0.75)][2], time.time() - timestamp))
+    timestamp = time.time()
 
 print_callback = LambdaCallback(on_epoch_end=on_epoch_end)
 
@@ -160,7 +161,7 @@ model.fit(x, y,
           batch_size=BATCH_SIZE,
           epochs=EPOCHS,
           callbacks=[print_callback],
-		  shuffle=not STATEFUL,
+		  shuffle=False,
 		  validation_split = args.valid_split,
 		  verbose=args.verbosity)
 
