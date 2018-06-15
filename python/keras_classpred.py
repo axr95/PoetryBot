@@ -6,6 +6,7 @@ import numpy as np
 import itertools
 import random
 import time
+import os
 from difflib import SequenceMatcher
 from collections import deque
 from keras.callbacks import LambdaCallback
@@ -30,6 +31,7 @@ ap.add_argument('--valid_split', type=float, default=0.5, help='ratio of how muc
 ap.add_argument('--predict_len', type=int, default=50, help='length of predicted sentences (in words) after each epoch')
 ap.add_argument('--predict_count', type=int, default=1, help='how many different sentences should be predicted after each epoch')
 ap.add_argument('-d', '--dropout', type=float, default=0.2, help="sets dropout for lstm layers")
+#ap.add_argument('-o', '--output', type=string, help="destination folder of output files")
 
 args = ap.parse_args()
 
@@ -42,6 +44,7 @@ STATEFUL = False #args.stateful
 PRED_COUNT = args.predict_count
 PRED_LEN = args.predict_len
 DROPOUT = args.dropout
+
 
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.ERROR)
 
@@ -102,6 +105,18 @@ with open(args.file, "r", encoding="utf8") as fo:
         x[i,:] = hist
         y[i] = target
 
+rest = (wordCount - WORD_LOOKBACK) % BATCH_SIZE
+if rest > 0:
+    x = x[range(wordCount - WORD_LOOKBACK - rest),:]
+    y = y[range(wordCount - WORD_LOOKBACK - rest)]
+   
+rest = PRED_COUNT % BATCH_SIZE
+if rest > 0:
+    PRED_COUNT += BATCH_SIZE - rest
+    print ("pred_count should be multiple of batch size (%i): changed from %i to %i" % (BATCH_SIZE, PRED_COUNT - BATCH_SIZE + rest, PRED_COUNT))
+del rest
+
+PRED_BATCH_COUNT = PRED_COUNT // BATCH_SIZE
 
 # set up copy checker
 seqMatcher = SequenceMatcher(a=y)
@@ -110,9 +125,9 @@ y = to_categorical(y)
 
 # define model
 model = Sequential()
-model.add(Embedding(dictSize, VEC_SIZE, input_length=WORD_LOOKBACK))
-model.add(LSTM(HIDDEN_DIM, return_sequences=True, dropout=DROPOUT))
-model.add(LSTM(HIDDEN_DIM, dropout=DROPOUT))
+model.add(Embedding(dictSize, VEC_SIZE, input_length=WORD_LOOKBACK, batch_size=BATCH_SIZE))
+model.add(LSTM(HIDDEN_DIM, return_sequences=True, dropout=DROPOUT, stateful=True))
+model.add(LSTM(HIDDEN_DIM, dropout=DROPOUT, stateful=True))
 model.add(Dense(HIDDEN_DIM, activation='relu'))
 model.add(Dense(dictSize, activation='softmax'))
 
@@ -131,8 +146,13 @@ def on_epoch_end(epoch, logs):
     x_pred = np.zeros((PRED_COUNT, WORD_LOOKBACK + PRED_LEN), dtype=np.uint32)
     x_pred[:,0:WORD_LOOKBACK] = np.copy(x[np.random.choice(x.shape[0], size=PRED_COUNT, replace=False),:])
 
-    for i in range(PRED_LEN):
-        x_pred[:, i+WORD_LOOKBACK] = model.predict_classes(x_pred[:, i:(i+WORD_LOOKBACK)])
+    
+    for j in range(PRED_BATCH_COUNT):
+        model.reset_states()
+        for i in range(PRED_LEN):
+            x_pred[j:(j+BATCH_SIZE), i+WORD_LOOKBACK] = model.predict_classes(x_pred[j:(j+BATCH_SIZE), i:(i+WORD_LOOKBACK)])
+    
+    model.reset_states()
     
     print ('----- Generated %i texts in %i seconds.' % (PRED_COUNT, time.time() - timestamp))
     timestamp = time.time()
@@ -162,7 +182,7 @@ model.fit(x, y,
           epochs=EPOCHS,
           callbacks=[print_callback],
 		  shuffle=False,
-		  validation_split = args.valid_split,
+		  #validation_split = args.valid_split,
 		  verbose=args.verbosity)
 
           
