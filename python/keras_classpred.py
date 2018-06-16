@@ -150,7 +150,7 @@ def on_epoch_end(epoch, logs):
     for j in range(PRED_BATCH_COUNT):
         model.reset_states()
         for i in range(PRED_LEN):
-            x_pred[j:(j+BATCH_SIZE), i+WORD_LOOKBACK] = model.predict_classes(x_pred[j:(j+BATCH_SIZE), i:(i+WORD_LOOKBACK)])
+            x_pred[(j*BATCH_SIZE):((j+1)*BATCH_SIZE), i+WORD_LOOKBACK] = model.predict_classes(x_pred[(j*BATCH_SIZE):((j+1)*BATCH_SIZE), i:(i+WORD_LOOKBACK)])
     
     model.reset_states()
     
