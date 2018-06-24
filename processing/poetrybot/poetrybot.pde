@@ -137,7 +137,7 @@ void setup() {
   String[] cameras = Capture.list();
   video = new Capture(this, cameras[18]);
   video.start();
-  font = loadFont(fontPath + "HelveticaNeueLTStd-Bd-48.vlw");
+  font = loadFont(fontPath + "TimesModern-Bold-200.vlw");
   textFont(font, fontSize);
   background(255);
 }
@@ -290,13 +290,11 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
     
     // Mit diesem pg Objekt können wir auf unsere Rechnung zeichnen, ohne auf den Screen zeichnen zu müssen
     // - das ist um einiges sauberer und beugt Problemen vor, da draw() uns so nicht mehr hineinpfuschen kann.
-    PGraphics pg = createGraphics(1440, 360);
+    PGraphics pg = createGraphics(640, 1800);
     pg.beginDraw();
     pg.background(255);
     pg.textFont(font, fontSize);
     pg.tint(255, blaesse);
-    
-    int writePointer = 0;
     
     
     
@@ -308,11 +306,8 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
     if (imageToDraw == null || imageToDraw.width <= 0 || imageToDraw.height <= 0) {
       imageToDraw = imageFuture.get();
     }
+   
     
-    imageToDraw.resize(0, 360);
-    
-    pg.image(imageToDraw, writePointer, 0, imageToDraw.width, 360);
-    writePointer += imageToDraw.width + 15;
     
     //ZUFALLSAUSWAHL LABEL
     String[] labels = new String[labelCount];
@@ -351,31 +346,31 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
     }
     
     
-    //DARSTELLUNG DATUM-TEXT
     pg.fill(0);
+    pg.textSize(270);
+    pg.text("PoBo", 0, 0, 640, 240);
     
-    int x = 20;     // Location of start of text.
-    int y = 360;
+    pg.textSize(48);
+    pg.text("Erfahre mehr über PoetryBot!", 0, 240, 640, 310);
     
-    pg.pushMatrix();
-    pg.translate(x,y);
-    pg.rotate(3*HALF_PI);
-    pg.translate(-x,-y);
-    pg.text(date, x, y);
-    pg.popMatrix();      
+    pg.textSize(36);
+    pg.text("Unser Bot erschafft expressive Internet-Poesie aus visuellem Input. Das passiert mithilfe von Machine Learning und probabilistischen Verfahren. Wir wollen Menschen aller Altersgruppen, besonders Schüler/innen, das Thema Poesie auf spielerische Weise näherbringen. Bleib informiert, schick uns Feedback an thepoetrybot@gmail.com und sei beim Start dabei!",
+            0, 310, 640, 730);
+            
+    pg.textSize(48);
+    pg.text("     +++ Dein Bild-Input +++", 0, 730, 640, 790);
+    
+    pg.image(imageToDraw, 0, 790, 640, 360);
+    
+    pg.textSize(48);
+    pg.text("    +++ Generiertes Poem +++", 0, 1180, 640, 60);
+    
+    pg.fill(0);
+    pg.textSize(36);
+    pg.text(poem, 0, 1240, 640, 1800);
 
-    //DARSTELLUNG POEM-TEXT
-    pg.fill(0);
     
-    int x2 = writePointer;     // Location of start of text.
-    int y2 = 360;
     
-    pg.pushMatrix();
-    pg.translate(x2,y2);
-    pg.rotate(3*HALF_PI);
-    pg.translate(-x2,-y2);
-    pg.text(poem, x2, y2, 360, 800); //650, 0, 1040, 360
-    pg.popMatrix();
     
     //SPEICHERUNG
     File printedImageFile = new File(tempFolder, "print.jpg");
