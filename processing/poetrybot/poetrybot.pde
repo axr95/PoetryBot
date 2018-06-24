@@ -403,7 +403,8 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
     synchronized (this) {
       //DRUCKEN
       if (settings.getOrDefault("print", "false").equals("true")) {
-        Runtime.getRuntime().exec("mspaint /pt " + printedImageFile.getAbsolutePath());
+        Thread.sleep(1000);
+        Runtime.getRuntime().exec("mspaint /pt " + saveFile.getAbsolutePath());
       }
       
       lastPoem = poem;
