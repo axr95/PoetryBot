@@ -65,6 +65,8 @@ ExecutorService threadPool = Executors.newCachedThreadPool();
 Thread serverThread;
 volatile String lastPoem = null;
 
+String lang;
+
 //BERECHNUNG VIDEO*TEXT
 void setup() {
   // ADD WANTED FEATURES HERE
@@ -82,6 +84,14 @@ void setup() {
   settings = loadConfig("settings.txt");
   poemsource = loadConfig("poemsource.txt");
   
+<<<<<<< HEAD
+=======
+  candidateCount = int(settings.getOrDefault("candidate-count", "3"));
+  poemCandidates = null;
+  
+  lang = settings.getOrDefault("language", "en");
+  
+>>>>>>> c2527a9... language configurable
   if (poemsource.containsKey("base")) {
     filePaths = poemsource.get("base").split(",");
     String sourceBasePath = sketchPath("data") + File.separator;
@@ -312,6 +322,13 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
     String selectedLabel = labels[index];
     println("selectedLabel: " + selectedLabel);
     
+    if (!"en".equals(lang)) {
+      selectedLabel = translateLabel(selectedLabel, lang);
+      println("translated to: " + selectedLabel);
+    }
+    
+    
+    
     // ...\cache\webdata\labelname.txt
     String webMarkovFile = cachePath + "webdata" + File.separator + selectedLabel + ".txt";
     
@@ -384,6 +401,57 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
   }
 }
 
+<<<<<<< HEAD
+=======
+private String translateLabel(String label, String language) throws UnsupportedEncodingException, IOException {
+  
+  PostService poster = new PostService("https://translation.googleapis.com/language/translate/v2/?key=" + keys.get("API_KEY_TRANSLATION") + 
+                    "&q=" + URLEncoder.encode(label, "UTF-8") +
+                    "&target=" + language +
+                    "&source=en" +
+                    "&format=text");
+                    
+  String answer = poster.PostData(" ");
+  
+  if (answer.startsWith(":ERROR")) {
+    return label;
+  }
+  
+  //JSON-KONVERTIERUNG
+  JSONObject json = parseJSONObject(answer);
+  
+  String[] res;
+  JSONArray translations = json.getJSONObject("data").getJSONArray("translations");
+  if (translations == null || translations.size() == 0) {
+    return label;
+  } else {
+    return translations.getJSONObject(0).getString("translatedText");
+  }
+}
+
+private synchronized String getCandidateChoice(MarkovChainGenerator gen, PImage imageToDraw, String selectedLabel) throws InterruptedException {
+  candidateChoice = new AtomicInteger();
+  lastImage = imageToDraw;
+  poemCandidates = new String[candidateCount];
+  int choice;
+  do {
+    for (int i = 0; i < candidateCount; i++) {
+      poemCandidates[i] = gen.getPoem(selectedLabel);
+    }
+    synchronized(candidateChoice) {
+      candidateChoice.wait();
+      choice = candidateChoice.get();
+    }
+  } while (choice == candidateCount);
+  
+  lastImage = null;
+  if (choice == -1) {
+    return null;
+  }
+  
+  return poemCandidates[choice];
+}
+>>>>>>> c2527a9... language configurable
 
 
 // helper to save image from web
@@ -449,7 +517,8 @@ private String accessGoogleCloudVision(String requestText) throws MalformedURLEx
 
 public String[] getURLsForKeyword(String keyword) throws IOException {
   URL url = new URL("https://www.googleapis.com/customsearch/v1?key=" + keys.get("API_KEY_CUSTOMSEARCH") + 
-                    "&cx=003881552290933724291:wdkgsjtvmks" +
+                    // EN: "&cx=003881552290933724291:wdkgsjtvmks" +
+                    "&cx=003881552290933724291:h5-sku2lxjy" + 
                     "&fields=" + URLEncoder.encode("items/link", "UTF-8") + 
                     "&q=" + URLEncoder.encode(keyword, "UTF-8"));
   HttpURLConnection con = (HttpURLConnection)url.openConnection();
