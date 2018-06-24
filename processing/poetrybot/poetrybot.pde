@@ -13,6 +13,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.security.MessageDigest;
@@ -48,6 +49,7 @@ HashMap<String, String> poemsource;
 String cachePath;
 String baseTempPath;
 String fontPath;
+String savedPath;
 
 //MARKOV CHAIN
 private static MarkovChainGenerator markov;
@@ -60,10 +62,17 @@ long minDelay;
 long maxDelay;
 int doubleDelayInterval;
 
+int candidateCount;
+volatile AtomicInteger candidateChoice;
+
 //MULTITHREADING
 ExecutorService threadPool = Executors.newCachedThreadPool();
 Thread serverThread;
 volatile String lastPoem = null;
+volatile PImage lastImage = null;
+
+
+volatile String[] poemCandidates;
 
 //BERECHNUNG VIDEO*TEXT
 void setup() {
@@ -77,10 +86,14 @@ void setup() {
   cachePath = sketchPath("data") + File.separator + ("cache") + File.separator;
   baseTempPath = sketchPath("data") + File.separator + ("temp") + File.separator;
   fontPath = sketchPath("data") + File.separator + ("fonts") + File.separator;
+  savedPath = sketchPath("data") + File.separator + ("saved") + File.separator;
   
   keys = loadConfig("keys.txt");
   settings = loadConfig("settings.txt");
   poemsource = loadConfig("poemsource.txt");
+  
+  candidateCount = int(settings.getOrDefault("candidate-count", "3"));
+  poemCandidates = null;
   
   if (poemsource.containsKey("base")) {
     filePaths = poemsource.get("base").split(",");
@@ -98,7 +111,7 @@ void setup() {
     markov.train(cachePath + "goodpoems.txt");
   }
                               
-  serverMode = ("enabled".equals(settings.get("servermode")));
+  serverMode = false; //("enabled".equals(settings.get("servermode")));
   
   if (serverMode) {
     minDelay = Long.parseLong(settings.getOrDefault("min-delay", "2000"));
@@ -120,7 +133,7 @@ void setup() {
   }
   
   //size(1440, 360);
-  size(640, 360);
+  size(640, 720);
   String[] cameras = Capture.list();
   video = new Capture(this, cameras[18]);
   video.start();
@@ -134,14 +147,24 @@ void draw() {
   background(255);
   frameRate (30);
   tint(255, blaesse);
-
-  //VIDEO READ
-  if (video.available() == true) {
-    video.read();
+  if (lastImage == null) {
+    //VIDEO READ
+    if (video.available() == true) {
+      video.read();
+    }
+    
+    //POSITION VIDEODARSTELLUNG
+    image(video, 0, 0, 640, 360);
+  } else {
+    image(lastImage, 0, 0, 640, 360);
+    final float boxwidth = (float)width / candidateCount - 1f;
+    final float boxheight = height - 360f;
+    rectMode(CORNERS);
+    for (int i = 0; i < candidateCount; i++) {
+      fill(0);
+      text(poemCandidates[i], (float)(boxwidth * i), 360f, (float)(boxwidth * (i + 1)) - 40f, 360f + boxheight);
+    }
   }
-
-  //POSITION VIDEODARSTELLUNG
-  image(video, 0, 0, 640, 360);
   
   //DIVERSE FILTER
   //filter(INVERT);
@@ -158,30 +181,18 @@ void exit() {
 //INTERAKTION
 void keyPressed() {
   if (keyPressed) {
-    if (key == 'y' || key == 'Y') {
-      if (lastPoem != null) {
-        try {
-          PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(cachePath + "goodpoems.txt", true)));
-          out.println(lastPoem);
-          out.flush();
-          out.close();
-          lastPoem = null;
-          println("poem saved!");
-        } catch (IOException e) {
-          println("could not save good poem...");
-        }
-      } else {
-        println("last poem was already saved!");
-      }
-    } else {
+    if (lastImage == null) {
       saveFrame(baseTempPath + "tmp.jpg");
       // saveFrame("photobooth-###.jpg");
       
-      threadPool.execute(new Runnable() { 
-        public void run() { 
-          processImage(video); 
-        } 
-      });
+      new Thread() {
+        public void run() { processImage(video); }
+      }.start();
+    } else if ('0' <= key && key <= '0' + candidateCount + 1) {
+      synchronized(candidateChoice) {
+        candidateChoice.set((int)(key - '1'));
+        candidateChoice.notify();
+      }
     }
   }
 }
@@ -288,6 +299,7 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
     int writePointer = 0;
     
     
+    
     PImage imageToDraw = null;
     if (boolean(settings.getOrDefault("usewebimage", "true")) && internetPictureFile != null) {
       imageToDraw = loadImage(internetPictureFile.getAbsolutePath());
@@ -332,8 +344,12 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
       gen.train(webMarkovFile);
     }
     
-    String poem = gen.getPoem(selectedLabel);  
-    println(poem);
+    String poem = getCandidateChoice(gen, imageToDraw, selectedLabel);
+    
+    if (poem == null) {
+      return;
+    }
+    
     
     //DARSTELLUNG DATUM-TEXT
     pg.fill(0);
@@ -365,6 +381,20 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
     File printedImageFile = new File(tempFolder, "print.jpg");
     printedImageFile.createNewFile();
     pg.save(printedImageFile.getAbsolutePath());
+    
+    File saveFolder = new File(savedPath); 
+    if (!saveFolder.exists()) {
+      saveFolder.mkdir();
+    }
+    File saveFile = new File(saveFolder, String.format("%s%d%d%d%d%d%d.jpg", selectedLabel, year(), month(), day(), hour(), minute(), second()));
+    while (saveFile.exists()) {
+      Thread.sleep(1000);
+      saveFile = new File(saveFolder, String.format("%s%d%d%d%d%d%d.jpg", selectedLabel, year(), month(), day(), hour(), minute(), second()));
+    }
+    saveFile.createNewFile();
+    pg.save(saveFile.getAbsolutePath());
+    
+    
   
     synchronized (this) {
       //DRUCKEN
@@ -373,7 +403,7 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
       }
       
       lastPoem = poem;
-      println("Is this a good poem? :)");
+      //println("Is this a good poem? :)");
     }
   } catch (IOException e) {
     System.out.println("error");
@@ -384,6 +414,28 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
   }
 }
 
+private synchronized String getCandidateChoice(MarkovChainGenerator gen, PImage imageToDraw, String selectedLabel) throws InterruptedException {
+  candidateChoice = new AtomicInteger();
+  lastImage = imageToDraw;
+  poemCandidates = new String[candidateCount];
+  int choice;
+  do {
+    for (int i = 0; i < candidateCount; i++) {
+      poemCandidates[i] = gen.getPoem(selectedLabel);
+    }
+    synchronized(candidateChoice) {
+      candidateChoice.wait();
+      choice = candidateChoice.get();
+    }
+  } while (choice == candidateCount);
+  
+  lastImage = null;
+  if (choice == -1) {
+    return null;
+  }
+  
+  return poemCandidates[choice];
+}
 
 
 // helper to save image from web
