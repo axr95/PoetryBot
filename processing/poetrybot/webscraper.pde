@@ -25,6 +25,9 @@ void webscrape(String url, String destination) {
 
 void webscrape(String[] urls, String destination) {
   ArrayList<String> lines = new ArrayList<String>();
+  if (urls == null) {
+    return;
+  }
   for (String url : urls) {
     try {
         Document doc = Jsoup.connect(url).get();
