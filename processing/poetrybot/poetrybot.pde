@@ -84,14 +84,8 @@ void setup() {
   settings = loadConfig("settings.txt");
   poemsource = loadConfig("poemsource.txt");
   
-<<<<<<< HEAD
-=======
-  candidateCount = int(settings.getOrDefault("candidate-count", "3"));
-  poemCandidates = null;
-  
   lang = settings.getOrDefault("language", "en");
   
->>>>>>> c2527a9... language configurable
   if (poemsource.containsKey("base")) {
     filePaths = poemsource.get("base").split(",");
     String sourceBasePath = sketchPath("data") + File.separator;
@@ -327,30 +321,27 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
       println("translated to: " + selectedLabel);
     }
     
-    
-    
-    // ...\cache\webdata\labelname.txt
-    String webMarkovFile = cachePath + "webdata" + File.separator + selectedLabel + ".txt";
-    
-    File f = new File(webMarkovFile);
-    
-    if (!f.exists()) {
-      String[] keywordURLs = getURLsForKeyword(selectedLabel);
-      webscrape(keywordURLs, webMarkovFile);
-    }
-    
-    // Momentan wird der Markov Chain Generator von den oben genannten sourcefiles
-    // kopiert und um die Webtokens und die goodpoems erweitert.
-    
     MarkovChainGenerator gen;
     gen = new MarkovChainGenerator(markov);
     
     if (boolean(poemsource.getOrDefault("use-webdata", "true"))) {
+      // ...\cache\webdata\labelname.txt
+      String webMarkovFile = cachePath + "webdata" + File.separator + selectedLabel + ".txt";
+      
+      File f = new File(webMarkovFile);
+      
+      if (!f.exists()) {
+        String[] keywordURLs = getURLsForKeyword(selectedLabel);
+        webscrape(keywordURLs, webMarkovFile);
+      }
+      
       gen.train(webMarkovFile);
     }
     
+
     String poem = gen.getPoem(selectedLabel);  
     println(poem);
+
     
     //DARSTELLUNG DATUM-TEXT
     pg.fill(0);
@@ -401,8 +392,7 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
   }
 }
 
-<<<<<<< HEAD
-=======
+
 private String translateLabel(String label, String language) throws UnsupportedEncodingException, IOException {
   
   PostService poster = new PostService("https://translation.googleapis.com/language/translate/v2/?key=" + keys.get("API_KEY_TRANSLATION") + 
@@ -420,7 +410,6 @@ private String translateLabel(String label, String language) throws UnsupportedE
   //JSON-KONVERTIERUNG
   JSONObject json = parseJSONObject(answer);
   
-  String[] res;
   JSONArray translations = json.getJSONObject("data").getJSONArray("translations");
   if (translations == null || translations.size() == 0) {
     return label;
@@ -428,30 +417,6 @@ private String translateLabel(String label, String language) throws UnsupportedE
     return translations.getJSONObject(0).getString("translatedText");
   }
 }
-
-private synchronized String getCandidateChoice(MarkovChainGenerator gen, PImage imageToDraw, String selectedLabel) throws InterruptedException {
-  candidateChoice = new AtomicInteger();
-  lastImage = imageToDraw;
-  poemCandidates = new String[candidateCount];
-  int choice;
-  do {
-    for (int i = 0; i < candidateCount; i++) {
-      poemCandidates[i] = gen.getPoem(selectedLabel);
-    }
-    synchronized(candidateChoice) {
-      candidateChoice.wait();
-      choice = candidateChoice.get();
-    }
-  } while (choice == candidateCount);
-  
-  lastImage = null;
-  if (choice == -1) {
-    return null;
-  }
-  
-  return poemCandidates[choice];
-}
->>>>>>> c2527a9... language configurable
 
 
 // helper to save image from web
@@ -518,7 +483,7 @@ private String accessGoogleCloudVision(String requestText) throws MalformedURLEx
 public String[] getURLsForKeyword(String keyword) throws IOException {
   URL url = new URL("https://www.googleapis.com/customsearch/v1?key=" + keys.get("API_KEY_CUSTOMSEARCH") + 
                     // EN: "&cx=003881552290933724291:wdkgsjtvmks" +
-                    "&cx=003881552290933724291:h5-sku2lxjy" + 
+                    "&cx=" + URLEncoder.encode("003881552290933724291:h5-sku2lxjy", "UTF-8") + 
                     "&fields=" + URLEncoder.encode("items/link", "UTF-8") + 
                     "&q=" + URLEncoder.encode(keyword, "UTF-8"));
   HttpURLConnection con = (HttpURLConnection)url.openConnection();
