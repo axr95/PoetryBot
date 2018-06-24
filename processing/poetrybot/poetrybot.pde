@@ -159,7 +159,7 @@ void draw() {
     
     //POSITION VIDEODARSTELLUNG
     image(video, 0, 0, 640, 360);
-  } else {
+  } else if (poemCandidates != null) {
     image(lastImage, 0, 0, 640, 360);
     final float boxwidth = (float)width / candidateCount - 1f;
     final float boxheight = height - 360f;
@@ -458,13 +458,14 @@ private String translateLabel(String label, String language) throws UnsupportedE
 
 private synchronized String getCandidateChoice(MarkovChainGenerator gen, PImage imageToDraw, String selectedLabel) throws InterruptedException {
   candidateChoice = new AtomicInteger();
-  lastImage = imageToDraw;
   poemCandidates = new String[candidateCount];
   int choice;
   do {
     for (int i = 0; i < candidateCount; i++) {
       poemCandidates[i] = gen.getPoem(selectedLabel);
     }
+    lastImage = imageToDraw;
+
     synchronized(candidateChoice) {
       candidateChoice.wait();
       choice = candidateChoice.get();
