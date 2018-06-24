@@ -369,8 +369,17 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
     pg.textSize(36);
     pg.text(poem, 0, 1240, 640, 1800);
 
+    pg.endDraw();
     
-    
+    PGraphics pgRotated = createGraphics(1800, 640);
+    pgRotated.beginDraw();
+    pgRotated.background(255);
+    pgRotated.pushMatrix();
+    pgRotated.rotate(3*HALF_PI);
+    pgRotated.translate(-pg.width, 0);
+    pgRotated.image(pg, 0, 0);
+    pgRotated.popMatrix();
+    pgRotated.endDraw();
     
     //SPEICHERUNG
     File printedImageFile = new File(tempFolder, "print.jpg");
@@ -387,7 +396,7 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
       saveFile = new File(saveFolder, String.format("%s%d%d%d%d%d%d.jpg", selectedLabel, year(), month(), day(), hour(), minute(), second()));
     }
     saveFile.createNewFile();
-    pg.save(saveFile.getAbsolutePath());
+    pgRotated.save(saveFile.getAbsolutePath());
     
     
   
