@@ -390,10 +390,10 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
     if (!saveFolder.exists()) {
       saveFolder.mkdir();
     }
-    File saveFile = new File(saveFolder, String.format("%s%d%d%d%d%d%d.jpg", selectedLabel, year(), month(), day(), hour(), minute(), second()));
+    File saveFile = new File(saveFolder, String.format("%s%d%d%d%d%d%d.jpg", selectedLabel.replace(' ', '_'), year(), month(), day(), hour(), minute(), second()));
     while (saveFile.exists()) {
       Thread.sleep(1000);
-      saveFile = new File(saveFolder, String.format("%s%d%d%d%d%d%d.jpg", selectedLabel, year(), month(), day(), hour(), minute(), second()));
+      saveFile = new File(saveFolder, String.format("%s%d%d%d%d%d%d.jpg", selectedLabel.replace(' ', '_'), year(), month(), day(), hour(), minute(), second()));
     }
     saveFile.createNewFile();
     pgRotated.save(saveFile.getAbsolutePath());
