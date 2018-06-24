@@ -328,27 +328,25 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
       println("translated to: " + selectedLabel);
     }
     
-    
-    
-    // ...\cache\webdata\labelname.txt
-    String webMarkovFile = cachePath + "webdata" + File.separator + selectedLabel + ".txt";
-    
-    File f = new File(webMarkovFile);
-    
-    if (!f.exists()) {
-      String[] keywordURLs = getURLsForKeyword(selectedLabel);
-      webscrape(keywordURLs, webMarkovFile);
-    }
-    
-    // Momentan wird der Markov Chain Generator von den oben genannten sourcefiles
-    // kopiert und um die Webtokens und die goodpoems erweitert.
-    
     MarkovChainGenerator gen;
     gen = new MarkovChainGenerator(markov);
     
     if (boolean(poemsource.getOrDefault("use-webdata", "true"))) {
+      // ...\cache\webdata\labelname.txt
+      String webMarkovFile = cachePath + "webdata" + File.separator + selectedLabel + ".txt";
+      
+      File f = new File(webMarkovFile);
+      
+      if (!f.exists()) {
+        String[] keywordURLs = getURLsForKeyword(selectedLabel);
+        webscrape(keywordURLs, webMarkovFile);
+      }
+      
       gen.train(webMarkovFile);
     }
+    
+    // Momentan wird der Markov Chain Generator von den oben genannten sourcefiles
+    // kopiert und um die Webtokens und die goodpoems erweitert.
     
     String poem = getCandidateChoice(gen, imageToDraw, selectedLabel);
     
@@ -447,7 +445,6 @@ private String translateLabel(String label, String language) throws UnsupportedE
   //JSON-KONVERTIERUNG
   JSONObject json = parseJSONObject(answer);
   
-  String[] res;
   JSONArray translations = json.getJSONObject("data").getJSONArray("translations");
   if (translations == null || translations.size() == 0) {
     return label;
@@ -544,7 +541,7 @@ private String accessGoogleCloudVision(String requestText) throws MalformedURLEx
 public String[] getURLsForKeyword(String keyword) throws IOException {
   URL url = new URL("https://www.googleapis.com/customsearch/v1?key=" + keys.get("API_KEY_CUSTOMSEARCH") + 
                     // EN: "&cx=003881552290933724291:wdkgsjtvmks" +
-                    "&cx=003881552290933724291:h5-sku2lxjy" + 
+                    "&cx=" + URLEncoder.encode("003881552290933724291:h5-sku2lxjy", "UTF-8") + 
                     "&fields=" + URLEncoder.encode("items/link", "UTF-8") + 
                     "&q=" + URLEncoder.encode(keyword, "UTF-8"));
   HttpURLConnection con = (HttpURLConnection)url.openConnection();
