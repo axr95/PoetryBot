@@ -1,3 +1,3 @@
-use-webdata:false
+use-webdata:true
 use-goodpoems:false
-base:poemsource/poetry/some imagist poems_clean.txt
+base:poemsource\prose\schachnovelle.txt

@@ -43,6 +43,7 @@ HashMap<String, Integer> wantedFeatures;
 HashMap<String, String> keys;
 HashMap<String, String> settings;
 HashMap<String, String> poemsource;
+HashMap<String, String> translations;
 
 //PFADE
 String cachePath;
@@ -84,7 +85,18 @@ void setup() {
   settings = loadConfig("settings.txt");
   poemsource = loadConfig("poemsource.txt");
   
+<<<<<<< HEAD
   lang = settings.getOrDefault("language", "en");
+=======
+  candidateCount = int(settings.getOrDefault("candidate-count", "3"));
+  poemCandidates = null;
+  
+  lang = settings.getOrDefault("language", "en").toLowerCase();
+  if (!lang.equals("en")) {
+    translations = loadConfig(cachePath + "translations" + File.separator + lang + ".txt");
+  }
+  
+>>>>>>> fd589f9... added cache to .gitignore, minor changes for translation
   
   if (poemsource.containsKey("base")) {
     filePaths = poemsource.get("base").split(",");
@@ -394,27 +406,36 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
 
 
 private String translateLabel(String label, String language) throws UnsupportedEncodingException, IOException {
-  
-  PostService poster = new PostService("https://translation.googleapis.com/language/translate/v2/?key=" + keys.get("API_KEY_TRANSLATION") + 
+  synchronized (translations) {
+    String cached = translations.get(label);
+    if (cached != null) {
+      return cached;
+    } else {
+      PostService poster = new PostService("https://translation.googleapis.com/language/translate/v2/?key=" + keys.get("API_KEY_TRANSLATION") + 
                     "&q=" + URLEncoder.encode(label, "UTF-8") +
                     "&target=" + language +
                     "&source=en" +
                     "&format=text");
                     
-  String answer = poster.PostData(" ");
-  
-  if (answer.startsWith(":ERROR")) {
-    return label;
-  }
-  
-  //JSON-KONVERTIERUNG
-  JSONObject json = parseJSONObject(answer);
-  
-  JSONArray translations = json.getJSONObject("data").getJSONArray("translations");
-  if (translations == null || translations.size() == 0) {
-    return label;
-  } else {
-    return translations.getJSONObject(0).getString("translatedText");
+      String answer = poster.PostData(" ");
+      
+      if (answer.startsWith(":ERROR")) {
+        return label;
+      }
+      
+      //JSON-KONVERTIERUNG
+      JSONObject json = parseJSONObject(URLDecoder.decode(answer, "UTF-8"));
+      
+      JSONArray online_translations = json.getJSONObject("data").getJSONArray("translations");
+      if (online_translations == null || online_translations.size() == 0) {
+        return label;
+      } else {
+        cached = online_translations.getJSONObject(0).getString("translatedText");
+        translations.put(label, cached);
+        saveConfig(cachePath + "translations" + File.separator + lang + ".txt", translations);
+        return cached;
+      }
+    }
   }
 }
 
@@ -528,6 +549,15 @@ private HashMap<String, String> loadConfig(String filename) {
     }
   }
   return result;
+}
+
+private void saveConfig(String filename, HashMap<String, String> config) {
+  String[] buf = new String[config.size()];
+  int i = 0;
+  for (java.util.Map.Entry<String, String> kvp : config.entrySet()) {
+    buf[i++] = kvp.getKey() + ":" + kvp.getValue();
+  }
+  saveStrings(filename, buf);
 }
 
 void server() {
