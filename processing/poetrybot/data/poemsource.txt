@@ -1,2 +1,3 @@
 use-webdata:true
 use-goodpoems:false
+base:poemsource\prose\schachnovelle.txt

@@ -4,6 +4,7 @@ photobooth-[0-9]+.jpg
 # ignoring temporary files
 temp/
 saved/
+cache/
 
 # ignore webdata folder
 webdata/
