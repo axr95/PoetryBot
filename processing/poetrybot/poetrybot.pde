@@ -597,13 +597,15 @@ public String[] getURLsForKeyword(String keyword) throws IOException {
 private HashMap<String, String> loadConfig(String filename) {
   String[] keylines = loadStrings(filename);
   HashMap<String, String> result = new HashMap<String, String>();
-  for (String line : keylines) {
-    if (line.startsWith("#") || line.trim().isEmpty())
-      continue;
-      
-    String[] a = line.split(":", 2);
-    if (a.length == 2) {
-      result.put(a[0], a[1]);
+  if (keylines != null) {
+    for (String line : keylines) {
+      if (line.startsWith("#") || line.trim().isEmpty())
+        continue;
+        
+      String[] a = line.split(":", 2);
+      if (a.length == 2) {
+        result.put(a[0], a[1]);
+      }
     }
   }
   return result;
