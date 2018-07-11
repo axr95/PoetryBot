@@ -370,24 +370,17 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
     pg.textSize(42);
     pg.text("       // poetrybot.github.io //", 0, 320, 640, 360);
     
-    pg.textSize(36);
-    pg.text("Unser Bot erschafft expressive Internet-Poesie aus visuellem Input. Das passiert mithilfe von Machine Learning und probabilistischen Verfahren. Wir wollen Menschen aller Altersgruppen, besonders Schüler_innen, das Thema Poesie auf spielerische Weise näherbringen. Bleib informiert, schick uns Feedback an thepoetrybot@gmail.com und sei beim Start dabei!",
-            0, 390, 640, 750);
-
-    pg.textSize(36);
-    pg.text("Schritt 1: Foto machen und hochladen; Schritt 2: automatisch generiertes Gedicht lesen -> hier ein Beispiel mit einem Foto von uns:", 0, 810, 640, 1000);
-            
     pg.textSize(48);
-    pg.text("     +++ Dein Bild-Input +++", 0, 990, 640, 1060);
+    pg.text("     +++ Dein Bild-Input +++", 0, 420, 640, 1060);
     
-    pg.image(imageToDraw, 0, 1050, 640, 360);
+    pg.image(imageToDraw, 0, 480, 640, 360);
     
     pg.textSize(48);
-    pg.text("    +++ Generiertes Poem +++", 0, 1440, 640, 60);
+    pg.text("    +++ Generiertes Poem +++", 0, 900, 640, 60);
     
     pg.fill(0);
     pg.textSize(36);
-    pg.text(poem, 0, 1500, 640, 3000);
+    pg.text(poem, 0, 960, 640, 3000);
 
     pg.endDraw();
     
