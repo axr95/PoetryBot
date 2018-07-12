@@ -85,7 +85,7 @@ def sequenceIterator(baseiterable, lookback):
 def printIterable(iterable):
     for x in iterable:
         print(x)
-    
+
 
 wordCount = 0
 dictSize = 1
@@ -106,12 +106,12 @@ def getWordFromIndex(index):
     #for w in dict:
     #    if dict[w] == index:
     #        return w
-    
+
 with open(os.path.join(OUTPUT_PATH, "vocabulary.txt"), "w", encoding="utf8") as fo:
     for w in dictIndex:
         fo.write(w)
         fo.write("\n")
-    
+
 print (args)
 print ("dictSize:", dictSize)
 print ("wordCount:", wordCount)
@@ -132,7 +132,7 @@ rest = (wordCount - WORD_LOOKBACK) % BATCH_SIZE
 if rest > 0:
     x = x[range(wordCount - WORD_LOOKBACK - rest),:]
     y = y[range(wordCount - WORD_LOOKBACK - rest)]
-   
+
 rest = PRED_COUNT % BATCH_SIZE
 if rest > 0:
     PRED_COUNT += BATCH_SIZE - rest
@@ -145,6 +145,8 @@ PRED_BATCH_COUNT = PRED_COUNT // BATCH_SIZE
 seqMatcher = SequenceMatcher(a=y)
 
 y = to_categorical(y)
+
+dictSize = np.max(x) + 1
 
 # define model
 model = Sequential()
