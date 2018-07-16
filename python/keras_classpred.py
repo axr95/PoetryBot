@@ -1,17 +1,14 @@
 import argparse
-import re
 import logging
 import numpy as np
-import itertools
 import random
 import time
 import os
 import json
-import pickle
 import vlq
+import tokentools
 import gzip
 from difflib import SequenceMatcher
-from collections import deque
 from keras.callbacks import LambdaCallback
 from keras.models import Sequential, load_model
 from keras.layers.core import Dense, Activation, Dropout
@@ -65,53 +62,14 @@ with open(os.path.join(OUTPUT_PATH, "args.json"), "w") as fo:
 
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.ERROR)
 
-splitter = re.compile("[\w']+|[^\w\s+]")
+counts = tokentools.countWords(args.file)
+dict = tokentools.getDictFromWordCounts(counts)
+wordCount = sum(counts.values())
+del counts
 
-def wordIterator(lineiterable):
-    for line in lineiterable:
-        words = splitter.findall(line.lower())
-        for w in words:
-            yield w
-        yield "\n"
+dictIndex = tokentools.getDictIndex(dict)
+dictSize = len(dict)
 
-def sequenceIterator(baseiterable, lookback):
-    history = deque(itertools.islice(baseiterable, lookback))
-    for x in baseiterable:
-        yield (list(history), x)
-        history.popleft()
-        history.append(x)
-
-def printIterable(iterable):
-    for x in iterable:
-        print(x)
-
-
-wordCount = 0
-dictSize = 1
-dict = {"\n": 0}
-dictIndex = ["\n"]
-
-with open(args.file, "r", encoding="utf8") as fo:
-    wIter = wordIterator(fo)
-    for w in wIter:
-        wordCount = wordCount + 1
-        if not w in dict:
-            dict[w] = 0
-            dictSize = dictSize + 1
-        dict[w] = dict[w] + 1
-
-del dict["\n"]
-
-# getting dict by rank: https://stackoverflow.com/questions/30282600/python-ranking-dictionary-return-rank
-dict = { key: rank for rank, key in enumerate(sorted(dict, key=dict.get, reverse=True), 1) }
-dict["\n"] = 0
-
-dictIndex = [None] * dictSize
-
-for w in dict:
-    dictIndex[dict[w]] = w
-
-   
 def getWordFromIndex(index):
     return dictIndex[index]
 
@@ -121,20 +79,9 @@ with open(os.path.join(OUTPUT_PATH, "vocabulary.txt"), "w", encoding="utf8") as 
         fo.write("\n")
 
 print (args)
-print ("dictSize:", dictSize)
-print ("wordCount:", wordCount)
 
-x = np.zeros((wordCount - WORD_LOOKBACK, WORD_LOOKBACK), dtype=np.uint32)
-y = np.zeros((wordCount - WORD_LOOKBACK), dtype=np.uint32)
-
-with open(args.file, "r", encoding="utf8") as fo:
-    wIter = wordIterator(fo)
-    vMap  = map(lambda w: dict[w], wIter)
-    sIter = sequenceIterator(vMap, WORD_LOOKBACK)
-    
-    for i, (hist, target) in enumerate(sIter):
-        x[i,:] = hist
-        y[i] = target
+# tokenizing
+(x,y) = tokentools.getTrainingData(args.file, WORD_LOOKBACK, dict=dict, wordCount=wordCount)
 
 rest = (wordCount - WORD_LOOKBACK) % BATCH_SIZE
 if rest > 0:
