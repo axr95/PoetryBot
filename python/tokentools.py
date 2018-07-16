@@ -53,7 +53,27 @@ def getTokens(dict, filename, encoding="utf8"):
     with open(filename, "r", encoding=encoding) as fo:
         wIter = wordIterator(fo)
         return list(map(lambda w: dict[w], wIter))
-#21694, 4641
+
+def saveDictIndex(dictIndex, filename, encoding="utf8"):
+    with open(filename, "w", encoding=encoding) as fo:
+        for w in dictIndex:
+            fo.write(w)
+            fo.write("\n")
+
+def loadDictFromFile(filename, encoding="utf8"):
+    dictIndex = ["\n"]
+    dict = { "\n": 0 }
+    
+    with open(filename, "r", encoding=encoding) as fo:
+        next(fo)
+        next(fo)
+        i = 1
+        for line in fo:
+            dictIndex.append(line[:-1])
+            dict[line[:-1]] = i
+            i = i + 1
+    return (dictIndex, dict)
+            
 try:
     import numpy as np
     
@@ -83,15 +103,6 @@ except ImportError:
     pass
 
 if __name__ == "__main__":
-    counts = countWords("source/schachnovelle.txt")
-    wordCount = sum(counts.values())
-    dict = getDictFromWordCounts(counts)
-    
-    print (wordCount)
-    vMap = getTokens(dict, "source/schachnovelle.txt")
-    sIter = sequenceIterator(vMap, 5)
-        
-    print(len(list(sIter)))
-    
-    
+    (dictIndex, dict) = loadDictFromFile("output/test_26/vocabulary.txt")
+    saveDictIndex(dictIndex, "output/test_26/vocabulary2.txt")
     
