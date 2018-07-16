@@ -8,6 +8,8 @@ import time
 import os
 import json
 import pickle
+import vlq
+import gzip
 from difflib import SequenceMatcher
 from collections import deque
 from keras.callbacks import LambdaCallback
@@ -26,9 +28,7 @@ ap.add_argument('--batch_size', type=int, default=256, help='batch size for trai
 ap.add_argument('--hidden_dim', type=int, default=100, help='dimension of hidden layers in the NN')
 ap.add_argument('--vec_size', type=int, default=200, help='dimension of the generated word2vec vectors')
 ap.add_argument('--word_lookback', type=int, default=5, help='how many words back the NN is feeded, before having to make a decision')
-ap.add_argument('--stateful', action='store_true', help='makes a stateful LSTM (currently ignored)')
 ap.add_argument('-v', '--verbosity', type=int, default=1, help='Sets verbosity of keras while training. Accepted values: 0 - no output, 1 - one line per batch, 2 - one line per epoch')
-ap.add_argument('--valid_split', type=float, default=0.5, help='ratio of how much of the data is used as validation set while training (currently ignored)')
 ap.add_argument('--predict_len', type=int, default=50, help='length of predicted sentences (in words) after each epoch')
 ap.add_argument('--predict_count', type=int, default=1, help='how many different sentences should be predicted after each epoch')
 ap.add_argument('-d', '--dropout', type=float, default=0.2, help="sets dropout for lstm layers")
@@ -41,7 +41,6 @@ HIDDEN_DIM = args.hidden_dim
 VEC_SIZE = args.vec_size
 WORD_LOOKBACK = args.word_lookback
 EPOCHS = args.epochs
-STATEFUL = False #args.stateful
 PRED_COUNT = args.predict_count
 PRED_LEN = args.predict_len
 DROPOUT = args.dropout
@@ -225,11 +224,10 @@ def on_epoch_end(epoch, logs):
             fo.write(" ===>\n")
             fo.write(" ".join(map(getWordFromIndex, x_pred[i,WORD_LOOKBACK:(WORD_LOOKBACK+PRED_LEN)])))
             fo.write("\n")
-            
-    ### maybe it is easier for further processing to save the file in binary.
-    ### Also, the file size could be reduced by about 50% at least if some custom encoding is done
-    #with open(os.path.join(OUTPUT_PATH, "poems_encoded.bin"), "ab") as fo:
-        #x_pred.tofile(fo)
+     
+    # maybe it is easier for further processing to save the file in binary. Also much smaller with vlq and gzip
+    with gzip.open(os.path.join(OUTPUT_PATH, "poems_encoded.vlq.gz"), "ab") as fo:
+        vlq.save(x_pred.flat, fo)
         
     model.save(os.path.join(OUTPUT_PATH, "model.h5"))
     
@@ -245,7 +243,6 @@ model.fit(x, y,
           epochs=EPOCHS,
           callbacks=[print_callback],
 		  shuffle=False,
-		  #validation_split = args.valid_split,
 		  verbose=args.verbosity)
 
           

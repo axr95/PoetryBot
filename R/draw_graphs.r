@@ -1,7 +1,7 @@
 library("rjson")
 
 
-source <- "../python/output/schachnovelle"
+source <- "../python/output/swordblades_2"
 
 
 args <- fromJSON(file=paste(source,"args.json",sep="/"))
@@ -15,3 +15,6 @@ lines(stats$copyblock_q75 / args$predict_len, col="lightblue", lty=3)
 legend("topleft", legend=c("Accuracy", "Percentage of Linebreaks", 
        "Median of largest copied block", "25%/75% quantils of largest copied block"),
        lty=c(1, 1, 1, 3), col=c("green", "red", "blue", "lightblue"))
+
+### TODO: draw second axis for word-based metrics (for example copied block length)
+###       like so: https://www.r-bloggers.com/r-single-plot-with-two-different-y-axes/
