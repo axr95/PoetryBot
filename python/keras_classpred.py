@@ -96,15 +96,24 @@ with open(args.file, "r", encoding="utf8") as fo:
     for w in wIter:
         wordCount = wordCount + 1
         if not w in dict:
-            dict[w] = dictSize
-            dictIndex.append(w)
+            dict[w] = 0
             dictSize = dictSize + 1
+        dict[w] = dict[w] + 1
 
+del dict["\n"]
+
+# getting dict by rank: https://stackoverflow.com/questions/30282600/python-ranking-dictionary-return-rank
+dict = { key: rank for rank, key in enumerate(sorted(dict, key=dict.get, reverse=True), 1) }
+dict["\n"] = 0
+
+dictIndex = [None] * dictSize
+
+for w in dict:
+    dictIndex[dict[w]] = w
+
+   
 def getWordFromIndex(index):
     return dictIndex[index]
-    #for w in dict:
-    #    if dict[w] == index:
-    #        return w
 
 with open(os.path.join(OUTPUT_PATH, "vocabulary.txt"), "w", encoding="utf8") as fo:
     for w in dictIndex:
