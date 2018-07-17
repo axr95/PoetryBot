@@ -8,6 +8,7 @@ import json
 import vlq
 import tokentools
 import gzip
+import signal
 from difflib import SequenceMatcher
 from keras.callbacks import LambdaCallback
 from keras.models import Sequential, load_model
@@ -23,7 +24,6 @@ parser = argparse.ArgumentParser(description='Takes source files, computes a vec
 subparsers = parser.add_subparsers()
 
 parser_start = subparsers.add_parser('start', help='This command is used for starting a new learning process with the given arguments')
-
 parser_start.add_argument('file', help='input file')
 parser_start.add_argument('-e', '--epochs', type=int, default=100, help='number of epochs in training the NN')
 parser_start.add_argument('--batch_size', type=int, default=256, help='batch size for training the NN')
@@ -115,6 +115,17 @@ y = to_categorical(y)
 
 dictSize = np.max(x) + 1
 
+def defineModel():
+    model = Sequential()
+    model.add(Embedding(dictSize, VEC_SIZE, input_length=WORD_LOOKBACK, batch_size=BATCH_SIZE))
+    model.add(LSTM(HIDDEN_DIM, return_sequences=True, dropout=DROPOUT, stateful=True))
+    model.add(LSTM(HIDDEN_DIM, dropout=DROPOUT, stateful=True))
+    model.add(Dense(HIDDEN_DIM, activation='relu'))
+    model.add(Dense(dictSize, activation='softmax'))
+
+    # compile model
+    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+    return model
 
 if not hasattr(args, 'folder'):
     if os.path.exists(OUTPUT_PATH):
@@ -136,33 +147,33 @@ if not hasattr(args, 'folder'):
         fo.write("\n")
     
     tokentools.saveDictIndex(dictIndex, os.path.join(OUTPUT_PATH, "vocabulary.txt"))
-        
+    
     # define model
-    model = Sequential()
-    model.add(Embedding(dictSize, VEC_SIZE, input_length=WORD_LOOKBACK, batch_size=BATCH_SIZE))
-    model.add(LSTM(HIDDEN_DIM, return_sequences=True, dropout=DROPOUT, stateful=True))
-    model.add(LSTM(HIDDEN_DIM, dropout=DROPOUT, stateful=True))
-    model.add(Dense(HIDDEN_DIM, activation='relu'))
-    model.add(Dense(dictSize, activation='softmax'))
-
-    # compile model
-    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+    model = defineModel()
 else:
     # load model
-    model = load_model(os.path.join(args.folder, "model.h5"))
+    if os.path.exists(os.path.join(args.folder, "model.h5")):
+        model = load_model(os.path.join(args.folder, "model.h5"))
+    else:
+        model = defineModel()
     del args.folder
 
 
 with open(os.path.join(OUTPUT_PATH, "args.json"), "w") as fo:
     fo.write(json.dumps(vars(args), indent=4))
     
-    
 # https://github.com/keras-team/keras/blob/master/examples/lstm_text_generation.py
 def on_epoch_end(epoch, logs):
     global x, y, seqMatcher, timestamp
     epoch = epochBase + epoch
     
-    # Function invoked at end of each epoch. Prints generated text.
+    interrupted = False
+    def interruptHandler(signal, frame):
+        nonlocal interrupted
+        print ("caught interrupt - exiting program after end-of-epoch updating")
+        interrupted = True
+    prevHandler = signal.signal(signal.SIGINT, interruptHandler)
+    
     print()
     print('----- Generating text after Epoch %d, which took %d seconds for training' % (epoch + 1, time.time() - timestamp))
     timestamp = time.time()
@@ -227,6 +238,12 @@ def on_epoch_end(epoch, logs):
         vlq.save(x_pred.flat, fo)
         
     model.save(os.path.join(OUTPUT_PATH, "model.h5"))
+    
+    
+    signal.signal(signal.SIGINT, prevHandler)
+    if (interrupted):
+        print ("Interrupted - exiting...")
+        exit(0)
     
     timestamp = time.time()
 
