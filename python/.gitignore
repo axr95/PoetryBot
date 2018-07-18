@@ -1,3 +1,6 @@
+# ignore cache
+__pycache__/
+
 # ignore poemsource folder (because im nervously unsure if we are allowed to have the sources on github)
 source/
 

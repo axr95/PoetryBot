@@ -43,6 +43,7 @@ HashMap<String, Integer> wantedFeatures;
 HashMap<String, String> keys;
 HashMap<String, String> settings;
 HashMap<String, String> poemsource;
+HashMap<String, String> translations;
 
 //PFADE
 String cachePath;
@@ -65,6 +66,8 @@ ExecutorService threadPool = Executors.newCachedThreadPool();
 Thread serverThread;
 volatile String lastPoem = null;
 
+String lang;
+
 //BERECHNUNG VIDEO*TEXT
 void setup() {
   // ADD WANTED FEATURES HERE
@@ -81,6 +84,19 @@ void setup() {
   keys = loadConfig("keys.txt");
   settings = loadConfig("settings.txt");
   poemsource = loadConfig("poemsource.txt");
+  
+<<<<<<< HEAD
+  lang = settings.getOrDefault("language", "en");
+=======
+  candidateCount = int(settings.getOrDefault("candidate-count", "3"));
+  poemCandidates = null;
+  
+  lang = settings.getOrDefault("language", "en").toLowerCase();
+  if (!lang.equals("en")) {
+    translations = loadConfig(cachePath + "translations" + File.separator + lang + ".txt");
+  }
+  
+>>>>>>> fd589f9... added cache to .gitignore, minor changes for translation
   
   if (poemsource.containsKey("base")) {
     filePaths = poemsource.get("base").split(",");
@@ -312,28 +328,32 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
     String selectedLabel = labels[index];
     println("selectedLabel: " + selectedLabel);
     
-    // ...\cache\webdata\labelname.txt
-    String webMarkovFile = cachePath + "webdata" + File.separator + selectedLabel + ".txt";
-    
-    File f = new File(webMarkovFile);
-    
-    if (!f.exists()) {
-      String[] keywordURLs = getURLsForKeyword(selectedLabel);
-      webscrape(keywordURLs, webMarkovFile);
+    if (!"en".equals(lang)) {
+      selectedLabel = translateLabel(selectedLabel, lang);
+      println("translated to: " + selectedLabel);
     }
-    
-    // Momentan wird der Markov Chain Generator von den oben genannten sourcefiles
-    // kopiert und um die Webtokens und die goodpoems erweitert.
     
     MarkovChainGenerator gen;
     gen = new MarkovChainGenerator(markov);
     
     if (boolean(poemsource.getOrDefault("use-webdata", "true"))) {
+      // ...\cache\webdata\labelname.txt
+      String webMarkovFile = cachePath + "webdata" + File.separator + selectedLabel + ".txt";
+      
+      File f = new File(webMarkovFile);
+      
+      if (!f.exists()) {
+        String[] keywordURLs = getURLsForKeyword(selectedLabel);
+        webscrape(keywordURLs, webMarkovFile);
+      }
+      
       gen.train(webMarkovFile);
     }
     
+
     String poem = gen.getPoem(selectedLabel);  
     println(poem);
+
     
     //DARSTELLUNG DATUM-TEXT
     pg.fill(0);
@@ -384,6 +404,40 @@ private void processImage(Future<String> imageStringFuture, Future<PImage> image
   }
 }
 
+
+private String translateLabel(String label, String language) throws UnsupportedEncodingException, IOException {
+  synchronized (translations) {
+    String cached = translations.get(label);
+    if (cached != null) {
+      return cached;
+    } else {
+      PostService poster = new PostService("https://translation.googleapis.com/language/translate/v2/?key=" + keys.get("API_KEY_TRANSLATION") + 
+                    "&q=" + URLEncoder.encode(label, "UTF-8") +
+                    "&target=" + language +
+                    "&source=en" +
+                    "&format=text");
+                    
+      String answer = poster.PostData(" ");
+      
+      if (answer.startsWith(":ERROR")) {
+        return label;
+      }
+      
+      //JSON-KONVERTIERUNG
+      JSONObject json = parseJSONObject(URLDecoder.decode(answer, "UTF-8"));
+      
+      JSONArray online_translations = json.getJSONObject("data").getJSONArray("translations");
+      if (online_translations == null || online_translations.size() == 0) {
+        return label;
+      } else {
+        cached = online_translations.getJSONObject(0).getString("translatedText");
+        translations.put(label, cached);
+        saveConfig(cachePath + "translations" + File.separator + lang + ".txt", translations);
+        return cached;
+      }
+    }
+  }
+}
 
 
 // helper to save image from web
@@ -449,7 +503,8 @@ private String accessGoogleCloudVision(String requestText) throws MalformedURLEx
 
 public String[] getURLsForKeyword(String keyword) throws IOException {
   URL url = new URL("https://www.googleapis.com/customsearch/v1?key=" + keys.get("API_KEY_CUSTOMSEARCH") + 
-                    "&cx=003881552290933724291:wdkgsjtvmks" +
+                    // EN: "&cx=003881552290933724291:wdkgsjtvmks" +
+                    "&cx=" + URLEncoder.encode("003881552290933724291:h5-sku2lxjy", "UTF-8") + 
                     "&fields=" + URLEncoder.encode("items/link", "UTF-8") + 
                     "&q=" + URLEncoder.encode(keyword, "UTF-8"));
   HttpURLConnection con = (HttpURLConnection)url.openConnection();
@@ -494,6 +549,15 @@ private HashMap<String, String> loadConfig(String filename) {
     }
   }
   return result;
+}
+
+private void saveConfig(String filename, HashMap<String, String> config) {
+  String[] buf = new String[config.size()];
+  int i = 0;
+  for (java.util.Map.Entry<String, String> kvp : config.entrySet()) {
+    buf[i++] = kvp.getKey() + ":" + kvp.getValue();
+  }
+  saveStrings(filename, buf);
 }
 
 void server() {

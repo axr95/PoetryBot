@@ -41,7 +41,7 @@ print(args)
 
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.ERROR)
 
-splitter = re.compile("[\w']+|[^\w\s]+")
+splitter = re.compile("[\w']+|[^\w\s+]")
 
 
 speaker = pyttsx3.init()
