@@ -18,7 +18,7 @@ from keras.models import Sequential, load_model
 from keras.layers.core import Dense, Activation, Dropout
 from keras.layers.recurrent import LSTM, SimpleRNN
 from keras.layers import Embedding
-from keras.optimizers import RMSprop
+from keras.optimizers import RMSprop, Adam
 from keras import backend as K
 from keras.utils import to_categorical
 
@@ -30,6 +30,7 @@ parser_start = subparsers.add_parser('start', help='This command is used for sta
 
 parser_start.add_argument('file', help='input file')
 parser_start.add_argument('-e', '--epochs', type=int, default=100, help='number of epochs in training the NN')
+parser_start.add_argument('-lr', '--learning_rate', type=float, default=0.001, help='learning rate used directly in Keras. Should be higher for low epoch count.')
 parser_start.add_argument('--batch_size', type=int, default=256, help='batch size for training the NN')
 parser_start.add_argument('--hidden_dim', type=int, default=100, help='dimension of hidden layers in the NN')
 parser_start.add_argument('--vec_size', type=int, default=200, help='dimension of the generated word vectors')
@@ -146,7 +147,7 @@ if not hasattr(args, 'folder'):
 
         
     with open(os.path.join(OUTPUT_PATH, "stats.csv"), "a", encoding="utf8") as fo:
-        fo.write("epoch,acc,loss,linebreaks,copyblock_q25,copyblock_median,copyblock_q75")
+        fo.write("epoch,time,acc,loss,linebreaks,copyblock_q25,copyblock_median,copyblock_q75")
         fo.write("\n")
     
     tokentools.saveDictIndex(dictIndex, os.path.join(OUTPUT_PATH, "vocabulary.txt"))
@@ -160,7 +161,7 @@ if not hasattr(args, 'folder'):
     model.add(Dense(dictSize, activation='softmax'))
 
     # compile model
-    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy', 'top_k_categorical_accuracy'])
+    model.compile(loss='categorical_crossentropy', optimizer=Adam(lr=args.learning_rate), metrics=['accuracy', 'top_k_categorical_accuracy'])
 else:
     # load model
     model = load_model(os.path.join(args.folder, "model.h5"))
@@ -174,12 +175,14 @@ with open(os.path.join(OUTPUT_PATH, "args.json"), "w") as fo:
     
 # https://github.com/keras-team/keras/blob/master/examples/lstm_text_generation.py
 def on_epoch_end(epoch, logs):
-    global x, y, seqMatcher, timestamp
+    global x, y, timestamp
     epoch = epochBase + epoch
+    
+    train_time = time.time() - timestamp
     
     # Function invoked at end of each epoch. Prints generated text.
     print()
-    print('----- Generating text after Epoch %d, which took %d seconds for training' % (epoch + 1, time.time() - timestamp))
+    print('----- Generating text after Epoch %d, which took %d seconds for training' % (epoch + 1, train_time))
     timestamp = time.time()
     
     x_pred = np.zeros((PRED_COUNT, WORD_LOOKBACK + PRED_LEN), dtype=np.uint32)
@@ -217,6 +220,7 @@ def on_epoch_end(epoch, logs):
     
     statsToSave = [
             epoch,
+            train_time,
             logs["acc"],
             logs["loss"],
             1 - np.count_nonzero(x_pred) / x_pred.size,
