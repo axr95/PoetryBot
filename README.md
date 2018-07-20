@@ -22,28 +22,39 @@ What it does so far:
 
 How to configure it:
 -----------------
-You can use the following configuration files to specify some settings. Note that you **must specify your API-Keys** in keys.txt before using the program, to be able to connect to the Google APIs.
+You can use the following configuration files to specify some settings. Note that you **must specify your API-Keys** in keys.txt before using the program, to be able to connect to the Google APIs. These files have to be in the processing/poetrybot/data/ directory.
 
 The variables have to be stored each in its own line, in a "key:value" format. For example, to specify that the output should actually be printed, the data/settings.txt must contain a line with the content "print:true".
 
-KEYS
+**KEYS**
 
 In the file "keys.txt", you have to specify the following keys:
 * **API_KEY_CLOUDVISION**: Google Cloud Vision
 * **API_KEY_CUSTOMSEARCH**: Google Custom Search
+* **API_KEY_TRANSLATION**: Google Translate
 
 note: you can easily create an account and get free credits for these services
 
-SETTINGS
+*Also, in poetrybot.pde:504 there is a cx-parameter for the customsearch request hard-coded. This is practically the id of a search settings profile for Google Custom Search, defining the sites searched, languages and such. I do not know if you can use such a search profile with another API-Key, so you might have to create your own and replace this cx-parameter as well.*
 
-in the file "settings.txt" you can set the following (**bold** options are the default values):
+**SETTINGS**
+
+In the file "settings.txt" you can set the following (**bold** options are the default values):
 * **print** *(true|**false**)*: whether you actually want to print the pictures and the poem (on your standard printer)
-* **servermode** *(**enabled**|disabled)*: whether it should be possible to switch to server mode, where the program pulls images from a webserver instead of the camera on the device itself.
+* **servermode** *(enabled|**disabled**)*: whether it should be possible to switch to server mode, where the program pulls images from a webserver instead of the camera on the device itself.
 * **serverurl-read**: specify url of the server where pictures are stored in base64 (needed for server mode)
 * **min-delay**: the minimum delay between requests to the server in server mode (in ms)
 * **max-delay**: the maximum delay between requests to the server in server mode (in ms)
 * **double-delay-interval**: after so many requests without an image answer, the delay between requests is doubled.
 * **usewebimage** *(**true**|false)*: whether to use the similar image from the web. if there is an error loading this image, the photo from the device will be used instead.
+* **language**: the language code for the language to be used for translating the labels (default: **en**). Note that if you use web-texts, you should create a custom search profile so results in that language (if not english) are preferred.
+
+**POEMSOURCE**
+
+In the file "poemsource.txt" you can choose which texts are used as basis for the Markov Chain Generation:
+* **base**: the files to be included from the beginning. Their path can be given relative to this directory, and multiple files can be given separated by a comma.
+* **use-webdata** *(**true**|false)*: whether to include texts crawled from the web, from pages found by searching for the selected label.
+* **use-goodpoems** *(true|**false**)*: whether to include the "goodpoems.txt" file in this directory. This is a special file, where good poems can be saved to by pressing Y after seeing them.
 
 Project dependencies:
 --------------------
