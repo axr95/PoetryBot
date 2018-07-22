@@ -5,17 +5,22 @@ import random
 import time
 import os
 import json
+import gzip
+
 import vlq
 import tokentools
-import gzip
-import signal
+
+#import poem_metrics as pmetrics
+from poem_metrics import PoemMetric, LongestCopyBlock
+
+
 from difflib import SequenceMatcher
 from keras.callbacks import LambdaCallback
 from keras.models import Sequential, load_model
 from keras.layers.core import Dense, Activation, Dropout
 from keras.layers.recurrent import LSTM, SimpleRNN
 from keras.layers import Embedding
-from keras.optimizers import RMSprop
+from keras.optimizers import RMSprop, Adam
 from keras import backend as K
 from keras.utils import to_categorical
 
@@ -26,6 +31,7 @@ subparsers = parser.add_subparsers()
 parser_start = subparsers.add_parser('start', help='This command is used for starting a new learning process with the given arguments')
 parser_start.add_argument('file', help='input file')
 parser_start.add_argument('-e', '--epochs', type=int, default=100, help='number of epochs in training the NN')
+parser_start.add_argument('-lr', '--learning_rate', type=float, default=0.001, help='learning rate used directly in Keras. Should be higher for low epoch count.')
 parser_start.add_argument('--batch_size', type=int, default=256, help='batch size for training the NN')
 parser_start.add_argument('--hidden_dim', type=int, default=100, help='dimension of hidden layers in the NN')
 parser_start.add_argument('--vec_size', type=int, default=200, help='dimension of the generated word vectors')
@@ -45,7 +51,7 @@ argsdict = vars(args)
 
 epochBase = 0
 
-# load args if continue mode
+# load args if in continue mode
 if hasattr(args, 'folder'):
     with open(os.path.join(args.folder, "args.json"), "r", encoding="utf8") as fo:
         loadedArgs = json.load(fo)
@@ -90,6 +96,7 @@ print (args)
 # tokenizing
 (x,y) = tokentools.getTrainingData(args.file, WORD_LOOKBACK, dict=dict, wordCount=wordCount)
 
+# needed for easy conversion with map
 def getWordFromIndex(index):
     return dictIndex[index]
     
@@ -108,11 +115,20 @@ del rest
 
 PRED_BATCH_COUNT = PRED_COUNT // BATCH_SIZE
 
-# set up copy checker
-seqMatcher = SequenceMatcher(a=y)
+# initializing poem metrics
+poem_metric_classes = [LongestCopyBlock]
 
+PoemMetric.lookback = WORD_LOOKBACK
+poem_metrics = []
+
+for m in set(poem_metric_classes):
+    poem_metrics.append(m(y))
+
+
+# one-hot encoding
 y = to_categorical(y)
 
+# adapting dictSize (cause source may have been resized, causing some words to be absent in source)
 dictSize = np.max(x) + 1
 
 def defineModel():
@@ -143,13 +159,14 @@ if not hasattr(args, 'folder'):
 
         
     with open(os.path.join(OUTPUT_PATH, "stats.csv"), "a", encoding="utf8") as fo:
-        fo.write("epoch,acc,loss,linebreaks,copyblock_q25,copyblock_median,copyblock_q75")
+        fo.write("epoch,time,acc,loss,linebreaks,copyblock_q25,copyblock_median,copyblock_q75")
         fo.write("\n")
     
     tokentools.saveDictIndex(dictIndex, os.path.join(OUTPUT_PATH, "vocabulary.txt"))
     
-    # define model
+
     model = defineModel()
+
 else:
     # load model
     if os.path.exists(os.path.join(args.folder, "model.h5")):
@@ -162,9 +179,10 @@ else:
 with open(os.path.join(OUTPUT_PATH, "args.json"), "w") as fo:
     fo.write(json.dumps(vars(args), indent=4))
     
+
 # https://github.com/keras-team/keras/blob/master/examples/lstm_text_generation.py
 def on_epoch_end(epoch, logs):
-    global x, y, seqMatcher, timestamp
+    global x, y, timestamp
     epoch = epochBase + epoch
     
     interrupted = False
@@ -173,9 +191,12 @@ def on_epoch_end(epoch, logs):
         print ("caught interrupt - exiting program after end-of-epoch updating")
         interrupted = True
     prevHandler = signal.signal(signal.SIGINT, interruptHandler)
+
+    train_time = time.time() - timestamp
     
+    # Function invoked at end of each epoch. Prints generated text.
     print()
-    print('----- Generating text after Epoch %d, which took %d seconds for training' % (epoch + 1, time.time() - timestamp))
+    print('----- Generating text after Epoch %d, which took %d seconds for training' % (epoch + 1, train_time))
     timestamp = time.time()
     
     x_pred = np.zeros((PRED_COUNT, WORD_LOOKBACK + PRED_LEN), dtype=np.uint32)
@@ -193,30 +214,33 @@ def on_epoch_end(epoch, logs):
     timestamp = time.time()
     
     
-    # compute similarity to sources
-    copyblocks = []
-    for i in range(PRED_COUNT):
-        seqMatcher.set_seq2(x_pred[i,:])
-        (_, j, k) = seqMatcher.find_longest_match(0, len(y), WORD_LOOKBACK, PRED_LEN+WORD_LOOKBACK)
-        copyblocks.append((i,j,k))
+    # compute similarity to sources and other metrics
+    metric_results = {}
 
+    for m in poem_metrics:
+        res = []
+        for i in range(PRED_COUNT):
+            res.append((i, m.compute(x_pred[i,:])))
+        metric_results[m.__class__.__name__] = res
     
-    copyblocks.sort(key=lambda tup: tup[2])
+    copyblocks = metric_results["LongestCopyBlock"]
+    copyblocks.sort(key=lambda tup: tup[1])
     
-    (idx, _, cnt) = random.choice(copyblocks)
+    (idx, cnt) = random.choice(copyblocks)
     print (" ".join(map(getWordFromIndex, x_pred[idx,0:WORD_LOOKBACK])), "===>")
     print (" ".join(map(getWordFromIndex, x_pred[idx,WORD_LOOKBACK:(WORD_LOOKBACK+PRED_LEN)])))
     print ("----- End of sample with longest copied sequence:", cnt)
-    print ("----- 75%% quantil of longest copied sequence: %d (computed in %d seconds)" % (copyblocks[int(PRED_COUNT * 0.75)][2], time.time() - timestamp))
+    print ("----- 75%% quantil of longest copied sequence: %d (computed in %d seconds)" % (copyblocks[int(PRED_COUNT * 0.75)][1], time.time() - timestamp))
     
     statsToSave = [
             epoch,
+            train_time,
             logs["acc"],
             logs["loss"],
             1 - np.count_nonzero(x_pred) / x_pred.size,
-            copyblocks[int(PRED_COUNT * 0.25)][2],
-            copyblocks[int(PRED_COUNT * 0.50)][2],
-            copyblocks[int(PRED_COUNT * 0.75)][2],
+            copyblocks[int(PRED_COUNT * 0.25)][1],
+            copyblocks[int(PRED_COUNT * 0.50)][1],
+            copyblocks[int(PRED_COUNT * 0.75)][1],
             ]
     
     

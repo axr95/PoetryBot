@@ -85,18 +85,12 @@ void setup() {
   settings = loadConfig("settings.txt");
   poemsource = loadConfig("poemsource.txt");
   
-<<<<<<< HEAD
-  lang = settings.getOrDefault("language", "en");
-=======
-  candidateCount = int(settings.getOrDefault("candidate-count", "3"));
-  poemCandidates = null;
   
   lang = settings.getOrDefault("language", "en").toLowerCase();
   if (!lang.equals("en")) {
     translations = loadConfig(cachePath + "translations" + File.separator + lang + ".txt");
   }
   
->>>>>>> fd589f9... added cache to .gitignore, minor changes for translation
   
   if (poemsource.containsKey("base")) {
     filePaths = poemsource.get("base").split(",");
