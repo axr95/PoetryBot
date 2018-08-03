@@ -155,7 +155,7 @@ if not hasattr(args, 'folder'):
     # define model
     model = Sequential()
     model.add(Embedding(dictSize, VEC_SIZE, input_length=WORD_LOOKBACK, batch_size=BATCH_SIZE))
-    model.add(LSTM(HIDDEN_DIM, return_sequences=True, dropout=DROPOUT, stateful=True))
+    model.add(LSTM(HIDDEN_DIM, return_sequences=True, dropout=DROPOUT, stateful=True, batch_input_shape=(BATCH_SIZE, VEC_SIZE, WORD_LOOKBACK)))
     model.add(LSTM(HIDDEN_DIM, dropout=DROPOUT, stateful=True))
     model.add(Dense(HIDDEN_DIM, activation='relu'))
     model.add(Dense(dictSize, activation='softmax'))
@@ -192,7 +192,7 @@ def on_epoch_end(epoch, logs):
     for j in range(PRED_BATCH_COUNT):
         model.reset_states()
         for i in range(PRED_LEN):
-            x_pred[(j*BATCH_SIZE):((j+1)*BATCH_SIZE), i+WORD_LOOKBACK] = model.predict_classes(x_pred[(j*BATCH_SIZE):((j+1)*BATCH_SIZE), i:(i+WORD_LOOKBACK)])
+            x_pred[(j*BATCH_SIZE):((j+1)*BATCH_SIZE), i+WORD_LOOKBACK] = model.predict_classes(x_pred[(j*BATCH_SIZE):((j+1)*BATCH_SIZE), i:(i+WORD_LOOKBACK)], batch_size=BATCH_SIZE)
         
     model.reset_states()
     
