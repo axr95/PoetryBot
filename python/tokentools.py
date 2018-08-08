@@ -4,6 +4,7 @@ from collections import deque
 
 
 splitter = re.compile("[\w']+|[^\w\s+]")
+#splitter = re.compile(".")
 
 def wordIterator(lineiterable):
     for line in lineiterable:
