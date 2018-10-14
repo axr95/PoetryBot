@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    
+    <title>PoetryBot KI-Analysetool</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="static/styles.css" />
+    <script src="static/navhider.js" ></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="static/statsloader.js"></script>
+
+</head>
+<body>
+    <header>
+        <h1><a href="/">PoetryBot KI-Analysetool</a></h1>
+    </header>
+    <nav id="mainNav" class="navShrinked">
+        <a onClick="toggleNav()"><h2>Navigation</h2></a>
+        <ul>
+            <li><a href="/runs/copy">copy</a></li>
+            <li><a href="/runs/copy%20-%20Kopie">copy - Kopie</a></li>
+            <li><a href="/runs/imagist">imagist</a></li>
+            <li><a href="/runs/imagist_2">imagist_2</a></li>
+            <li><a href="/runs/imagist_3">imagist_3</a></li>
+            <li><a href="/runs/imagist_4">imagist_4</a></li>
+            <li><a href="/runs/imagist_5">imagist_5</a></li>
+            <li><a href="/runs/imagist_6">imagist_6</a></li>
+            <li><a href="/runs/imagist_7">imagist_7</a></li>
+            <li><a href="/runs/imagist_8">imagist_8</a></li>
+            <li><a href="/runs/imagist_9">imagist_9</a></li>
+            <li><a href="/runs/imagist_long_10">imagist_long_10</a></li>
+            <li><a href="/runs/imagist_long_6">imagist_long_6</a></li>
+            <li><a href="/runs/imagist_long_9">imagist_long_9</a></li>
+            <li><a href="/runs/swordblades">swordblades</a></li>
+            <li><a href="/runs/swordblades_10">swordblades_10</a></li>
+            <li><a href="/runs/swordblades_4">swordblades_4</a></li>
+            <li><a href="/runs/swordblades_9">swordblades_9</a></li>
+            <li><a href="/runs/swordblades_character_4">swordblades_character_4</a></li>
+            <li><a href="/runs/swordblades_COMPRESSION">swordblades_COMPRESSION</a></li>
+            <li><a href="/runs/test">test</a></li>
+            <li><a href="/runs/test_2">test_2</a></li>
+            <li><a href="/runs/test_3">test_3</a></li>
+            
+        </ul>
+    </nav>
+    
+    <main>
+        <section>
+            <!-- TODO: Generate and insert overview picture, move epoch/poemchooser down to their sections -->
+            <h2>Overview</h2>
+            <dl class="stats">
+            
+                <dt>file</dt><dd>source/imagist.txt</dd>
+            
+                <dt>epochs</dt><dd>1000</dd>
+            
+                <dt>batch_size</dt><dd>32</dd>
+            
+                <dt>predict_len</dt><dd>50</dd>
+            
+                <dt>predict_count</dt><dd>512</dd>
+            
+                <dt>hidden_dim</dt><dd>1000</dd>
+            
+                <dt>verbosity</dt><dd>2</dd>
+            
+                <dt>dropout</dt><dd>0.3</dd>
+            
+                <dt>word_lookback</dt><dd>5</dd>
+            
+                <dt>learning_rate</dt><dd>0.001</dd>
+            
+                <dt>vec_size</dt><dd>300</dd>
+            
+            </dl>
+        </section>
+        <section>
+            <h2>Epoch Statistics</h2>
+            <label for="epochChooser">Choose Epoch:</label>
+            <input type="number" id="epochChooser" min="0" max="999" value="0" onchange="updateEpoch()"/><br />
+            <dl class="stats" id="epochStats">
+
+            </dl>
+        </section>
+        <section>
+            <h2>Poem</h2>
+            <nav class="paging">
+                <label for="poemChooser">Choose Poem:</label>
+                <button type="button" onclick="offsetPoem(0,-1)">&lt; ep</button>
+                <button type="button" onclick="offsetPoem(-1)">&lt;</button>
+                <input type="number" id="poemChooser" min="0" max="511" value="0" onchange="updatePoem()" />
+                <button type="button" onclick="offsetPoem(1)">&gt;</button>
+                <button type="button" onclick="offsetPoem(0,1)">ep &gt;</button>
+                <button type="button" onclick="toggleFavourite()"><object id="favouriteStar" height="95%" type="image/svg+xml" data="static/star.svg">favourite</object></button>
+            </nav>
+            <blockquote id="poem">
+                Chuckles by the brook for ===&gt; me: <br>I go. <br><br>Mid - flight <br><br><br>Darkness rose <br><br>Drooping, <br>It whispers, <br>Tug, <br>It is theatre - time, <br>You shaken up me <br>The first wind <br>Huddled o' the sea,
+            </blockquote>
+            <h3>Calculated Metrics</h3>
+            <dl class="stats" id="poemMetrics">
+
+            </dl>
+        </section>
+    </main>
+
+    <footer>
+        <a href="https://github.poetrybot.io">About</a>
+    </footer>
+</body>
+</html>
