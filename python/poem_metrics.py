@@ -20,9 +20,12 @@ class LongestCopyBlock(PoemMetric):
         self.seqMatcher = SequenceMatcher(a=basetext)
     
     def compute(self, poem):
-        self.seqMatcher.set_seq2(poem)
-        (_, _, i) = self.seqMatcher.find_longest_match(0, len(self.basetext), PoemMetric.lookback, len(poem))
+        (_, _, i) = compute_details(self, poem)
         return i
+        
+    def compute_details(self, poem):
+        self.seqMatcher.set_seq2(poem)
+        return self.seqMatcher.find_longest_match(0, len(self.basetext), PoemMetric.lookback, len(poem))
         
 class LongestCopyBlockNormalized(LongestCopyBlock):
     def compute(self, poem):

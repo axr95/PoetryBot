@@ -3,8 +3,30 @@ import itertools
 from collections import deque
 
 
-splitter = re.compile("[\w']+|[^\w\s+]")
+splitter = re.compile(r"[\w']+|[^\w\s+]")
 #splitter = re.compile(".")
+
+
+# Patterns and replacement functions to beautify the poems
+# --------------------------------------------------------
+bad_space = re.compile(r' ([.,:;!?€%\)\]\}])|([#§@\(\[\{\n]) ')
+first_letter = re.compile(r"^\W*\w", re.MULTILINE)
+
+def __repl_any_match(match):
+    if match.group(1) is None:
+        return match.group(2)
+    else:
+        return match.group(1)
+
+def __repl_upper(match):
+    return match.group(0).upper()
+
+beautify_chain = [
+    (bad_space, __repl_any_match),
+    (first_letter, __repl_upper) ]
+
+# --------------------------------------------------------
+
 
 def wordIterator(lineiterable):
     for line in lineiterable:
@@ -36,7 +58,8 @@ def getDictFromWordCounts(wordcounts):
     del dict["\n"]
     
     # getting dict by rank: https://stackoverflow.com/questions/30282600/python-ranking-dictionary-return-rank
-    dict = { key: rank for rank, key in enumerate(sorted(dict, key=dict.get, reverse=True), 1) }
+    # sorting by occurrence, then alphabetically for same results for same sources
+    dict = { key: rank for rank, key in enumerate(sorted(dict, key=lambda x: (dict.get(x),x), reverse=True), 1) }
     dict["\n"] = 0
     return dict
 
@@ -54,6 +77,17 @@ def getTokens(dict, filename, encoding="utf8"):
     with open(filename, "r", encoding=encoding) as fo:
         wIter = wordIterator(fo)
         return list(map(lambda w: dict[w], wIter))
+
+def renderText(tokens, dictIndex, startlen=0):
+    if startlen < 0:
+        startlen = -(len(tokens) + startlen)
+    text = " ".join([dictIndex[x] for x in tokens[startlen:]])
+    if startlen > 0:
+        start = " ".join([dictIndex[x] for x in tokens[:startlen]])
+        text = " ".join([start, "===>", text])
+    for regex, repl in beautify_chain:
+        text = regex.sub(repl, text)
+    return text
 
 def saveDictIndex(dictIndex, filename, encoding="utf8"):
     with open(filename, "w", encoding=encoding) as fo:

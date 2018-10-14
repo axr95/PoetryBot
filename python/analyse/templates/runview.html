@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block head %}
+    {{ super() }}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src={{url_for("static", filename="statsloader.js")}}></script>
+{% endblock %}
+
+{% block main %}
+    <main>
+        <section>
+            <!-- TODO: Generate and insert overview picture, move epoch/poemchooser down to their sections -->
+            <h2>Overview</h2>
+            <dl class="stats">
+            {% for config in runArgs %}
+                <dt>{{ config }}</dt><dd>{{ runArgs[config] }}</dd>
+            {% endfor %}
+            </dl>
+        </section>
+        <section>
+            <h2>Epoch Statistics</h2>
+            <label for="epochChooser">Choose Epoch:</label>
+            <input type="number" id="epochChooser" min="0" max="{{ epochMax }}" value="0" onchange="updateEpoch()"/><br />
+            <dl class="stats" id="epochStats">
+
+            </dl>
+        </section>
+        <section>
+            <h2>Poem</h2>
+            <nav class="paging">
+                <label for="poemChooser">Choose Poem:</label>
+                <button type="button" onclick="offsetPoem(0,-1)">&lt; ep</button>
+                <button type="button" onclick="offsetPoem(-1)">&lt;</button>
+                <input type="number" id="poemChooser" min="0" max="{{ poemMax }}" value="0" onchange="updatePoem()" />
+                <button type="button" onclick="offsetPoem(1)">&gt;</button>
+                <button type="button" onclick="offsetPoem(0,1)">ep &gt;</button>
+                <button type="button" onclick="toggleFavourite()"><object id="favouriteStar" height="95%" type="image/svg+xml" data="{{ url_for("static", filename="star.svg") }}">favourite</object></button>
+            </nav>
+            <blockquote id="poem">
+
+            </blockquote>
+            <h3>Calculated Metrics</h3>
+            <dl class="stats" id="poemMetrics">
+
+            </dl>
+        </section>
+    </main>
+{% endblock %}

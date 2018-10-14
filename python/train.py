@@ -6,6 +6,7 @@ import time
 import os
 import json
 import gzip
+import signal
 
 import vlq
 import tokentools
@@ -109,7 +110,7 @@ if rest > 0:
 rest = PRED_COUNT % BATCH_SIZE
 if rest > 0:
     PRED_COUNT += BATCH_SIZE - rest
-    args.pred_count = PRED_COUNT
+    args.predict_count = PRED_COUNT
     print ("pred_count should be multiple of batch size (%i): changed from %i to %i" % (BATCH_SIZE, PRED_COUNT - BATCH_SIZE + rest, PRED_COUNT))
 del rest
 
@@ -159,7 +160,7 @@ if not hasattr(args, 'folder'):
 
         
     with open(os.path.join(OUTPUT_PATH, "stats.csv"), "a", encoding="utf8") as fo:
-        fo.write("epoch,time,acc,loss,linebreaks,copyblock_q25,copyblock_median,copyblock_q75")
+        fo.write("epoch,__vlqpos,time,acc,loss,linebreaks,copyblock_q25,copyblock_median,copyblock_q75")
         fo.write("\n")
     
     tokentools.saveDictIndex(dictIndex, os.path.join(OUTPUT_PATH, "vocabulary.txt"))
@@ -179,10 +180,11 @@ else:
 with open(os.path.join(OUTPUT_PATH, "args.json"), "w") as fo:
     fo.write(json.dumps(vars(args), indent=4))
     
-
+writepos = 0
+    
 # https://github.com/keras-team/keras/blob/master/examples/lstm_text_generation.py
 def on_epoch_end(epoch, logs):
-    global x, y, timestamp
+    global x, y, timestamp, writepos
     epoch = epochBase + epoch
     
     interrupted = False
@@ -227,20 +229,20 @@ def on_epoch_end(epoch, logs):
     copyblocks.sort(key=lambda tup: tup[1])
     
     (idx, cnt) = random.choice(copyblocks)
-    print (" ".join(map(getWordFromIndex, x_pred[idx,0:WORD_LOOKBACK])), "===>")
-    print (" ".join(map(getWordFromIndex, x_pred[idx,WORD_LOOKBACK:(WORD_LOOKBACK+PRED_LEN)])))
+    print (tokentools.renderText(x_pred[idx,:], dictIndex, startlen=WORD_LOOKBACK))
     print ("----- End of sample with longest copied sequence:", cnt)
     print ("----- 75%% quantil of longest copied sequence: %d (computed in %d seconds)" % (copyblocks[int(PRED_COUNT * 0.75)][1], time.time() - timestamp))
     
     statsToSave = [
             epoch,
+            writepos,
             train_time,
             logs["acc"],
             logs["loss"],
             1 - np.count_nonzero(x_pred) / x_pred.size,
             copyblocks[int(PRED_COUNT * 0.25)][1],
             copyblocks[int(PRED_COUNT * 0.50)][1],
-            copyblocks[int(PRED_COUNT * 0.75)][1],
+            copyblocks[int(PRED_COUNT * 0.75)][1]
             ]
     
     
@@ -249,17 +251,17 @@ def on_epoch_end(epoch, logs):
         fo.write("\n")
     
     with open(os.path.join(OUTPUT_PATH, "poems.txt"), "a", encoding="utf8") as fo:
-        fo.write("Epoch %d ----------------------------\n" % (epoch + 1))
+        fo.write("Epoch %d -----------------------------------------\n" % (epoch + 1))
         for i in range(PRED_COUNT):
-            fo.write("%d ---------------------------------\n" % i)
-            fo.write(" ".join(map(getWordFromIndex, x_pred[i,0:WORD_LOOKBACK])))
-            fo.write(" ===>\n")
-            fo.write(" ".join(map(getWordFromIndex, x_pred[i,WORD_LOOKBACK:(WORD_LOOKBACK+PRED_LEN)])))
+            fo.write("%d/%d---------------------------------\n" % (epoch+1,i))
+            fo.write(tokentools.renderText(x_pred[i,:], dictIndex, startlen=WORD_LOOKBACK))
             fo.write("\n")
      
     # maybe it is easier for further processing to save the file in binary. Also much smaller with vlq and gzip
     with gzip.open(os.path.join(OUTPUT_PATH, "poems_encoded.vlq.gz"), "ab") as fo:
-        vlq.save(x_pred.flat, fo)
+        writepos += vlq.save(x_pred.flat, fo)
+        
+        
         
     model.save(os.path.join(OUTPUT_PATH, "model.h5"))
     

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% block head %}
+    <title>PoetryBot KI-Analysetool</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}" />
+    <script src="{{ url_for('static', filename='navhider.js') }}" ></script>
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <h1><a href="/">PoetryBot KI-Analysetool</a></h1>
+    </header>
+    <nav id="mainNav" class="navShrinked">
+        <a onClick="toggleNav()"><h2>Navigation</h2></a>
+        <ul>
+            {% for runid in runids %}<li><a href="/runs/{{ url_fix(runid) }}">{{ runid }}</a></li>
+            {% endfor %}
+        </ul>
+    </nav>
+    {% block main %}{% endblock %}
+    <footer>
+        <a href="https://github.poetrybot.io">About</a>
+    </footer>
+</body>
+</html>
