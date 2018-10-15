@@ -164,8 +164,8 @@ cite {
         grid-template-columns: 0 0 0 100% 0;
         grid-template-rows: 15% auto 1fr 10%;
     }
-    body > * {
-        grid-column: span 4;
+    body > *, body > #mainNav /*et tu, mainNav!!!*/ {
+        grid-column: span 5;
         padding: 0;
     }
     footer {
@@ -197,11 +197,11 @@ cite {
 }
 
 @media (min-width: 600px) and (max-width: 1279px) {
-    .navShrinked {
+    #mainNav.navShrinked {
         border-top: none;
         border-right: 3px solid black;
     }
-    .navShrinked h2 {
+    #mainNav.navShrinked h2 {
         height: 75vh;
         vertical-align: top;
         text-align: left;
@@ -211,7 +211,7 @@ cite {
 }
 
 @media (min-width: 1280px) {
-    .navShrinked ul {
+    #mainNav.navShrinked ul {
         display: unset;
     }
     #mainNav h2 {

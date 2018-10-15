@@ -16,6 +16,13 @@ BASEPATH = './data'
 
 app = Flask(__name__)
 
+@app.before_first_request
+def init():
+    if not os.path.exists(BASEPATH):
+        os.mkdir(BASEPATH)
+    if not os.path.isfile(os.path.join(BASEPATH, "favourites.txt")):
+        open(os.path.join(BASEPATH, "favourites.txt"), "a").close()
+    
 @app.context_processor
 def provideRunids():
     return {"runids": [name for name in os.listdir(BASEPATH) if os.path.isdir(os.path.join(BASEPATH, name))],
