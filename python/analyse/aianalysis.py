@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, Response
+from flask import Flask, render_template, request
 from werkzeug import urls
 import argparse
 import os
@@ -11,17 +11,18 @@ import pandas
 sys.path.insert(0, "..")
 import vlq, tokentools, poem_metrics
 
+app = Flask(__name__, instance_relative_config=True)
 
-BASEPATH = './data'
-
-app = Flask(__name__)
+BASEPATH = os.path.join(app.instance_path, "data")
 
 @app.before_first_request
 def init():
     if not os.path.exists(BASEPATH):
-        os.mkdir(BASEPATH)
+        os.makedirs(BASEPATH)
+        app.logger.info("missing data directory created...")
     if not os.path.isfile(os.path.join(BASEPATH, "favourites.txt")):
         open(os.path.join(BASEPATH, "favourites.txt"), "a").close()
+        app.logger.info("missing favourites.txt created...")
     
 @app.context_processor
 def provideRunids():
@@ -122,7 +123,7 @@ def postFavourite():
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Server application to provide an overview \
                                                   over a training run and to enable reviewing and rating poems.')
-    parser.add_argument('basepath', nargs='?', default='./data', help='base folder where the run outputs are stored')
+    parser.add_argument('basepath', nargs='?', default='./instance/data', help='base folder where the run outputs are stored')
     args = parser.parse_args()
     
     BASEPATH = args.basepath
