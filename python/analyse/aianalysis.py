@@ -26,7 +26,7 @@ def init():
     
 @app.context_processor
 def provideRunids():
-    return {"runids": [name for name in os.listdir(BASEPATH) if os.path.isdir(os.path.join(BASEPATH, name))],
+    return {"runids": [name for name in sorted(os.listdir(BASEPATH)) if os.path.isdir(os.path.join(BASEPATH, name))],
             "url_fix": urls.url_fix}
 
 
