@@ -101,24 +101,31 @@ def postFavourite():
     if favstring is None:
         favstring = ':'.join(map(lambda x: favrequest.get(x), ['runid', 'epoch', 'poemid'])) + '\n'
 
-    unfav = favrequest.get('unfavourite', False)
-    # TODO: implement unfavourite
+    unfav = favrequest.get('unfavourite', False, type=lambda x: (x == "true"))
+    
     with open(os.path.join(BASEPATH, "favourites.txt"), "r+") as fo:
         if unfav:
             lines = fo.readlines()
             fo.seek(0)
+            found = False
             for line in lines:
                 if not favstring == line:
                     fo.write(line)
+                else:
+                    found = True
             fo.truncate()
-            return '{"success": true, "message": "Poem was removed from favourites or wasn\'t favourited at all"}'
+            if found:
+                return '{"success": true, "message": "Poem was removed from favourites.", "isfavourite": false}'
+            else:
+                return '{"success": false, "message": "Poem was not found in favourites list.", "isfavourite": false}'
+
         else:
             for line in fo:
                 if line == favstring:
-                    return '{"success": true, "message": "Poem was already favourited!"}'
+                    return '{"success": false, "message": "Poem was already favourited.", "isfavourite": true}'
             fo.write(favstring)
 
-            return '{"success": true, "message": "Favourite was added!"}'
+            return '{"success": true, "message": "Favourite was added.", "isfavourite": true}'
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Server application to provide an overview \

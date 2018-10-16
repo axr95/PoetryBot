@@ -71,10 +71,13 @@ function offsetPoem(poemOffset = 0, epochOffset = 0) {
 function toggleFavourite() {
     let runid = getRunId();
     $.post("/favourite", { "runid": runid, "epoch": $("#epochChooser").val(), "poemid": $("#poemChooser").val(), "unfavourite": loadedPoem["favourite"] }, function(data) {
-        if (data["success"] === true) {
+        loadedPoem["favourite"] = (data["isfavourite"] === true);
+        document.getElementById("favouriteStar").getSVGDocument().getElementById("star").setAttribute("fill", (loadedPoem["favourite"] === true) ? "orange" : "gray");
+
+        /*if (data["success"] === true) {
             loadedPoem["favourite"] = !loadedPoem["favourite"];
             document.getElementById("favouriteStar").getSVGDocument().getElementById("star").setAttribute("fill", (loadedPoem["favourite"] === true) ? "orange" : "gray");
-        }
+        }*/
     }, "json");
 }
 
